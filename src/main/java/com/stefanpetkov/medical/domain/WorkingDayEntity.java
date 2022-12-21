@@ -20,7 +20,6 @@ public class WorkingDayEntity {
     private String endTime;
 
 
-
     /*
     relationship OneToOne {
         Patient{credentials(credentialsId)} to Credentials{patient(patientId)}
@@ -38,4 +37,7 @@ public class WorkingDayEntity {
 */
 
 
-}
+    @ManyToOne
+    private DoctorEntity doctor;
+
+ }

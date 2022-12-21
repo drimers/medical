@@ -24,7 +24,6 @@ public class AppointmentEntity {
     @Column(length = 50, nullable = false)
     private String appointmentEndTime;
 
-
     /*
     relationship OneToOne {
         Patient{credentials(credentialsId)} to Credentials{patient(patientId)}
@@ -41,6 +40,8 @@ public class AppointmentEntity {
 
 */
 
+    @ManyToOne
+    private  PatientEntity patient;
 
 
 }

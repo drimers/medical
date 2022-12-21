@@ -9,4 +9,6 @@ public interface PatientRepository  extends JpaRepository<PatientEntity, Long> {
 
     PatientEntity findPatientByPatientId (Long patientId);
 
+   // PatientEntity find
+
   }

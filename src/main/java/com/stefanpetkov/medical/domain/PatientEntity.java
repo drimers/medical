@@ -39,9 +39,11 @@ public class PatientEntity {
 */
 
 
+    @OneToOne
+    private CredentialsEntity credentials;
 
-
-
+    @ManyToOne
+    private AppointmentEntity appointment;
 
 
 }

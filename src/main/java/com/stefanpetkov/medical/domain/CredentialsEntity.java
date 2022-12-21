@@ -36,6 +36,13 @@ public class CredentialsEntity {
 
 */
 
+    @OneToOne
+    private PatientEntity patient;
+
+    @OneToOne
+    private DoctorEntity doctor;
+
+
 
 
 }

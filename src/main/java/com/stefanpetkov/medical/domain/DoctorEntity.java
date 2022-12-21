@@ -36,6 +36,11 @@ public class DoctorEntity {
 
 */
 
+    @OneToOne
+    private CredentialsEntity credentials;
+
+    @ManyToOne
+    private WorkingDayEntity workingDay;
 
 
 

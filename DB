@@ -28,7 +28,7 @@ entity Doctor {
     password String
 }
 
-enum UserRole {
+enum Role {
 	PATIENT, DOCTOR, ADMIN
 }
 
@@ -67,3 +67,6 @@ relationship OneToMany {
 	Doctor{appointmentList(appointmentId)} to Appointment{doctor(doctorId)}
     Doctor{workingDayList(appointmentId)} to WorkingDay{doctor(doctorId)}
 }
+
+
+33dd701d-b85c-42a1-8e3b-eaeee2e68a94
