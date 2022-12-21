@@ -22,6 +22,9 @@ public class PatientEntity {
     @Column(length = 2500)
     private String comment;
 
+    @Column(name = "profilePicture", length = 400)
+    private String profilePicture;
+
 /*
     relationship OneToOne {
         Patient{credentials(credentialsId)} to Credentials{patient(patientId)}

@@ -17,7 +17,11 @@ public class DoctorEntity {
     @Column(length = 50, nullable = false, unique = true)
     private String lastName;
 
+    @Column(length = 50)
     private String phone;
+
+    @Column(name = "profilePicture", length = 400)
+    private String profilePicture;
 
 
     /*

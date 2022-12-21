@@ -15,8 +15,7 @@ entity Patient {
 	firstName String,
 	lastName String,
     phone String,
-  	email String,
-    password String
+    profilePicture String
 }
 
 entity Doctor {
@@ -24,8 +23,7 @@ entity Doctor {
 	firstName String,
 	lastName String,
     phone String,
-    email String,
-    password String
+    profilePicture String
 }
 
 enum Role {
