@@ -15,8 +15,10 @@ public class PatientController {
         this.patientService = patientService;
     }
 
+
     @GetMapping("/patient")
     public String index() {
-        return "Greetings from Spring Boot Patients!";
+       return "index.html";
+        // return "Greetings from Spring Boot Patients!";
     }
 }
