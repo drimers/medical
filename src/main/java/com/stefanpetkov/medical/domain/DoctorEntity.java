@@ -58,6 +58,19 @@ public class DoctorEntity {
 
 
     @Override
+    public String toString() {
+        return "DoctorEntity{" +
+                "doctorId=" + doctorId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", profilePicture='" + profilePicture + '\'' +
+                ", credentials=" + credentials +
+                ", workingDay=" + workingDay +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

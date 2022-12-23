@@ -53,6 +53,20 @@ public class PatientEntity {
 
 
     @Override
+    public String toString() {
+        return "PatientEntity{" +
+                "patientId=" + patientId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", comment='" + comment + '\'' +
+                ", profilePicture='" + profilePicture + '\'' +
+                ", credentials=" + credentials +
+                ", appointment=" + appointment +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
