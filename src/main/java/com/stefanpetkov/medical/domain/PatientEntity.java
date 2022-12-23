@@ -49,9 +49,11 @@ public class PatientEntity {
 
 
     @OneToOne
+    @JoinColumn(name = "patient_id")
     private CredentialsEntity credentials;
 
     @OneToMany
+    @JoinColumn(name = "patient_id")
     private List<AppointmentEntity> appointment;
 
 

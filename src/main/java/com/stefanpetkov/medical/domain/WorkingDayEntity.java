@@ -42,11 +42,11 @@ public class WorkingDayEntity {
 
 */
 
-
-    @ManyToOne
+    // @ManyToOne
   //  @JoinTable(name = "doctor_workingday",
   //  joinColumns={@JoinColumn(name="doctor_id")},
   //  inverseJoinColumns={@JoinColumn(name="workingday_id")})
+    @ManyToOne
     private  DoctorEntity doctor;
 
 
