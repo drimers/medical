@@ -3,6 +3,7 @@ package com.stefanpetkov.medical.domain;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "patient")
@@ -51,4 +52,18 @@ public class PatientEntity {
     private List<AppointmentEntity> appointment = new ArrayList<>();
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PatientEntity that = (PatientEntity) o;
+
+        return Objects.equals(patientId, that.patientId);
+    }
+
+    @Override
+    public int hashCode() {
+        return patientId != null ? patientId.hashCode() : 0;
+    }
 }

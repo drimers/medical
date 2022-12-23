@@ -8,6 +8,7 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "doctor")
@@ -56,9 +57,18 @@ public class DoctorEntity {
     private List<WorkingDayEntity> workingDay = new ArrayList<>();
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        DoctorEntity that = (DoctorEntity) o;
 
+        return Objects.equals(doctorId, that.doctorId);
+    }
 
-
-
+    @Override
+    public int hashCode() {
+        return doctorId != null ? doctorId.hashCode() : 0;
+    }
 }

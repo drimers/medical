@@ -2,6 +2,7 @@ package com.stefanpetkov.medical.domain;
 
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "credentials")
@@ -43,6 +44,18 @@ public class CredentialsEntity {
     private DoctorEntity doctor;
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        CredentialsEntity that = (CredentialsEntity) o;
 
+        return Objects.equals(credentialsId, that.credentialsId);
+    }
+
+    @Override
+    public int hashCode() {
+        return credentialsId != null ? credentialsId.hashCode() : 0;
+    }
 }

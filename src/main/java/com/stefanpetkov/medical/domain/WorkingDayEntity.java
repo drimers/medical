@@ -3,6 +3,7 @@ package com.stefanpetkov.medical.domain;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "workingday")
@@ -45,4 +46,19 @@ public class WorkingDayEntity {
   //  inverseJoinColumns={@JoinColumn(name="workingday_id")})
     private  DoctorEntity doctor;
 
- }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        WorkingDayEntity that = (WorkingDayEntity) o;
+
+        return Objects.equals(workingDayId, that.workingDayId);
+    }
+
+    @Override
+    public int hashCode() {
+        return workingDayId != null ? workingDayId.hashCode() : 0;
+    }
+}

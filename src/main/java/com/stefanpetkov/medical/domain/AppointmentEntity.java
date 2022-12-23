@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "appointment")
@@ -45,4 +46,18 @@ public class AppointmentEntity {
     private  PatientEntity patient;
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AppointmentEntity that = (AppointmentEntity) o;
+
+        return Objects.equals(appointmentId, that.appointmentId);
+    }
+
+    @Override
+    public int hashCode() {
+        return appointmentId != null ? appointmentId.hashCode() : 0;
+    }
 }
