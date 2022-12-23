@@ -55,9 +55,9 @@ entity WorkingDay {
 
 relationship OneToOne {
 	Patient{credentials(credentialsId)} to Credentials{patient(patientId)}
-	Credentials{patient(patientId)} to Patient{credentials(credentialsId)}
+	//Credentials{patient(patientId)} to Patient{credentials(credentialsId)}
 	Doctor{credentials(credentialsId)} to Credentials{doctor(doctorId)}
-	Credentials{doctor(doctorId)} to Doctor{credentials(credentialsId)}
+	//Credentials{doctor(doctorId)} to Doctor{credentials(credentialsId)}
 }
 
 relationship OneToMany {

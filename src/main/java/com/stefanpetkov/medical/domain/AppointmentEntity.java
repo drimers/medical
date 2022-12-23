@@ -41,6 +41,7 @@ public class AppointmentEntity {
 */
 
     @ManyToOne
+    @JoinTable(name = "patient_appointment")
     private  PatientEntity patient;
 
 

@@ -1,6 +1,10 @@
 package com.stefanpetkov.medical.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 
 @Entity
@@ -44,6 +48,9 @@ public class DoctorEntity {
     private CredentialsEntity credentials;
 
     @ManyToOne
+ //   @OneToMany(mappedBy = "doctor") // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
+ //   @Fetch(FetchMode.JOIN)
+ //   @JsonIgnore
     private WorkingDayEntity workingDay;
 
 

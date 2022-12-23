@@ -18,7 +18,7 @@ public class PatientController {
 
     @GetMapping("/patient")
     public String index() {
-       return "index.html";
+       return "patient.html";
         // return "Greetings from Spring Boot Patients!";
     }
 }
