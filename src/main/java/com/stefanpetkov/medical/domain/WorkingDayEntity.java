@@ -1,6 +1,8 @@
 package com.stefanpetkov.medical.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "workingday")
@@ -41,6 +43,6 @@ public class WorkingDayEntity {
   //  @JoinTable(name = "doctor_workingday",
   //  joinColumns={@JoinColumn(name="doctor_id")},
   //  inverseJoinColumns={@JoinColumn(name="workingday_id")})
-    private DoctorEntity doctor;
+    private  DoctorEntity doctor;
 
  }

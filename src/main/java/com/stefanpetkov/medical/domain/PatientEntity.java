@@ -1,6 +1,8 @@
 package com.stefanpetkov.medical.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "patient")
@@ -45,8 +47,8 @@ public class PatientEntity {
     @OneToOne
     private CredentialsEntity credentials;
 
-    @ManyToOne
-    private AppointmentEntity appointment;
+    @OneToMany
+    private List<AppointmentEntity> appointment = new ArrayList<>();
 
 
 }

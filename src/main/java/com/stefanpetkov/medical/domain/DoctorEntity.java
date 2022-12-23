@@ -6,6 +6,8 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "doctor")
@@ -47,11 +49,11 @@ public class DoctorEntity {
     @OneToOne
     private CredentialsEntity credentials;
 
-    @ManyToOne
+    @OneToMany
  //   @OneToMany(mappedBy = "doctor") // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
  //   @Fetch(FetchMode.JOIN)
  //   @JsonIgnore
-    private WorkingDayEntity workingDay;
+    private List<WorkingDayEntity> workingDay = new ArrayList<>();
 
 
 
