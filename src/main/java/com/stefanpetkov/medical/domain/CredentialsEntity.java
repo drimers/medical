@@ -1,11 +1,14 @@
 package com.stefanpetkov.medical.domain;
 
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "credentials")
+@Data
 public class CredentialsEntity {
 
     @Id

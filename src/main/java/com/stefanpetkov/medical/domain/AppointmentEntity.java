@@ -1,6 +1,7 @@
 package com.stefanpetkov.medical.domain;
 
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "appointment")
+@Data
 public class AppointmentEntity {
 
 

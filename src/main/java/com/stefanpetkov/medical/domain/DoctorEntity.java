@@ -2,6 +2,7 @@ package com.stefanpetkov.medical.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -9,9 +10,11 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "doctor")
+@Data
 public class DoctorEntity {
 
     @Id
@@ -35,23 +38,6 @@ public class DoctorEntity {
         this.lastName = lastName;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-
     /*
     relationship OneToOne {
         Patient{credentials(credentialsId)} to Credentials{patient(patientId)}
@@ -71,11 +57,13 @@ public class DoctorEntity {
     @OneToOne
     private CredentialsEntity credentials;
 
-    @OneToMany
- //   @OneToMany(mappedBy = "doctor") // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
- //   @Fetch(FetchMode.JOIN)
- //   @JsonIgnore
-    private List<WorkingDayEntity> workingDay = new ArrayList<>();
+   // @OneToMany
+    @OneToMany(mappedBy = "doctor") // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
+    @Fetch(FetchMode.JOIN)
+    @JsonIgnore
+    private List<WorkingDayEntity> workingDay;
+
+
 
 
     @Override

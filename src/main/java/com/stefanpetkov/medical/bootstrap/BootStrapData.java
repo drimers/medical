@@ -23,6 +23,7 @@ public class BootStrapData implements CommandLineRunner {
 
         DoctorEntity doctor = new DoctorEntity("Ivan","Ivanov");
         doctor.getFirstName();
+        doctor.getLastName();
         doctorRepository.save(doctor);
 
         System.out.println("Doctors");

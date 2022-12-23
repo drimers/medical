@@ -1,5 +1,7 @@
 package com.stefanpetkov.medical.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "patient")
+@Data
 public class PatientEntity {
 
     @Id
@@ -49,7 +52,7 @@ public class PatientEntity {
     private CredentialsEntity credentials;
 
     @OneToMany
-    private List<AppointmentEntity> appointment = new ArrayList<>();
+    private List<AppointmentEntity> appointment;
 
 
     @Override
