@@ -33,6 +33,10 @@ public class DoctorEntity {
     @Column(name = "profilePicture", length = 400)
     private String profilePicture;
 
+    public DoctorEntity() {
+
+    }
+
     public DoctorEntity(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
