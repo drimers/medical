@@ -31,7 +31,16 @@ public class PatientEntity {
     @Column(name = "profilePicture", length = 400)
     private String profilePicture;
 
-/*
+    public PatientEntity() {
+    }
+
+    public PatientEntity(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+
+    /*
     relationship OneToOne {
         Patient{credentials(credentialsId)} to Credentials{patient(patientId)}
         Credentials{patient(patientId)} to Patient{credentials(credentialsId)}
@@ -46,6 +55,7 @@ public class PatientEntity {
     }
 
 */
+
 
 
     @OneToOne

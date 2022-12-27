@@ -17,6 +17,7 @@ import java.util.Set;
 @Data
 public class DoctorEntity {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long doctorId;

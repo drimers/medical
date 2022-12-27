@@ -21,6 +21,11 @@ public class BootStrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        loadData();
+
+    }
+
+    private void loadData() {
         DoctorEntity doctor = new DoctorEntity("Ivan","Ivanov");
         doctor.getFirstName();
         doctor.getLastName();
@@ -29,8 +34,14 @@ public class BootStrapData implements CommandLineRunner {
         System.out.println("Doctors");
         System.out.println("number of doctors " +  doctorRepository.count());
 
-    }
+        PatientEntity patient = new PatientEntity("Stefan","Stefanov");
+        patient.getFirstName();
+        patient.getLastName();
+        patientRepository.save(patient);
 
+        System.out.println("patient");
+        System.out.println("number of patient " +  patientRepository.count());
+    }
 
 
 }

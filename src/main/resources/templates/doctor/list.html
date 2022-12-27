@@ -56,13 +56,13 @@
 <table class="table table-striped">
     <tr class="table-dark">
         <th>ID</th>
-        <th>Title</th>
-        <th>Publisher</th>
+        <th>FirstName</th>
+        <th>LastName</th>
     </tr>
     <tr th:each="doctor : ${doctor}">
-        <td th:text="${doctor.doctorId}">123</td>
-        <td th:text="${doctor.firstName}"> Spring in Action</td>
-        <td th:text="${doctor.lastName}">Wrox</td>
+        <td th:text="${doctor.doctorId}">id</td>
+        <td th:text="${doctor.firstName}">FirstName</td>
+        <td th:text="${doctor.lastName}">LastName</td>
     </tr>
 </table>
 
