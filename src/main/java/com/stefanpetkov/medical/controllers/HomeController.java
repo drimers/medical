@@ -9,7 +9,8 @@ public class HomeController {
     @RequestMapping({"","/", "/home"})
     public String home() {
      //   model.addAttribute("doctor", doctorRepository.findAll());
-        return "home/home.html";
+        return "home/home";
         // return "Greetings from Spring Boot Patients!";
     }
+
 }
