@@ -4,8 +4,10 @@ package com.stefanpetkov.medical.domain;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +19,9 @@ public class AppointmentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long appointmentId;
+
+    //@DateTimeFormat(pattern = "dd-MM.yyyy")
+    //private LocalDate appointmentDate;
 
     @Column(length = 50, nullable = false)
     private String appointmentDate;
