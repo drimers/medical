@@ -18,13 +18,8 @@ public class AppointmentEntity {
     //private LocalDate appointmentDate;
 
     @Column(length = 50, nullable = false)
-    private String appointmentDate;
+    private String appointment;
 
-    @Column(length = 50, nullable = false)
-    private String appointmentStartTime;
-
-    @Column(length = 50, nullable = false)
-    private String appointmentEndTime;
 
     @ManyToOne
     private  PatientEntity patient;
