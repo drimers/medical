@@ -25,6 +25,13 @@ public class WorkingDayEntity {
     @Column(length = 50, nullable = false)
     private String endTime;
 
+    // @ManyToOne
+    //  @JoinTable(name = "doctor_workingday",
+    //  joinColumns={@JoinColumn(name="doctor_id")},
+    //  inverseJoinColumns={@JoinColumn(name="workingday_id")})
+    @ManyToOne
+    private  DoctorEntity doctor;
+
 
     /*
     relationship OneToOne {
@@ -42,12 +49,6 @@ public class WorkingDayEntity {
 
 */
 
-    // @ManyToOne
-  //  @JoinTable(name = "doctor_workingday",
-  //  joinColumns={@JoinColumn(name="doctor_id")},
-  //  inverseJoinColumns={@JoinColumn(name="workingday_id")})
-    @ManyToOne
-    private  DoctorEntity doctor;
 
 
     @Override

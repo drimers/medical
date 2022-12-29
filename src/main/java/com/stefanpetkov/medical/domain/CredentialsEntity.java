@@ -23,6 +23,11 @@ public class CredentialsEntity {
     //private role UserRole;
 
 
+    @OneToOne
+    private PatientEntity patient;
+
+    @OneToOne
+    private DoctorEntity doctor;
 
     /*
     relationship OneToOne {
@@ -40,11 +45,6 @@ public class CredentialsEntity {
 
 */
 
-    @OneToOne
-    private PatientEntity patient;
-
-    @OneToOne
-    private DoctorEntity doctor;
 
 
     @Override

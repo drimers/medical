@@ -32,6 +32,10 @@ public class AppointmentEntity {
     @Column(length = 50, nullable = false)
     private String appointmentEndTime;
 
+    @ManyToOne
+    @JoinTable(name = "patient_appointment")
+    private  PatientEntity patient;
+
     /*
     relationship OneToOne {
         Patient{credentials(credentialsId)} to Credentials{patient(patientId)}
@@ -48,9 +52,6 @@ public class AppointmentEntity {
 
 */
 
-    @ManyToOne
-    @JoinTable(name = "patient_appointment")
-    private  PatientEntity patient;
 
 
     @Override

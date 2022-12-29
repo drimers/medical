@@ -30,10 +30,19 @@ public class DoctorEntity {
 
     @Column(length = 50)
     private String phone;
-
-
     private Byte[] profilePicture;
 
+    @OneToOne
+    @JoinColumn(name = "doctor_id")
+    private CredentialsEntity credentials;
+
+
+    //    @OneToMany(mappedBy = "doctor") // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
+//    @Fetch(FetchMode.JOIN)
+//    @JsonIgnore
+    @OneToMany
+    @JoinColumn(name = "doctor_id")
+    private List<WorkingDayEntity> workingDay;
     public DoctorEntity() {
 
     }
@@ -59,17 +68,7 @@ public class DoctorEntity {
 
 */
 
-    @OneToOne
-    @JoinColumn(name = "doctor_id")
-    private CredentialsEntity credentials;
 
-
-//    @OneToMany(mappedBy = "doctor") // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
-//    @Fetch(FetchMode.JOIN)
-//    @JsonIgnore
-    @OneToMany
-    @JoinColumn(name = "doctor_id")
-    private List<WorkingDayEntity> workingDay;
 
 
 

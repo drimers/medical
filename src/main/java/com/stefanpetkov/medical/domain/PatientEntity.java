@@ -28,9 +28,15 @@ public class PatientEntity {
     @Column(length = 2500)
     private String comment;
 
-
     private Byte[] profilePicture;
 
+    @OneToOne
+    @JoinColumn(name = "patient_id")
+    private CredentialsEntity credentials;
+
+    @OneToMany
+    @JoinColumn(name = "patient_id")
+    private List<AppointmentEntity> appointment;
     public PatientEntity() {
     }
 
@@ -58,13 +64,7 @@ public class PatientEntity {
 
 
 
-    @OneToOne
-    @JoinColumn(name = "patient_id")
-    private CredentialsEntity credentials;
 
-    @OneToMany
-    @JoinColumn(name = "patient_id")
-    private List<AppointmentEntity> appointment;
 
 
     @Override
