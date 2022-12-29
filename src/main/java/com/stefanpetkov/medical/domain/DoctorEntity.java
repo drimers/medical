@@ -2,12 +2,15 @@ package com.stefanpetkov.medical.domain;
 
 
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@Data
 @Table(name = "doctor")
 public class DoctorEntity {
 
