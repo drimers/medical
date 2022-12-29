@@ -2,17 +2,11 @@ package com.stefanpetkov.medical.domain;
 
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
 @Table(name = "appointment")
-@Data
 public class AppointmentEntity {
 
 
@@ -33,7 +27,6 @@ public class AppointmentEntity {
     private String appointmentEndTime;
 
     @ManyToOne
-    @JoinTable(name = "patient_appointment")
     private  PatientEntity patient;
 
     /*

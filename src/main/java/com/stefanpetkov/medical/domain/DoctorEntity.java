@@ -1,20 +1,14 @@
 package com.stefanpetkov.medical.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "doctor")
-@Data
 public class DoctorEntity {
 
 
@@ -30,19 +24,19 @@ public class DoctorEntity {
 
     @Column(length = 50)
     private String phone;
+    @Lob
     private Byte[] profilePicture;
 
     @OneToOne
-    @JoinColumn(name = "doctor_id")
     private CredentialsEntity credentials;
-
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
 
     //    @OneToMany(mappedBy = "doctor") // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
 //    @Fetch(FetchMode.JOIN)
 //    @JsonIgnore
-    @OneToMany
-    @JoinColumn(name = "doctor_id")
-    private List<WorkingDayEntity> workingDay;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor")
+    private Set<WorkingDayEntity> workingDay;
     public DoctorEntity() {
 
     }
@@ -69,10 +63,6 @@ public class DoctorEntity {
 */
 
 
-
-
-
-
     @Override
     public String toString() {
         return "DoctorEntity{" +
@@ -80,8 +70,9 @@ public class DoctorEntity {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phone='" + phone + '\'' +
-                ", profilePicture='" + profilePicture + '\'' +
+                ", profilePicture=" + Arrays.toString(profilePicture) +
                 ", credentials=" + credentials +
+                ", role=" + role +
                 ", workingDay=" + workingDay +
                 '}';
     }

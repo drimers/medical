@@ -1,15 +1,13 @@
 package com.stefanpetkov.medical.domain;
 
-import lombok.Data;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "patient")
-@Data
 public class PatientEntity {
 
     @Id
@@ -27,16 +25,16 @@ public class PatientEntity {
 
     @Column(length = 2500)
     private String comment;
-
+    @Lob
     private Byte[] profilePicture;
 
     @OneToOne
-    @JoinColumn(name = "patient_id")
     private CredentialsEntity credentials;
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
 
-    @OneToMany
-    @JoinColumn(name = "patient_id")
-    private List<AppointmentEntity> appointment;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
+    private Set<AppointmentEntity> appointment;
     public PatientEntity() {
     }
 
@@ -63,10 +61,6 @@ public class PatientEntity {
 */
 
 
-
-
-
-
     @Override
     public String toString() {
         return "PatientEntity{" +
@@ -75,8 +69,9 @@ public class PatientEntity {
                 ", lastName='" + lastName + '\'' +
                 ", phone='" + phone + '\'' +
                 ", comment='" + comment + '\'' +
-                ", profilePicture='" + profilePicture + '\'' +
+                ", profilePicture=" + Arrays.toString(profilePicture) +
                 ", credentials=" + credentials +
+                ", role=" + role +
                 ", appointment=" + appointment +
                 '}';
     }

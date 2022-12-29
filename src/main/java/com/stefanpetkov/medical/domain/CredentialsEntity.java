@@ -1,14 +1,12 @@
 package com.stefanpetkov.medical.domain;
 
 
-import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "credentials")
-@Data
 public class CredentialsEntity {
 
     @Id
@@ -23,10 +21,10 @@ public class CredentialsEntity {
     //private role UserRole;
 
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private PatientEntity patient;
 
-    @OneToOne
+   @OneToOne(cascade = CascadeType.ALL)
     private DoctorEntity doctor;
 
     /*
