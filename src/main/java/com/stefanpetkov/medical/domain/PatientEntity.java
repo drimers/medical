@@ -28,8 +28,8 @@ public class PatientEntity {
     @Column(length = 2500)
     private String comment;
 
-    @Column(name = "profilePicture", length = 400)
-    private String profilePicture;
+
+    private Byte[] profilePicture;
 
     public PatientEntity() {
     }

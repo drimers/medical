@@ -31,8 +31,8 @@ public class DoctorEntity {
     @Column(length = 50)
     private String phone;
 
-    @Column(name = "profilePicture", length = 400)
-    private String profilePicture;
+
+    private Byte[] profilePicture;
 
     public DoctorEntity() {
 
