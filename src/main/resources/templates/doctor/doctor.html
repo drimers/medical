@@ -58,11 +58,13 @@
         <th>ID</th>
         <th>FirstName</th>
         <th>LastName</th>
+        <th>Phone</th>
     </tr>
     <tr th:each="doctor : ${doctor}">
         <td th:text="${doctor.doctorId}">id</td>
         <td th:text="${doctor.firstName}">FirstName</td>
         <td th:text="${doctor.lastName}">LastName</td>
+        <td th:text="${doctor.phone}">phone</td>
     </tr>
 </table>
 

@@ -71,11 +71,17 @@
         <th>ID</th>
         <th>FirstName</th>
         <th>LastName</th>
+        <th>Phone</th>
+        <th>Comment</th>
+        <th>Appointment</th>
     </tr>
     <tr th:each="patient : ${patient}">
         <td th:text="${patient.patientId}">ID</td>
         <td th:text="${patient.firstName}"> FirstName</td>
         <td th:text="${patient.lastName}">LastName</td>
+        <td th:text="${patient.phone}">phone</td>
+        <td th:text="${patient.comment}">comment</td>
+       <!-- <td th:text="${emailAccount}">comment</td> -->
     </tr>
 </table>
 

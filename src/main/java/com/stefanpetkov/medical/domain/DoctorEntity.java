@@ -40,14 +40,7 @@ public class DoctorEntity {
 //    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor")
     private Set<WorkingDayEntity> workingDay;
-    public DoctorEntity() {
 
-    }
-
-    public DoctorEntity(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 
     /*
     relationship OneToOne {

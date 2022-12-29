@@ -38,13 +38,6 @@ public class PatientEntity {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
     private Set<AppointmentEntity> appointment;
-    public PatientEntity() {
-    }
-
-    public PatientEntity(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 
 
     /*
