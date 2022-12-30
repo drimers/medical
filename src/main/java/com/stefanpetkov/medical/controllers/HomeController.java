@@ -13,4 +13,11 @@ public class HomeController {
         // return "Greetings from Spring Boot Patients!";
     }
 
+    @RequestMapping({ "/contact"})
+    public String contact() {
+        //   model.addAttribute("doctor", doctorRepository.findAll());
+        return "contact/contact";
+        // return "Greetings from Spring Boot Patients!";
+    }
+
 }

@@ -27,43 +27,8 @@
 
 <body class="d-flex flex-column min-vh-100">
 
-<header class="top-header">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div th:insert="comman/header :: header"></div>
 
-        <a href="home"><img src="img/logo.png" alt="" class="img-responsive logo"></a>
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Medical</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="patient">Patient</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="doctor">Doctor</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="register.html">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact">Contact</a>
-                    </li>
-
-
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-    </nav>
-</header> <!-- end of header area -->
 
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 <input  type="button" id="button" onclick="location.href='login.html';" value="login" />
@@ -131,17 +96,7 @@
 
 
 <!-- footer starts here -->
-<footer   class="bg-dark text-center text-white mt-auto ">
-
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2022 Copyright:
-        <a class="text-white" href="home">my-medical.com</a>
-    </div>
-    <!-- Copyright -->
-</footer>
-
-
+<div  th:insert="comman/footer :: footer"></div>
 
 
 </body>
