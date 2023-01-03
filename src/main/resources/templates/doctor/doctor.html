@@ -17,22 +17,6 @@
 
 <div th:insert="comman/header :: header"></div>
 
-<!--
-<table class="table table-striped">
-    <tr class="table-dark">
-        <th>ID</th>
-        <th>FirstName</th>
-        <th>LastName</th>
-        <th>Phone</th>
-    </tr>
-    <tr th:each="doctor : ${doctor}">
-        <td th:text="${doctor.doctorId}">id</td>
-        <td th:text="${doctor.firstName}">FirstName</td>
-        <td th:text="${doctor.lastName}">LastName</td>
-        <td th:text="${doctor.phone}">phone</td>
-    </tr>
-</table>
--->
 
 <table class="table table-striped">
     <tr class="table-dark">
@@ -57,7 +41,21 @@
 
 <div th:insert="comman/footer :: footer"></div>
 
+<script>
 
+    function getAllComments(){
+        $.ajax({
+            url: "/comment/all",
+            method: "GET",
+            success: function(data){
+                data.forEach(function(comm){
+                    addCommentToUI(comm.description, comm.city, comm.temp, comm.icon, comm.id);
+                });
+            }
+        });
+
+    }
+</script>
 
 </body>
 </html>

@@ -8,6 +8,7 @@ import com.stefanpetkov.medical.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -32,7 +33,7 @@ public class PatientController {
 
 
     @RequestMapping("/patient")
-    public String getDoctor(Model model) {
+    public String getDoctor( Model model) {
         model.addAttribute("doctor", doctorRepository.findAll());
         model.addAttribute("appointment", appointmentRepository.findByAppointmentId(1L));
 
@@ -42,6 +43,18 @@ public class PatientController {
        return "patient/patient";
         // return "Greetings from Spring Boot Patients!";
     }
+
+//    @RequestMapping("/patient/{id}")
+//    public String getDoctor(@PathVariable String id, Model model) {
+//        model.addAttribute("doctor", doctorRepository.findAll());
+//        model.addAttribute("appointment", appointmentRepository.findByAppointmentId(new Long(id)));
+//
+//        //  model.addAttribute("appointment", appointmentRepository.findAllByPatientId(9L));
+//        // model.addAttribute("emailAccount", credentialsRepository.findByEmail("spp.bg@abv.bg"));
+//
+//        return "patient/patient";
+//        // return "Greetings from Spring Boot Patients!";
+//    }
 
 
 

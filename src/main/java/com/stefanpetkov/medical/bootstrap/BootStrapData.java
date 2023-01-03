@@ -11,6 +11,8 @@ import com.stefanpetkov.medical.repositories.PatientRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class BootStrapData implements CommandLineRunner {
 
@@ -19,6 +21,7 @@ public class BootStrapData implements CommandLineRunner {
     private final CredentialsRepository credentialsRepository;
 
     private final AppointmentRepository appointmentRepository;
+
 
     public BootStrapData(DoctorRepository doctorRepository, PatientRepository patientRepository,
                          CredentialsRepository credentialsRepository, AppointmentRepository appointmentRepository) {
@@ -31,7 +34,7 @@ public class BootStrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        //loadData();
+       // loadData();
 
     }
 
@@ -64,7 +67,7 @@ public class BootStrapData implements CommandLineRunner {
 
 
         CredentialsEntity credentials = new CredentialsEntity();
-        credentials.setEmail("spp.bg@abv.bg");
+        credentials.setEmail("spp1.bg@abv.bg");
         credentials.setPassword("pass");
         credentials.setCredentialsId(5L);
         credentials.getPatient();

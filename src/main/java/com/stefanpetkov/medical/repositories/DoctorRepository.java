@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DoctorRepository extends CrudRepository<DoctorEntity, Long> {
+public interface DoctorRepository extends JpaRepository<DoctorEntity, Long> {
 
     DoctorEntity findDoctorByDoctorId (Long doctorId);
 
