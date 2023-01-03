@@ -33,6 +33,8 @@
 
 <body>
 
+<div th:insert="~{common/header :: header}"></div>
+
 <!-- Include datetime input to display
     datetimepicker in container with
     relative position -->
@@ -56,6 +58,9 @@
     format: 'hh:mm:ss a'
   });
 </script>
+
+
+<div  th:insert="~{common/footer :: footer}"></div>
 </body>
 
 </html>

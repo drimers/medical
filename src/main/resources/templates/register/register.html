@@ -8,14 +8,13 @@
     <title>MEDICAL - Responsive HTML &amp; Bootstrap Template</title>
     <link href="assets/css/registerForm.css" rel="stylesheet">
     <![endif]-->
-
-
 </head>
+
+
+
 <body class="d-flex flex-column min-vh-100">
 
-
-
-
+<div th:insert="~{common/header :: header}"></div>
 
 <form>
     <!-- class named "container" is assigned to div -->
@@ -80,12 +79,12 @@
     </div>
 
     <div>
-        <p>Already have an account? <a href="patient">Log in</a>.</p>
+        <p>Already have an account? <a href="login">Log in</a>.</p>
     </div>
 </form>
 
 
 
-
+<div th:insert="~{common/footer :: footer}"></div>
 </body>
 </html>

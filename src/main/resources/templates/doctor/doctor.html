@@ -9,13 +9,12 @@
     <meta name="author" content="">
     <title>MEDICAL - Responsive HTML &amp; Bootstrap Template</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-
-
 </head>
+
+
 <body class="d-flex flex-column min-vh-100">
 
-<div th:insert="common/header :: header"></div>
+<div th:insert="~{common/header :: header}"></div>
 
 
 <table class="table table-striped">
@@ -33,20 +32,7 @@
     </tr>
 </table>
 
-<!-- footer starts here -->
-
-
-<div th:insert="common/footer :: footer"></div>
-
-<!-- <footer class="bg-dark text-center text-white mt-auto">
-
-
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2022 Copyright:
-        <a class="text-white" href="home">my-medical.com</a>
-    </div>
-
-</footer> -->
+<div th:insert="~{common/footer :: footer}"></div>
 
 </body>
 </html>
