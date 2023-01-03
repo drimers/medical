@@ -17,7 +17,7 @@
 
 <div th:insert="comman/header :: header"></div>
 
-
+<!--
 <table class="table table-striped">
     <tr class="table-dark">
         <th>ID</th>
@@ -32,21 +32,32 @@
         <td th:text="${doctor.phone}">phone</td>
     </tr>
 </table>
+-->
+
+<table class="table table-striped">
+    <tr class="table-dark">
+        <th>ID</th>
+        <th>Patient Name</th>
+        <th>Phone</th>
+        <th>Comment</th>
+        <th>Appointment</th>
+    </tr>
+    <tr th:each="patient : ${patient}">
+        <td th:text="${patient.patientId}">ID</td>
+        <td th:text="${patient.firstName} + ' ' + ${patient.lastName}"> FullName</td>
+      <!--  <td th:text="${patient.lastName}">LastName</td>-->
+        <td th:text="${patient.phone}">phone</td>
+        <td th:text="${patient.comment}">comment</td>
+        <td th:text="${appointment.getAppointment()}">comment</td>
+    </tr>
+</table>
 
 <!-- footer starts here -->
 
 
 <div th:insert="comman/footer :: footer"></div>
 
-<!-- <footer class="bg-dark text-center text-white mt-auto">
 
-
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2022 Copyright:
-        <a class="text-white" href="home">my-medical.com</a>
-    </div>
-
-</footer> -->
 
 </body>
 </html>

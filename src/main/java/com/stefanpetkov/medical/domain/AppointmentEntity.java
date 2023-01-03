@@ -7,6 +7,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "appointment")
+@Data
 public class AppointmentEntity {
 
 

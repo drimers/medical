@@ -1,8 +1,10 @@
 package com.stefanpetkov.medical.bootstrap;
 
+import com.stefanpetkov.medical.domain.AppointmentEntity;
 import com.stefanpetkov.medical.domain.CredentialsEntity;
 import com.stefanpetkov.medical.domain.DoctorEntity;
 import com.stefanpetkov.medical.domain.PatientEntity;
+import com.stefanpetkov.medical.repositories.AppointmentRepository;
 import com.stefanpetkov.medical.repositories.CredentialsRepository;
 import com.stefanpetkov.medical.repositories.DoctorRepository;
 import com.stefanpetkov.medical.repositories.PatientRepository;
@@ -16,17 +18,20 @@ public class BootStrapData implements CommandLineRunner {
     private final PatientRepository patientRepository;
     private final CredentialsRepository credentialsRepository;
 
+    private final AppointmentRepository appointmentRepository;
+
     public BootStrapData(DoctorRepository doctorRepository, PatientRepository patientRepository,
-                         CredentialsRepository credentialsRepository) {
+                         CredentialsRepository credentialsRepository, AppointmentRepository appointmentRepository) {
         this.doctorRepository = doctorRepository;
         this.patientRepository = patientRepository;
         this.credentialsRepository = credentialsRepository;
+        this.appointmentRepository = appointmentRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
-       // loadData();
+        //loadData();
 
     }
 
@@ -67,6 +72,17 @@ public class BootStrapData implements CommandLineRunner {
         credentialsRepository.save(credentials);
         System.out.println("credential");
         System.out.println("number of credential " +  credentialsRepository.count());
+
+
+        AppointmentEntity appointment = new AppointmentEntity();
+        appointment.setAppointment("03.01.2023");
+        //appointment.setPatient(patientRepository.findPatientByPatientId(1L));
+        appointment.getAppointment();
+       // appointment.getPatient();
+        appointmentRepository.save(appointment);
+
+        System.out.println("appointment");
+        System.out.println("number of appointments " +  appointmentRepository.count());
     }
 
 

@@ -62,19 +62,11 @@
 </form>
 
 
-    <script>
 
-        // Below code sets format to the
-        // datetimepicker having id as
-        // datetime
-        $('#datetime').datetimepicker({
-            format: 'hh:mm:ss a'
-        });
-    </script>
 </div>
 
 
-
+<!--
 <table class="table table-striped">
     <tr class="table-dark">
         <th>ID</th>
@@ -90,14 +82,44 @@
         <td th:text="${patient.lastName}">LastName</td>
         <td th:text="${patient.phone}">phone</td>
         <td th:text="${patient.comment}">comment</td>
-       <!-- <td th:text="${emailAccount}">comment</td> -->
+       //<td th:text="${emailAccount}">comment</td>
     </tr>
 </table>
+-->
+
+<table class="table table-striped">
+    <tr class="table-dark">
+        <th>ID</th>
+        <th>Doctor's FullName</th>
+       <!-- <th>Doctor's-LastName</th>-->
+        <th>Phone</th>
+        <th>Appointment</th>
+    </tr>
+    <tr th:each="doctor : ${doctor}">
+        <td th:text="${doctor.doctorId}">id</td>
+        <td th:text="d-r + ' ' + ${doctor.firstName} + ' ' + ${doctor.lastName}">FullName</td>
+      <!--  <td th:text="${doctor.lastName}">LastName</td> -->
+        <td th:text="${doctor.phone}">phone</td>
+        <td th:text="${appointment.getAppointment()}">phone</td>
+    </tr>
+</table>
+
+<!-- footer starts here -->
 
 
 <!-- footer starts here -->
 <div  th:insert="comman/footer :: footer"></div>
 
+
+<script>
+
+    // Below code sets format to the
+    // datetimepicker having id as
+    // datetime
+    $('#datetime').datetimepicker({
+        format: 'hh:mm:ss a'
+    });
+</script>
 
 </body>
 </html>
