@@ -28,8 +28,7 @@
     </tr>
     <tr th:each="patient : ${patients}">
         <td th:text="${patient.patientId}">ID</td>
-        <td th:text="${patient.firstName} + ' ' + ${patient.lastName}"> FullName</td>
-      <!--  <td th:text="${patient.lastName}">LastName</td>-->
+        <td th:text="${patient.firstName}  + ' ' + ${patient.lastName}"> FullName</td>
         <td th:text="${patient.phone}">phone</td>
         <td th:text="${patient.comment}">comment</td>
         <td th:text="${appointment.getAppointment()}">comment</td>
