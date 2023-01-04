@@ -70,6 +70,11 @@
             th:text="${role}">role </option>
         </select>
 
+
+        <label for="comment"><b>Comment</b></label>
+        <textarea class="form-control" id="comment" th:field="*{comment}" rows="3"></textarea>
+
+
         <label for="pwd"><b>Password</b></label>
         <input
                 type="password"
