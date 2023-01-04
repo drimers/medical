@@ -26,7 +26,7 @@
         <th>Comment</th>
         <th>Appointment</th>
     </tr>
-    <tr th:each="patient : ${patient}">
+    <tr th:each="patient : ${patients}">
         <td th:text="${patient.patientId}">ID</td>
         <td th:text="${patient.firstName} + ' ' + ${patient.lastName}"> FullName</td>
       <!--  <td th:text="${patient.lastName}">LastName</td>-->

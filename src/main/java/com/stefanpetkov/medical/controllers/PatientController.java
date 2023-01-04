@@ -14,6 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class PatientController {
 
@@ -69,6 +72,10 @@ public class PatientController {
     public String showRegistrationForm(Model model) {
         PatientEntity patient = new PatientEntity();
         CredentialsEntity credentials = new CredentialsEntity();
+//        List<String> role = new ArrayList<>();
+//        role.add("Patient");
+//        role.add("Doctor");
+//        model.addAttribute("roles", role);
         model.addAttribute("patient", patient);
         model.addAttribute("credential", credentials);
         return "register";
