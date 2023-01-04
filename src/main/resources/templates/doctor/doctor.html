@@ -41,21 +41,21 @@
 
 <div th:insert="comman/footer :: footer"></div>
 
-<script>
+<!--<script>-->
 
-    function getAllComments(){
-        $.ajax({
-            url: "/comment/all",
-            method: "GET",
-            success: function(data){
-                data.forEach(function(comm){
-                    addCommentToUI(comm.description, comm.city, comm.temp, comm.icon, comm.id);
-                });
-            }
-        });
+<!--    function getAllComments(){-->
+<!--        $.ajax({-->
+<!--            url: "/comment/all",-->
+<!--            method: "GET",-->
+<!--            success: function(data){-->
+<!--                data.forEach(function(comm){-->
+<!--                    addCommentToUI(comm.description, comm.city, comm.temp, comm.icon, comm.id);-->
+<!--                });-->
+<!--            }-->
+<!--        });-->
 
-    }
-</script>
+<!--    }-->
+<!--</script>-->
 
 </body>
 </html>
