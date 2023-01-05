@@ -62,6 +62,14 @@ public class PatientController {
         // return "Greetings from Spring Boot Patients!";
     }
 
+    @RequestMapping(value = "/appointment",method = RequestMethod.POST)
+    public String register(@ModelAttribute("doctor") DoctorEntity doctor, @ModelAttribute("appointment") AppointmentEntity appointment, Model model) {
+        System.out.println("get Doctor Name:::"+ doctor.getFirstName());
+        doctorService.save(doctor);
+        appointmentService.save(appointment);
+        return "redirect:/patient";
+    }
+
 //    @RequestMapping("/patient/{id}")
 //    public String getDoctor(@PathVariable String id, Model model) {
 //        model.addAttribute("doctor", doctorRepository.findAll());
@@ -88,13 +96,6 @@ public class PatientController {
         return "register";
     }
 
-//    @PostMapping("/save")
-//    public String savePatient(@ModelAttribute PatientEntity patient, Model model) {
-//        model.addAttribute("patient", patient);
-//    //    return "display_form";
-//        return "display_form";
-//    }
-
 
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     public String register(@ModelAttribute("patient") PatientEntity patient, @ModelAttribute("credential") CredentialsEntity credential, Model model) {
@@ -104,11 +105,18 @@ public class PatientController {
         return "display_form";
     }
 
-    @RequestMapping(value = "/appointment",method = RequestMethod.POST)
-    public String register(@ModelAttribute("doctor") DoctorEntity doctor, @ModelAttribute("appointment") AppointmentEntity appointment, Model model) {
-        System.out.println("get Doctor Name:::"+ doctor.getFirstName());
-        doctorService.save(doctor);
-        appointmentService.save(appointment);
-        return "redirect:/patient";
-    }
+
+
+
+//    @PostMapping("/save")
+//    public String savePatient(@ModelAttribute PatientEntity patient, Model model) {
+//        model.addAttribute("patient", patient);
+//    //    return "display_form";
+//        return "display_form";
+//    }
+
+
+
+
+
  }
