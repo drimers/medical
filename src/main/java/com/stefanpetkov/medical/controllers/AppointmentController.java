@@ -29,32 +29,32 @@ public class AppointmentController {
 
 
 
-    @PostMapping(path = "/patient/addAppointment")
-    public String addappointment(//@RequestParam(value = "firstName") String firstName,
-                           //  @RequestParam(value= "lastName") String lastName,
-                             @RequestParam(value= "appointment") String appointment,
-                                                        HttpSession session) {
-
-        CredentialsEntity user = (CredentialsEntity)session.getAttribute("loggedUser");
-
-        if(user != null) {
-
-            AppointmentEntity appointments =
-                    appointmentService.addAppointment(
-                           // firstName, lastName,
-                            appointment);
-
-            if(appointments != null) {
-                //return String.valueOf(comment.getId());
-                return appointments.getAppointmentId() + "";
-            }
-
-            return "Error: comment post caput....";
-
-        }
-
-        return "Error: Please log in to post comment... duh...";
-    }
+//    @PostMapping(path = "/patient/addAppointment")
+//    public String addappointment(//@RequestParam(value = "firstName") String firstName,
+//                           //  @RequestParam(value= "lastName") String lastName,
+//                             @RequestParam(value= "appointment") String appointment,
+//                                                        HttpSession session) {
+//
+//        CredentialsEntity user = (CredentialsEntity)session.getAttribute("loggedUser");
+//
+//        if(user != null) {
+//
+//            AppointmentEntity appointments =
+//                    appointmentService.addAppointment(
+//                           // firstName, lastName,
+//                            appointment);
+//
+//            if(appointments != null) {
+//                //return String.valueOf(comment.getId());
+//                return appointments.getAppointmentId() + "";
+//            }
+//
+//            return "Error: comment post caput....";
+//
+//        }
+//
+//        return "Error: Please log in to post comment... duh...";
+//    }
 
 //    @GetMapping(path = "/comment/all")
 //    public ResponseEntity<List<CommentEntity>>

@@ -2,6 +2,8 @@ package com.stefanpetkov.medical.services;
 
 
 import com.stefanpetkov.medical.WebConfiguration;
+import com.stefanpetkov.medical.domain.DoctorEntity;
+import com.stefanpetkov.medical.domain.PatientEntity;
 import com.stefanpetkov.medical.repositories.CredentialsRepository;
 import com.stefanpetkov.medical.repositories.DoctorRepository;
 import com.stefanpetkov.medical.repositories.PatientRepository;
@@ -20,5 +22,8 @@ public class DoctorService{
         this.webConfiguration = webConfiguration;
     }
 
+    public void save(DoctorEntity doctor) {
+        doctorRepository.save(doctor);
+    }
 
 }

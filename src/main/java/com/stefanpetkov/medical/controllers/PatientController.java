@@ -1,21 +1,22 @@
 package com.stefanpetkov.medical.controllers;
 
 
+import com.stefanpetkov.medical.domain.AppointmentEntity;
 import com.stefanpetkov.medical.domain.CredentialsEntity;
+import com.stefanpetkov.medical.domain.DoctorEntity;
 import com.stefanpetkov.medical.domain.PatientEntity;
 import com.stefanpetkov.medical.repositories.AppointmentRepository;
 import com.stefanpetkov.medical.repositories.CredentialsRepository;
 import com.stefanpetkov.medical.repositories.DoctorRepository;
 import com.stefanpetkov.medical.repositories.PatientRepository;
+import com.stefanpetkov.medical.services.AppointmentService;
 import com.stefanpetkov.medical.services.CredentialsService;
+import com.stefanpetkov.medical.services.DoctorService;
 import com.stefanpetkov.medical.services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class PatientController {
@@ -29,16 +30,22 @@ public class PatientController {
     private final PatientService patientService;
     private final CredentialsService credentialsService;
 
+    private final DoctorService doctorService;
+
+    private final AppointmentService appointmentService;
+
 
     @Autowired
     public PatientController(PatientRepository patientRepository, CredentialsRepository credentialsRepository,
-                             DoctorRepository doctorRepository, AppointmentRepository appointmentRepository, PatientService patientService, CredentialsService credentialsService) {
+                             DoctorRepository doctorRepository, AppointmentRepository appointmentRepository, PatientService patientService, CredentialsService credentialsService, DoctorService doctorService, AppointmentService appointmentService) {
         this.patientRepository = patientRepository;
         this.credentialsRepository = credentialsRepository;
         this.doctorRepository = doctorRepository;
         this.appointmentRepository = appointmentRepository;
         this.patientService = patientService;
         this.credentialsService = credentialsService;
+        this.doctorService = doctorService;
+        this.appointmentService = appointmentService;
     }
 
 
@@ -90,10 +97,18 @@ public class PatientController {
 
 
     @RequestMapping(value = "/save",method = RequestMethod.POST)
-    public String register(@ModelAttribute("patient") PatientEntity patient,@ModelAttribute("credential") CredentialsEntity credential, Model model) {
-        System.out.println("get Name:::"+ patient.getFirstName());
+    public String register(@ModelAttribute("patient") PatientEntity patient, @ModelAttribute("credential") CredentialsEntity credential, Model model) {
+        System.out.println("get UserName:::"+ patient.getFirstName());
         patientService.save(patient);
         credentialsService.save(credential);
         return "display_form";
+    }
+
+    @RequestMapping(value = "/appointment",method = RequestMethod.POST)
+    public String register(@ModelAttribute("doctor") DoctorEntity doctor, @ModelAttribute("appointment") AppointmentEntity appointment, Model model) {
+        System.out.println("get Doctor Name:::"+ doctor.getFirstName());
+        doctorService.save(doctor);
+        appointmentService.save(appointment);
+        return "redirect:/patient";
     }
  }

@@ -44,15 +44,15 @@
 </button>
 -->
 <label class="form-label display-6 -bold text-center"><strong> Appointment Form</strong></label>
-<form class="border border-dark border-3 padding-bottom pb-3 mb-5 ml-5 mr-5" >
+<form class="border border-dark border-3 padding-bottom pb-3 mb-5 ml-5 mr-5"  th:action="@{/appointment}" th:object="${doctor}" method="post">
 <div class="row g-3">
     <div class="col">
         <label class="form-label"><b>  &nbsp;&nbsp;  First Name:</b></label>
-        <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+        <input type="text" class="form-control" th:field="${doctor}"/>
     </div>
     <div class="col">
         <label class="form-label"><b>  &nbsp; Last Name:</b></label>
-        <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+        <input type="text" class="form-control" placeholder="Last name">
     </div>
     <div class="col">
         <label class="form-label"><b>  &nbsp; Time:</b></label>
