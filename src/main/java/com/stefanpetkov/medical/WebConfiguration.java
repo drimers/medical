@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class WebConfiguration extends WebSecurityConfigurerAdapter {
@@ -19,7 +20,14 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.headers().frameOptions().disable();
     }
 
-
+//    public SecurityFilterChain filterChain(HttpSecurity http) {
+//        http
+//                .formLogin(form -> form
+//                        .loginPage("/login")
+//                        .permitAll()
+//                );
+//        // ...
+//    }
 
 }
 
