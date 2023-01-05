@@ -98,10 +98,29 @@ public class PatientController {
 
 
     @RequestMapping(value = "/save",method = RequestMethod.POST)
-    public String register(@ModelAttribute("patient") PatientEntity patient, @ModelAttribute("credential") CredentialsEntity credential, Model model) {
+    public String register(@ModelAttribute("patient") PatientEntity patient, @ModelAttribute("doctor") DoctorEntity doctor, @ModelAttribute("credential") CredentialsEntity credential, Model model) {
         System.out.println("get UserName:::"+ patient.getFirstName());
-        patientService.save(patient);
-        credentialsService.save(credential);
+
+        if( patient.getRole().toString() == "PATIENT") {
+            patientService.save(patient);
+            credentialsService.save(credential);
+            return "display_form";
+        }else if(patient.getRole().toString() == "DOCTOR"){
+            System.out.println("Doctor registration");
+            doctor.setFirstName(patient.getFirstName());
+            doctor.setLastName(patient.getLastName());
+            doctor.setPhone(patient.getPhone());
+            doctor.setRole(patient.getRole());
+
+            doctor.getFirstName();
+            doctor.getLastName();
+            doctor.getPhone();
+            doctor.getRole();
+           // doctorRepository.save(doctor);
+            doctorService.save(doctor);
+            credentialsService.save(credential);
+            return "display_form";
+        }
         return "display_form";
     }
 
