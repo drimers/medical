@@ -8,6 +8,8 @@
     <title>MEDICAL - Responsive HTML &amp; Bootstrap Template</title>
     <link href="assets/css/registerForm.css" rel="stylesheet">
     <![endif]-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 
 
 </head>
@@ -42,10 +44,12 @@
                 required
         />
 
+        <!-- pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" -->
         <label for="email"><b>Email</b></label>
-        <input
-                type="text"
-                placeholder="Enter Email"
+        <input  class="form-control"
+                pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
+                type="email"
+                placeholder="name@example.com"
                 name="email"
                 id="email"
                 th:field="${credential.email}"

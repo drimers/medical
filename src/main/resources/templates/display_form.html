@@ -12,11 +12,11 @@
 <h2>Result</h2>
 <table>
   <tbody>
- <!-- <tr>
+  <tr>
     <td><strong>ID:</strong></td>
     <td><span th:text="${patient.patientId}"></span></td>
   </tr>
-  <tr>-->
+  <tr>
     <td><strong>First Name:</strong></td>
     <td><span th:text="${patient.firstName}"></span></td>
 
@@ -60,7 +60,7 @@
   <tr>
     <td colspan="2">&nbsp;<a th:href="@{patient}"
                              class="btn btn-success"> <i class="fa fa-arrow-circle-o-left"></i>&nbsp;Add
-      new employee
+      new <p th:text="${patient.role}"></p>
     </a></td>
   </tr>
   </tbody>
