@@ -65,13 +65,14 @@ public class PatientController {
 
     // Form registration
 
-//    @RequestMapping(value = "/add",method = RequestMethod.POST)
-//    public String register(@ModelAttribute("doctors") DoctorEntity doctor, @ModelAttribute("appointment") AppointmentEntity appointment, Model model) {
-//        System.out.println("get appointment:::"+ appointment.getAppointment());
-//       // doctorService.save(doctor);
-//        appointmentService.save(appointment);
-//        return "redirect:patient/patient";
-//    }
+    @RequestMapping(value = "/add",method = RequestMethod.POST)
+    public String register(@ModelAttribute("doctors") DoctorEntity doctor, @ModelAttribute("appointment") AppointmentEntity appointment, Model model) {
+        System.out.println("get appointment:::"+ appointment.getAppointment());
+       // doctorService.save(doctor);
+        model.addAttribute("appointment", appointment);
+        appointmentService.save(appointment);
+        return "redirect:patient/patient";
+    }
 
 //    @RequestMapping("/patient/{id}")
 //    public String getDoctor(@PathVariable String id, Model model) {
