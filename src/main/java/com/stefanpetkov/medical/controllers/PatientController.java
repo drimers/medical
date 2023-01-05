@@ -52,7 +52,7 @@ public class PatientController {
 
     @RequestMapping("/patient")
     public String getDoctor( Model model) {
-        model.addAttribute("doctor", doctorRepository.findAll());
+        model.addAttribute("doctors", doctorRepository.findAll());
         model.addAttribute("appointment", appointmentRepository.findByAppointmentId(1L));
 
       //  model.addAttribute("appointment", appointmentRepository.findAllByPatientId(9L));
@@ -62,13 +62,16 @@ public class PatientController {
         // return "Greetings from Spring Boot Patients!";
     }
 
-    @RequestMapping(value = "/appointment",method = RequestMethod.POST)
-    public String register(@ModelAttribute("doctor") DoctorEntity doctor, @ModelAttribute("appointment") AppointmentEntity appointment, Model model) {
-        System.out.println("get Doctor Name:::"+ doctor.getFirstName());
-        doctorService.save(doctor);
-        appointmentService.save(appointment);
-        return "redirect:/patient";
-    }
+
+    // Form registration
+
+//    @RequestMapping(value = "/add",method = RequestMethod.POST)
+//    public String register(@ModelAttribute("doctors") DoctorEntity doctor, @ModelAttribute("appointment") AppointmentEntity appointment, Model model) {
+//        System.out.println("get appointment:::"+ appointment.getAppointment());
+//       // doctorService.save(doctor);
+//        appointmentService.save(appointment);
+//        return "redirect:patient/patient";
+//    }
 
 //    @RequestMapping("/patient/{id}")
 //    public String getDoctor(@PathVariable String id, Model model) {

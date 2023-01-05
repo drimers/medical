@@ -44,19 +44,19 @@
 </button>
 -->
 <label class="form-label display-6 -bold text-center"><strong> Appointment Form</strong></label>
-<form class="border border-dark border-3 padding-bottom pb-3 mb-5 ml-5 mr-5"  th:action="@{/appointment}" th:object="${doctor}" method="post">
+<form class="border border-dark border-3 padding-bottom pb-3 mb-5 ml-5 mr-5" th:object="${doctors}"  th:action="@{/add}"  method="post">
 <div class="row g-3">
     <div class="col">
         <label class="form-label"><b>  &nbsp;&nbsp;  First Name:</b></label>
-        <input type="text" class="form-control" th:field="${doctor}"/>
+        <input type="text" class="form-control" placeholder="First name" th:field="${doctors}"/>
     </div>
     <div class="col">
         <label class="form-label"><b>  &nbsp; Last Name:</b></label>
-        <input type="text" class="form-control" placeholder="Last name">
+        <input type="text" class="form-control" placeholder="Last name" th:field="${doctors}">
     </div>
     <div class="col">
         <label class="form-label"><b>  &nbsp; Time:</b></label>
-        <input class="form-control" type="text" id="datetime" placeholder="Select time:" />
+        <input class="form-control" type="text" id="datetime" placeholder="Select time:" th:text="${appointment.appointment}" />
     </div>
     <div class="col-1 mt-5">
         <button class="btn btn-outline-success" type="submit"><b>Save</b></button>
@@ -77,12 +77,12 @@
         <th>Phone</th>
         <th>Appointment</th>
     </tr>
-    <tr th:each="doctor : ${doctor}">
+    <tr th:each="doctor : ${doctors}">
         <td th:text="${doctor.doctorId}">id</td>
         <td th:text="d-r + ' ' + ${doctor.firstName} + ' ' + ${doctor.lastName}">FullName</td>
       <!--  <td th:text="${doctor.lastName}">LastName</td> -->
         <td th:text="${doctor.phone}">phone</td>
-        <td th:text="${appointment.getAppointment()}">phone</td>
+        <td th:text="${appointment.getAppointment()}">appointment</td>
     </tr>
 </table>
 

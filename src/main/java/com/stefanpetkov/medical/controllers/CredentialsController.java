@@ -28,6 +28,8 @@ public class CredentialsController {
 //        return "login";
 //    }
 
+
+
     @GetMapping("/login")
     public String showLoginForm(Model model) {
 //        PatientEntity patient = new PatientEntity();
@@ -65,5 +67,8 @@ public class CredentialsController {
         System.out.println("Username not valid");
         return "login";
     }
+
+
+
 }
 
