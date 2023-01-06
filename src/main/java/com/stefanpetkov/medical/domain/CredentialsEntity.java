@@ -23,12 +23,12 @@ public class CredentialsEntity {
     @NotEmpty(message = "Email cannot be empty")
     private String email;
 
-    @Column(length = 150, nullable = false, unique = true)
+    @Column(length = 150, nullable = false)
     private String password;
     //private role UserRole;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private PatientEntity patient;
 
     @OneToOne(cascade = CascadeType.ALL)

@@ -10,32 +10,40 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
 
-//        @Override
-//        protected void configure(HttpSecurity httpSecurity) throws Exception {
-//            httpSecurity.authorizeRequests().antMatchers("/home/**").permitAll().and()
-//                    .formLogin() .loginPage("/login").permitAll().and()
-//                    .authorizeRequests().antMatchers("/h2-console/**").permitAll();
-//            httpSecurity.csrf().disable();
-//            httpSecurity.headers().frameOptions().disable();
-//        }
+        @Override
+        protected void configure(HttpSecurity httpSecurity) throws Exception {
+            httpSecurity.authorizeRequests().antMatchers("/home/**").permitAll().and()
+                    .formLogin() .loginPage("/login").permitAll().and()
+                    .authorizeRequests().antMatchers("/h2-console/**").permitAll();
+            httpSecurity.csrf().disable();
+            httpSecurity.headers().frameOptions().disable();
+        }
 
 
 
 
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .authorizeRequests().antMatchers("/home**")
-                .permitAll() .anyRequest().authenticated()
-                .and()
-                .formLogin() .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout() .invalidateHttpSession(true)
-                .clearAuthentication(true) .permitAll();
-    }
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http
+//                .csrf().disable()
+//                .authorizeRequests().antMatchers("/h2-console/**","/webapp/**","/vendor/**","/assets/**","/fonts/**","/css/**","/js/**").permitAll()
+//                .and()
+//                .authorizeRequests().antMatchers("/home", "/register", "/save", "/logon","/patient")
+//                .permitAll() .anyRequest().authenticated()
+//                .and()
+//                .formLogin() .loginPage("/login")
+//                .permitAll()
+//                .and()
+//
+//                .logout() .invalidateHttpSession(true)
+//                .clearAuthentication(true) .permitAll();
+//
+//       // http.headers().disable();
+//        http
+//                .headers().frameOptions().sameOrigin()
+//                .httpStrictTransportSecurity().disable();
+//    }
 
 
 

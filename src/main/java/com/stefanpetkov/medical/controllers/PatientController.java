@@ -1,10 +1,7 @@
 package com.stefanpetkov.medical.controllers;
 
 
-import com.stefanpetkov.medical.domain.AppointmentEntity;
-import com.stefanpetkov.medical.domain.CredentialsEntity;
-import com.stefanpetkov.medical.domain.DoctorEntity;
-import com.stefanpetkov.medical.domain.PatientEntity;
+import com.stefanpetkov.medical.domain.*;
 import com.stefanpetkov.medical.repositories.AppointmentRepository;
 import com.stefanpetkov.medical.repositories.CredentialsRepository;
 import com.stefanpetkov.medical.repositories.DoctorRepository;
@@ -71,7 +68,7 @@ public class PatientController {
        // doctorService.save(doctor);
         model.addAttribute("appointment", appointment);
         appointmentService.save(appointment);
-        return "redirect:patient/patient";
+        return "patient/patient";
     }
 
 //    @RequestMapping("/patient/{id}")
@@ -105,21 +102,22 @@ public class PatientController {
     public String register(@ModelAttribute("patient") PatientEntity patient, @ModelAttribute("doctor") DoctorEntity doctor, @ModelAttribute("credential") CredentialsEntity credential, Model model) {
         System.out.println("get UserName:::"+ patient.getFirstName());
 
-        if( patient.getRole().toString() == "PATIENT") {
+        if( patient.getRole() == Role.PATIENT) {
+            patient.setCredentials(credential);
             patientService.save(patient);
-            credentialsService.save(credential);
+//            credentialsService.save(credential);
             return "display_form";
-        }else if(patient.getRole().toString() == "DOCTOR"){
+        } else if(patient.getRole() == Role.DOCTOR){
             System.out.println("Doctor registration");
             doctor.setFirstName(patient.getFirstName());
             doctor.setLastName(patient.getLastName());
             doctor.setPhone(patient.getPhone());
             doctor.setRole(patient.getRole());
 
-            doctor.getFirstName();
-            doctor.getLastName();
-            doctor.getPhone();
-            doctor.getRole();
+//            doctor.getFirstName();
+//            doctor.getLastName();
+//            doctor.getPhone();
+//            doctor.getRole();
            // doctorRepository.save(doctor);
             doctorService.save(doctor);
             credentialsService.save(credential);

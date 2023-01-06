@@ -83,7 +83,7 @@
 
         <label for="pwd"><b>Password</b></label>
         <input
-                type="password"
+                type="text"
                 placeholder="Enter Password"
                 name="pwd"
                 id="pwd"
@@ -100,7 +100,10 @@
         <p>Already have an account? <a href="/login">Log in</a>.</p>
     </div>
 </form>
-
+<script type="text/javascript">
+    const pwd = Math.random().toString();
+    document.getElementById("pwd").innerText = pwd;
+</script>
 
 
 

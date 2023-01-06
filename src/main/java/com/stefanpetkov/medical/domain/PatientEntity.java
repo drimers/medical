@@ -31,7 +31,7 @@ public class PatientEntity {
     @Lob
     private Byte[] profilePicture;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private CredentialsEntity credentials;
     @Enumerated(value = EnumType.STRING)
     private Role role;
