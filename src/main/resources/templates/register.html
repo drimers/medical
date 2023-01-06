@@ -70,7 +70,7 @@
 
         <label for="inputRole"><b>Role</b></label>
         <select id="inputRole" th:field="*{role}" >
-            <option value=""><b>Nothing selected</b></option>
+            <!--<option value=""><b>Nothing selected</b></option>-->
             <option th:each="role : ${T(com.stefanpetkov.medical.domain.Role).values()}"
             th:value="${role}"
             th:text="${role}">role </option>

@@ -4,6 +4,7 @@ package com.stefanpetkov.medical.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
@@ -11,7 +12,7 @@ import java.util.Set;
 @Entity
 @Data
 @Table(name = "patient")
-public class PatientEntity {
+public class PatientEntity  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,7 +67,7 @@ public class PatientEntity {
                 ", phone='" + phone + '\'' +
                 ", comment='" + comment + '\'' +
                 ", profilePicture=" + Arrays.toString(profilePicture) +
-                ", credentials=" + credentials +
+             //   ", credentials=" + credentials +
                 ", role=" + role +
                 ", appointment=" + appointment +
                 '}';

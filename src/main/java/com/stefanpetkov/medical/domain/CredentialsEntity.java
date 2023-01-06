@@ -7,12 +7,13 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Data
 @Table(name = "credentials")
-public class CredentialsEntity {
+public class CredentialsEntity  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +32,7 @@ public class CredentialsEntity {
     @OneToOne
     private PatientEntity patient;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private DoctorEntity doctor;
 
     /*

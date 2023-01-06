@@ -3,12 +3,13 @@ package com.stefanpetkov.medical.domain;
 
 import lombok.Data;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "appointment")
 @Data
-public class AppointmentEntity {
+public class AppointmentEntity  implements Serializable {
 
 
     @Id

@@ -1,8 +1,12 @@
 package com.stefanpetkov.medical.controllers;
 
 
+import com.stefanpetkov.medical.domain.AppointmentEntity;
 import com.stefanpetkov.medical.domain.CredentialsEntity;
+import com.stefanpetkov.medical.domain.DoctorEntity;
+import com.stefanpetkov.medical.repositories.AppointmentRepository;
 import com.stefanpetkov.medical.repositories.CredentialsRepository;
+import com.stefanpetkov.medical.repositories.DoctorRepository;
 import com.stefanpetkov.medical.services.CredentialsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,12 +17,15 @@ import org.springframework.web.bind.annotation.*;
 public class CredentialsController {
 
     private final CredentialsService credentialsService;
-
+    private final AppointmentRepository appointmentRepository;
+    private final DoctorRepository doctorRepository;
     private final CredentialsRepository credentialsRepository;
 
     @Autowired
-    public CredentialsController(CredentialsService credentialsService, CredentialsRepository credentialsRepository) {
+    public CredentialsController(CredentialsService credentialsService, AppointmentRepository appointmentRepository, DoctorRepository doctorRepository, CredentialsRepository credentialsRepository) {
         this.credentialsService = credentialsService;
+        this.appointmentRepository = appointmentRepository;
+        this.doctorRepository = doctorRepository;
         this.credentialsRepository = credentialsRepository;
     }
 
@@ -45,9 +52,11 @@ public class CredentialsController {
 
 
     @RequestMapping(value = "/logon", method = RequestMethod.POST)
-    public String login(@ModelAttribute("credential") CredentialsEntity credentials, Model model) {
+    public String login(@ModelAttribute("credential") CredentialsEntity credentials, @ModelAttribute("doctors") DoctorEntity doctor, @ModelAttribute("appointment") AppointmentEntity appointment, Model model) {
         System.out.println("get Email:::" + credentials.getEmail());
         // String username = String.valueOf(credentialsRepository.findByEmail(credentials.getEmail()));
+        model.addAttribute("doctors", doctorRepository.findAll());
+        model.addAttribute("appointment", appointmentRepository.findByAppointmentId(1L));
 
         CredentialsEntity username = credentialsRepository.findByEmail(credentials.getEmail());
 
@@ -61,7 +70,8 @@ public class CredentialsController {
 
             if ((username.getEmail().equals(credentials.getEmail())) && (username.getPassword().equals(credentials.getPassword()))) {
                 //credentialsService.save(credentials);
-                return "redirect:/patient";
+                System.out.println("redirect:patient");
+                return "patient/patient";
             }
         }
         System.out.println("Username not valid");

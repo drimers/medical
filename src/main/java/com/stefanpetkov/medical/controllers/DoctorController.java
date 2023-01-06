@@ -40,7 +40,7 @@ public class DoctorController {
     public String getPatient(Model model) {
         model.addAttribute("patients", patientRepository.findAll());
         model.addAttribute("appointment", appointmentRepository.findByAppointmentId(1L));
-        return "doctor/doctor";
+        return "/doctor/doctor";
         // return "Greetings from Spring Boot Patients!";
     }
 

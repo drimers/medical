@@ -5,6 +5,7 @@ package com.stefanpetkov.medical.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
@@ -12,7 +13,7 @@ import java.util.Set;
 @Entity
 @Data
 @Table(name = "doctor")
-public class DoctorEntity {
+public class DoctorEntity  implements Serializable {
 
 
     @Id
@@ -30,7 +31,7 @@ public class DoctorEntity {
     @Lob
     private Byte[] profilePicture;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private CredentialsEntity credentials;
     @Enumerated(value = EnumType.STRING)
     private Role role;

@@ -68,7 +68,7 @@ public class PatientController {
        // doctorService.save(doctor);
         model.addAttribute("appointment", appointment);
         appointmentService.save(appointment);
-        return "patient/patient";
+        return "/patient/patient";
     }
 
 //    @RequestMapping("/patient/{id}")

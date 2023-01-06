@@ -4,12 +4,13 @@ package com.stefanpetkov.medical.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Data
 @Table(name = "workingday")
-public class WorkingDayEntity {
+public class WorkingDayEntity  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
