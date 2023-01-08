@@ -1,7 +1,6 @@
 package com.stefanpetkov.medical.services;
 
 
-import com.stefanpetkov.medical.config.SecurityConfiguration;
 import com.stefanpetkov.medical.domain.PatientEntity;
 import com.stefanpetkov.medical.repositories.CredentialsRepository;
 import com.stefanpetkov.medical.repositories.PatientRepository;
@@ -14,13 +13,11 @@ public class PatientService {
 
        private  CredentialsRepository credentialsRepository;
        private PatientRepository patientRepository;
-       private SecurityConfiguration securityConfiguration;
 
     @Autowired
-    public PatientService(CredentialsRepository credentialsRepository, PatientRepository patientRepository, SecurityConfiguration securityConfiguration) {
+    public PatientService(CredentialsRepository credentialsRepository, PatientRepository patientRepository) {
         this.credentialsRepository = credentialsRepository;
         this.patientRepository = patientRepository;
-        this.securityConfiguration = securityConfiguration;
     }
        public void save(PatientEntity patient) {
         patientRepository.save(patient);
