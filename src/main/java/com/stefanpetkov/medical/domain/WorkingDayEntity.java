@@ -15,7 +15,7 @@ import java.util.Objects;
 
 @Entity
 @Data
-@Table(name = "workingday")
+@Table(name = "working_day")
 public class WorkingDayEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;

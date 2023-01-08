@@ -68,13 +68,13 @@
                 required
         />
 
-        <label for="inputRole"><b>Role</b></label>
-        <select id="inputRole" th:field="*{role}" >
-            <!--<option value=""><b>Nothing selected</b></option>-->
-            <option th:each="role : ${T(com.stefanpetkov.medical.domain.Role).values()}"
-            th:value="${role}"
-            th:text="${role}">role </option>
-        </select>
+<!--        <label for="inputRole"><b>Role</b></label>-->
+<!--        <select id="inputRole" th:field="*{role}" >-->
+<!--            &lt;!&ndash;<option value=""><b>Nothing selected</b></option>&ndash;&gt;-->
+<!--            <option th:each="role : ${T(com.stefanpetkov.medical.domain.Role).values()}"-->
+<!--            th:value="${role}"-->
+<!--            th:text="${role}">role </option>-->
+<!--        </select>-->
 
 
         <label for="comment"><b>Comment</b></label>

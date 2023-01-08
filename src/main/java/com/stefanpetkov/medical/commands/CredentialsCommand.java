@@ -22,6 +22,4 @@ public class CredentialsCommand implements Serializable {
 
 
     private String password;
-
-
 }

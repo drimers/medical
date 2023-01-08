@@ -26,8 +26,9 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
+<!--/*@thymeleaf id="doc" type="com.stefanpetkov.medical.commands.DoctorCommand"*/-->
 
-<div th:insert="common/header :: header"></div>
+<div th:insert="~{common/header :: header}"></div>
 
 <!--
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -80,11 +81,11 @@
         <th>Appointment</th>
     </tr>
     <tr th:each="doctor : ${doctors}">
-        <td th:text="${doctor.doctorId}">id</td>
+        <td th:text="${doctor.id}">id</td>
         <td th:text="d-r + ' ' + ${doctor.firstName} + ' ' + ${doctor.lastName}">FullName</td>
       <!--  <td th:text="${doctor.lastName}">LastName</td> -->
         <td th:text="${doctor.phone}">phone</td>
-        <td th:text="${appointment.getAppointment()}">appointment</td>
+        <td th:text="${doctor.getAppointments().toArray()[0]}">appointment</td>
 
     </tr>
 </table>
@@ -93,7 +94,7 @@
 
 
 <!-- footer starts here -->
-<div  th:insert="common/footer :: footer"></div>
+<div  th:insert="~{common/footer :: footer}"></div>
 
 
 <script>

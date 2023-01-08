@@ -1,73 +1,46 @@
 package com.stefanpetkov.medical.controllers;
 
 
-import com.stefanpetkov.medical.domain.*;
-import com.stefanpetkov.medical.repositories.AppointmentRepository;
-import com.stefanpetkov.medical.repositories.CredentialsRepository;
-import com.stefanpetkov.medical.repositories.DoctorRepository;
-import com.stefanpetkov.medical.repositories.PatientRepository;
+import com.stefanpetkov.medical.domain.AppointmentEntity;
+import com.stefanpetkov.medical.domain.CredentialsEntity;
+import com.stefanpetkov.medical.domain.DoctorEntity;
+import com.stefanpetkov.medical.domain.PatientEntity;
 import com.stefanpetkov.medical.services.AppointmentService;
-import com.stefanpetkov.medical.services.CredentialsService;
 import com.stefanpetkov.medical.services.DoctorService;
-import com.stefanpetkov.medical.services.PatientService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Slf4j
+@RequiredArgsConstructor
 @Controller
 public class PatientController {
 
-    private final PatientRepository patientRepository;
-    private final CredentialsRepository credentialsRepository;
-    private final DoctorRepository doctorRepository;
-
-    private final AppointmentRepository appointmentRepository;
-
-    private final PatientService patientService;
-    private final CredentialsService credentialsService;
-
-    private final DoctorService doctorService;
 
     private final AppointmentService appointmentService;
-
-
-    @Autowired
-    public PatientController(PatientRepository patientRepository, CredentialsRepository credentialsRepository,
-                             DoctorRepository doctorRepository, AppointmentRepository appointmentRepository, PatientService patientService, CredentialsService credentialsService, DoctorService doctorService, AppointmentService appointmentService) {
-        this.patientRepository = patientRepository;
-        this.credentialsRepository = credentialsRepository;
-        this.doctorRepository = doctorRepository;
-        this.appointmentRepository = appointmentRepository;
-        this.patientService = patientService;
-        this.credentialsService = credentialsService;
-        this.doctorService = doctorService;
-        this.appointmentService = appointmentService;
-    }
-
+    private final DoctorService doctorService;
 
 
     @RequestMapping("/patient")
-    public String getDoctor( Model model) {
-        model.addAttribute("doctors", doctorRepository.findAll());
-        model.addAttribute("appointment", appointmentRepository.findById(1L));
-
-      //  model.addAttribute("appointment", appointmentRepository.findAllByPatientId(9L));
-       // model.addAttribute("emailAccount", credentialsRepository.findByEmail("spp.bg@abv.bg"));
-
-       return "patient/patient";
-        // return "Greetings from Spring Boot Patients!";
+    public String getDoctor(Model model) {
+        log.info("PatientController::getDoctor()");
+        model.addAttribute("doctors", appointmentService.findAllDoctorsByPatientId(2L));
+        model.addAttribute("appointment", appointmentService.findAll());
+        return "patient/patient";
     }
 
 
     // Form registration
 
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String register(@ModelAttribute("doctors") DoctorEntity doctor, @ModelAttribute("appointment") AppointmentEntity appointment, Model model) {
-        System.out.println("get appointment:::"+ appointment.getDateTimeOfTheAppointment());
-       // doctorService.save(doctor);
+        System.out.println("get appointment:::" + appointment.getDateTimeOfTheAppointment());
+        // doctorService.save(doctor);
         model.addAttribute("appointment", appointment);
         appointmentService.save(appointment);
         return "/patient/patient";
@@ -129,8 +102,6 @@ public class PatientController {
 //    }
 
 
-
-
 //    @PostMapping("/save")
 //    public String savePatient(@ModelAttribute PatientEntity patient, Model model) {
 //        model.addAttribute("patient", patient);
@@ -139,7 +110,4 @@ public class PatientController {
 //    }
 
 
-
-
-
- }
+}

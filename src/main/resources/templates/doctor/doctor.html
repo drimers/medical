@@ -15,7 +15,7 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-<div th:insert="common/header :: header"></div>
+<div th:insert="~{common/header :: header}"></div>
 
 
 <table class="table table-striped">
@@ -27,18 +27,18 @@
         <th>Appointment</th>
     </tr>
     <tr th:each="patient : ${patients}">
-        <td th:text="${patient.patientId}">ID</td>
+        <td th:text="${patient.id}">ID</td>
         <td th:text="${patient.firstName}  + ' ' + ${patient.lastName}"> FullName</td>
         <td th:text="${patient.phone}">phone</td>
         <td th:text="${patient.comment}">comment</td>
-        <td th:text="${appointment.getAppointment()}">comment</td>
+        <td th:text="${patient.getAppointments().toArray()[0]}">comment</td>
     </tr>
 </table>
 
 <!-- footer starts here -->
 
 
-<div th:insert="common/footer :: footer"></div>
+<div th:insert="~{common/footer :: footer}"></div>
 
 <!--<script>-->
 

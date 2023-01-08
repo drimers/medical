@@ -1,4 +1,4 @@
-package com.stefanpetkov.medical.converter;
+package com.stefanpetkov.medical.converter.patient;
 
 import com.stefanpetkov.medical.commands.PatientCommand;
 import com.stefanpetkov.medical.domain.PatientEntity;
@@ -8,13 +8,11 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class PatientToPatientCommand implements Converter<PatientEntity, PatientCommand> {
+public class PatientCommandToPatient implements Converter<PatientCommand, PatientEntity> {
 
 
     @Override
-    public PatientCommand convert(PatientEntity patientEntity) {
+    public PatientEntity convert(PatientCommand patientCommand) {
         return null;
     }
-
-
 }
