@@ -18,6 +18,8 @@ import java.util.Objects;
 @Table(name = "workingday")
 public class WorkingDayEntity implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long workingDayId;

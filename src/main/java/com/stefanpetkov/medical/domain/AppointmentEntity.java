@@ -13,8 +13,10 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @NoArgsConstructor
@@ -24,16 +26,16 @@ import java.util.Objects;
 @Table(name = "appointment")
 public class AppointmentEntity implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long appointmentId;
 
-    //@DateTimeFormat(pattern = "dd-MM.yyyy")
-    //private LocalDate appointmentDate;
-
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @Column(length = 50, nullable = false)
-    private String appointment;
+    private LocalDateTime dateTimeOfTheAppointment;
 
 
     @ManyToOne(cascade = {CascadeType.MERGE})
@@ -60,7 +62,7 @@ public class AppointmentEntity implements Serializable {
     public String toString() {
         return "AppointmentEntity{" +
                 "appointmentId=" + appointmentId +
-                ", appointment='" + appointment + '\'' +
+                ", appointment='" + dateTimeOfTheAppointment + '\'' +
                 ", patient=" + patient +
                 ", doctor=" + doctor +
                 '}';
@@ -80,4 +82,6 @@ public class AppointmentEntity implements Serializable {
     public int hashCode() {
         return appointmentId != null ? appointmentId.hashCode() + 17 : 53;
     }
+
+
 }

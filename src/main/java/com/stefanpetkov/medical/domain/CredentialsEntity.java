@@ -1,44 +1,63 @@
 package com.stefanpetkov.medical.domain;
 
 
+import com.stefanpetkov.medical.baseentity.BaseUser;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
-@Data
 @Table(name = "credentials")
 public class CredentialsEntity implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "credentials_id")
     private Long credentialsId;
 
     @Column(length = 150, nullable = false, unique = true)
-    @Email(message = "Email is not valid", regexp = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")
-    @NotEmpty(message = "Email cannot be empty")
     private String email;
 
     @Column(length = 150, nullable = false)
     private String password;
-    //private role UserRole;
 
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
 
-    @OneToOne
-    private PatientEntity patient;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private BaseUser baseUser;
 
-    @OneToOne
-    private DoctorEntity doctor;
+    @Override
+    public String toString() {
+        return "Credentials{" +
+                "credentialsId=" + credentialsId +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                '}';
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -54,4 +73,5 @@ public class CredentialsEntity implements Serializable {
     public int hashCode() {
         return credentialsId != null ? credentialsId.hashCode() + 31 : 47;
     }
+
 }

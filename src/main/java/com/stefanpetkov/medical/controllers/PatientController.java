@@ -66,7 +66,7 @@ public class PatientController {
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public String register(@ModelAttribute("doctors") DoctorEntity doctor, @ModelAttribute("appointment") AppointmentEntity appointment, Model model) {
-        System.out.println("get appointment:::"+ appointment.getAppointment());
+        System.out.println("get appointment:::"+ appointment.getDateTimeOfTheAppointment());
        // doctorService.save(doctor);
         model.addAttribute("appointment", appointment);
         appointmentService.save(appointment);
@@ -100,33 +100,33 @@ public class PatientController {
     }
 
 
-    @RequestMapping(value = "/save",method = RequestMethod.POST)
-    public String register(@ModelAttribute("patient") PatientEntity patient, @ModelAttribute("doctor") DoctorEntity doctor, @ModelAttribute("credential") CredentialsEntity credential, Model model) {
-        System.out.println("get UserName:::"+ patient.getFirstName());
-
-        if( patient.getRole() == Role.PATIENT) {
-            patient.setCredentials(credential);
-            patientService.save(patient);
+//    @RequestMapping(value = "/save",method = RequestMethod.POST)
+//    public String register(@ModelAttribute("patient") PatientEntity patient, @ModelAttribute("doctor") DoctorEntity doctor, @ModelAttribute("credential") CredentialsEntity credential, Model model) {
+//        System.out.println("get UserName:::"+ patient.getFirstName());
+//
+//        if( patient.getRole() == Role.PATIENT) {
+//            patient.setCredentials(credential);
+//            patientService.save(patient);
+////            credentialsService.save(credential);
+//            return "display_form";
+//        } else if(patient.getRole() == Role.DOCTOR){
+//            System.out.println("Doctor registration");
+//            doctor.setFirstName(patient.getFirstName());
+//            doctor.setLastName(patient.getLastName());
+//            doctor.setPhone(patient.getPhone());
+//            doctor.setRole(patient.getRole());
+//
+////            doctor.getFirstName();
+////            doctor.getLastName();
+////            doctor.getPhone();
+////            doctor.getRole();
+//           // doctorRepository.save(doctor);
+//            doctorService.save(doctor);
 //            credentialsService.save(credential);
-            return "display_form";
-        } else if(patient.getRole() == Role.DOCTOR){
-            System.out.println("Doctor registration");
-            doctor.setFirstName(patient.getFirstName());
-            doctor.setLastName(patient.getLastName());
-            doctor.setPhone(patient.getPhone());
-            doctor.setRole(patient.getRole());
-
-//            doctor.getFirstName();
-//            doctor.getLastName();
-//            doctor.getPhone();
-//            doctor.getRole();
-           // doctorRepository.save(doctor);
-            doctorService.save(doctor);
-            credentialsService.save(credential);
-            return "display_form";
-        }
-        return "display_form";
-    }
+//            return "display_form";
+//        }
+//        return "display_form";
+//    }
 
 
 

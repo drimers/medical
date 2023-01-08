@@ -4,13 +4,18 @@ import com.stefanpetkov.medical.domain.AppointmentEntity;
 import com.stefanpetkov.medical.domain.CredentialsEntity;
 import com.stefanpetkov.medical.domain.DoctorEntity;
 import com.stefanpetkov.medical.domain.PatientEntity;
+import com.stefanpetkov.medical.domain.Role;
 import com.stefanpetkov.medical.repositories.AppointmentRepository;
 import com.stefanpetkov.medical.repositories.CredentialsRepository;
 import com.stefanpetkov.medical.repositories.DoctorRepository;
 import com.stefanpetkov.medical.repositories.PatientRepository;
+import com.stefanpetkov.medical.util.ApplicationConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 @Slf4j
@@ -56,7 +61,7 @@ public class BootStrapData implements CommandLineRunner {
         patient.setPhone("0893343333");
         patient.setComment("Any comments!!!");
         log.info("Patient created = {}", patient);
-        patientRepository.save(patient);
+        //patientRepository.save(patient);
 
         log.info("Patients");
         log.info("Number of patients = {}", patientRepository.count());
@@ -65,7 +70,10 @@ public class BootStrapData implements CommandLineRunner {
         CredentialsEntity credentials = new CredentialsEntity();
         credentials.setEmail("spp1.bg@abv.bg");
         credentials.setPassword("pass");
-        credentials.setCredentialsId(5L);
+        credentials.setRole(Role.PATIENT);
+        patient.setCredentials(credentials);
+        credentials.setBaseUser(patient);
+        patientRepository.save(patient);
         credentialsRepository.save(credentials);
 
         log.info("Credentials");
@@ -73,7 +81,10 @@ public class BootStrapData implements CommandLineRunner {
 
 
         AppointmentEntity appointment = new AppointmentEntity();
-        appointment.setAppointment("03.01.2023");
+        LocalDateTime ldt = LocalDateTime.of(2023, 1, 9, 13, 5);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(ApplicationConstants.DAY_MONTH_YEAR_HOUR_MINUTE_FORMATTER);
+        log.info("Formatted date = {}", dtf.toString());
+        appointment.setDateTimeOfTheAppointment(ldt);
         appointment.setPatient(patient);
         appointment.setDoctor(doctor);
         log.info("Appointment = {}", appointment);
@@ -83,5 +94,13 @@ public class BootStrapData implements CommandLineRunner {
         log.info("Number of appointments = {}", appointmentRepository.count());
     }
 
+    private void createPatients() {
+
+    }
+
+
+    private void createDoctors() {
+
+    }
 
 }
