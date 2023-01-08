@@ -36,7 +36,6 @@ public class CredentialsController {
 //    }
 
 
-
     @GetMapping("/login")
     public String showLoginForm(Model model) {
 //        PatientEntity patient = new PatientEntity();
@@ -56,7 +55,7 @@ public class CredentialsController {
         System.out.println("get Email:::" + credentials.getEmail());
         // String username = String.valueOf(credentialsRepository.findByEmail(credentials.getEmail()));
         model.addAttribute("doctors", doctorRepository.findAll());
-        model.addAttribute("appointment", appointmentRepository.findByAppointmentId(1L));
+        model.addAttribute("appointment", appointmentRepository.findById(1L));
 
         CredentialsEntity username = credentialsRepository.findByEmail(credentials.getEmail());
 
@@ -64,8 +63,8 @@ public class CredentialsController {
         System.out.println("Email Password : " + credentials.getPassword());
 
         if (username != null) {
-        System.out.println("username : " + username.getEmail());
-        System.out.println("Password : " + username.getPassword());
+            System.out.println("username : " + username.getEmail());
+            System.out.println("Password : " + username.getPassword());
 
 
             if ((username.getEmail().equals(credentials.getEmail())) && (username.getPassword().equals(credentials.getPassword()))) {
@@ -77,7 +76,6 @@ public class CredentialsController {
         System.out.println("Username not valid");
         return "login";
     }
-
 
 
 }

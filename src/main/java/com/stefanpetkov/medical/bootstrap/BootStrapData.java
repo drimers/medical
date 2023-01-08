@@ -34,9 +34,9 @@ public class BootStrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
+        log.info("Executing Bootstrap!");
         loadData();
-
+        log.info("Bootstrap completed!");
     }
 
     private void loadData() {
@@ -44,6 +44,7 @@ public class BootStrapData implements CommandLineRunner {
         doctor.setFirstName("Ivan");
         doctor.setLastName("Ivanov");
         doctor.setPhone("08987777777");
+        log.info("Doctor created = {}", doctor);
         doctorRepository.save(doctor);
 
         log.info("Doctors");
@@ -54,6 +55,7 @@ public class BootStrapData implements CommandLineRunner {
         patient.setLastName("Stefanov");
         patient.setPhone("0893343333");
         patient.setComment("Any comments!!!");
+        log.info("Patient created = {}", patient);
         patientRepository.save(patient);
 
         log.info("Patients");
@@ -72,8 +74,9 @@ public class BootStrapData implements CommandLineRunner {
 
         AppointmentEntity appointment = new AppointmentEntity();
         appointment.setAppointment("03.01.2023");
-        //appointment.setPatient(patientRepository.findPatientByPatientId(1L));
-        // appointment.getPatient();
+        appointment.setPatient(patient);
+        appointment.setDoctor(doctor);
+        log.info("Appointment = {}", appointment);
         appointmentRepository.save(appointment);
 
         log.info("Appointments");

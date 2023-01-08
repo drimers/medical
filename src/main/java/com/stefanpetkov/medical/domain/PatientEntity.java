@@ -9,24 +9,28 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
-@Data
 @Table(name = "patient")
-public class PatientEntity  implements Serializable {
+public class PatientEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "patient_id")
     private Long patientId;
 
     @Column(length = 50, nullable = false)
@@ -40,33 +44,20 @@ public class PatientEntity  implements Serializable {
 
     @Column(length = 2500)
     private String comment;
-    @Lob
-    private Byte[] profilePicture;
 
     @OneToOne(cascade = CascadeType.ALL)
     private CredentialsEntity credentials;
+
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
-    private Set<AppointmentEntity> appointment;
+    private Set<AppointmentEntity> appointments = new HashSet<>();
 
 
-    /*
-    relationship OneToOne {
-        Patient{credentials(credentialsId)} to Credentials{patient(patientId)}
-        Credentials{patient(patientId)} to Patient{credentials(credentialsId)}
-        Doctor{credentials(credentialsId)} to Credentials{doctor(doctorId)}
-        Credentials{doctor(doctorId)} to Doctor{credentials(credentialsId)}
+    public void addAnAppointment(AppointmentEntity appointment) {
+        this.appointments.add(appointment);
     }
-
-    relationship OneToMany {
-        Patient{appointmentList(appointmentId)} to Appointment{patient(patientId)}
-        Doctor{appointmentList(appointmentId)} to Appointment{doctor(doctorId)}
-        Doctor{workingDayList(appointmentId)} to WorkingDay{doctor(doctorId)}
-    }
-
-*/
 
 
     @Override
@@ -77,17 +68,18 @@ public class PatientEntity  implements Serializable {
                 ", lastName='" + lastName + '\'' +
                 ", phone='" + phone + '\'' +
                 ", comment='" + comment + '\'' +
-                ", profilePicture=" + Arrays.toString(profilePicture) +
-             //   ", credentials=" + credentials +
                 ", role=" + role +
-                ", appointment=" + appointment +
                 '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         PatientEntity that = (PatientEntity) o;
 
@@ -96,6 +88,6 @@ public class PatientEntity  implements Serializable {
 
     @Override
     public int hashCode() {
-        return patientId != null ? patientId.hashCode() : 0;
+        return patientId != null ? patientId.hashCode() + 17 : 53;
     }
 }

@@ -1,22 +1,28 @@
 package com.stefanpetkov.medical.domain;
 
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "appointment")
-@Data
-public class AppointmentEntity  implements Serializable {
+public class AppointmentEntity implements Serializable {
 
 
     @Id
@@ -30,26 +36,35 @@ public class AppointmentEntity  implements Serializable {
     private String appointment;
 
 
-    @ManyToOne
-    private  PatientEntity patient;
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "patient_id")
+    private PatientEntity patient;
 
-    /*
-    relationship OneToOne {
-        Patient{credentials(credentialsId)} to Credentials{patient(patientId)}
-        Credentials{patient(patientId)} to Patient{credentials(credentialsId)}
-        Doctor{credentials(credentialsId)} to Credentials{doctor(doctorId)}
-        Credentials{doctor(doctorId)} to Doctor{credentials(credentialsId)}
+
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "doctor_id")
+    private DoctorEntity doctor;
+
+
+    public void setDoctor(DoctorEntity doctor) {
+        this.doctor = doctor;
+        doctor.addAnAppointment(this);
     }
 
-    relationship OneToMany {
-        Patient{appointmentList(appointmentId)} to Appointment{patient(patientId)}
-        Doctor{appointmentList(appointmentId)} to Appointment{doctor(doctorId)}
-        Doctor{workingDayList(appointmentId)} to WorkingDay{doctor(doctorId)}
+    public void setPatient(PatientEntity patient) {
+        this.patient = patient;
+        patient.addAnAppointment(this);
     }
 
-*/
-
-
+    @Override
+    public String toString() {
+        return "AppointmentEntity{" +
+                "appointmentId=" + appointmentId +
+                ", appointment='" + appointment + '\'' +
+                ", patient=" + patient +
+                ", doctor=" + doctor +
+                '}';
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -63,6 +78,6 @@ public class AppointmentEntity  implements Serializable {
 
     @Override
     public int hashCode() {
-        return appointmentId != null ? appointmentId.hashCode() : 0;
+        return appointmentId != null ? appointmentId.hashCode() + 17 : 53;
     }
 }

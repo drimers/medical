@@ -18,7 +18,7 @@ import java.util.Objects;
 @Entity
 @Data
 @Table(name = "credentials")
-public class CredentialsEntity  implements Serializable {
+public class CredentialsEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,24 +40,6 @@ public class CredentialsEntity  implements Serializable {
     @OneToOne
     private DoctorEntity doctor;
 
-    /*
-    relationship OneToOne {
-        Patient{credentials(credentialsId)} to Credentials{patient(patientId)}
-        Credentials{patient(patientId)} to Patient{credentials(credentialsId)}
-        Doctor{credentials(credentialsId)} to Credentials{doctor(doctorId)}
-        Credentials{doctor(doctorId)} to Doctor{credentials(credentialsId)}
-    }
-
-    relationship OneToMany {
-        Patient{appointmentList(appointmentId)} to Appointment{patient(patientId)}
-        Doctor{appointmentList(appointmentId)} to Appointment{doctor(doctorId)}
-        Doctor{workingDayList(appointmentId)} to WorkingDay{doctor(doctorId)}
-    }
-
-*/
-
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,6 +52,6 @@ public class CredentialsEntity  implements Serializable {
 
     @Override
     public int hashCode() {
-        return credentialsId != null ? credentialsId.hashCode() : 0;
+        return credentialsId != null ? credentialsId.hashCode() + 31 : 47;
     }
 }

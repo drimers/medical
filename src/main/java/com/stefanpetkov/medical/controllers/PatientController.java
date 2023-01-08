@@ -10,11 +10,13 @@ import com.stefanpetkov.medical.services.AppointmentService;
 import com.stefanpetkov.medical.services.CredentialsService;
 import com.stefanpetkov.medical.services.DoctorService;
 import com.stefanpetkov.medical.services.PatientService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @Controller
 public class PatientController {
 
@@ -50,7 +52,7 @@ public class PatientController {
     @RequestMapping("/patient")
     public String getDoctor( Model model) {
         model.addAttribute("doctors", doctorRepository.findAll());
-        model.addAttribute("appointment", appointmentRepository.findByAppointmentId(1L));
+        model.addAttribute("appointment", appointmentRepository.findById(1L));
 
       //  model.addAttribute("appointment", appointmentRepository.findAllByPatientId(9L));
        // model.addAttribute("emailAccount", credentialsRepository.findByEmail("spp.bg@abv.bg"));

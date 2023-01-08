@@ -9,25 +9,30 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
-@Data
 @Table(name = "doctor")
-public class DoctorEntity  implements Serializable {
+public class DoctorEntity implements Serializable {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "doctor_id")
     private Long doctorId;
 
     @Column(length = 50, nullable = false)
@@ -38,36 +43,23 @@ public class DoctorEntity  implements Serializable {
 
     @Column(length = 50)
     private String phone;
-    @Lob
-    private Byte[] profilePicture;
 
     @OneToOne(cascade = CascadeType.ALL)
     private CredentialsEntity credentials;
+
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
-    //    @OneToMany(mappedBy = "doctor") // inverse side: it has a mappedBy attribute, and can't decide how the association is mapped, since the other side already decided it.
-//    @Fetch(FetchMode.JOIN)
-//    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor")
-    private Set<WorkingDayEntity> workingDay;
+    private Set<WorkingDayEntity> workingDay = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor")
+    private Set<AppointmentEntity> appointments = new HashSet<>();
 
 
-    /*
-    relationship OneToOne {
-        Patient{credentials(credentialsId)} to Credentials{patient(patientId)}
-        Credentials{patient(patientId)} to Patient{credentials(credentialsId)}
-        Doctor{credentials(credentialsId)} to Credentials{doctor(doctorId)}
-        Credentials{doctor(doctorId)} to Doctor{credentials(credentialsId)}
+    public void addAnAppointment(AppointmentEntity appointment) {
+        this.appointments.add(appointment);
     }
-
-    relationship OneToMany {
-        Patient{appointmentList(appointmentId)} to Appointment{patient(patientId)}
-        Doctor{appointmentList(appointmentId)} to Appointment{doctor(doctorId)}
-        Doctor{workingDayList(appointmentId)} to WorkingDay{doctor(doctorId)}
-    }
-
-*/
 
 
     @Override
@@ -77,8 +69,6 @@ public class DoctorEntity  implements Serializable {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phone='" + phone + '\'' +
-                ", profilePicture=" + Arrays.toString(profilePicture) +
-                ", credentials=" + credentials +
                 ", role=" + role +
                 ", workingDay=" + workingDay +
                 '}';
@@ -96,6 +86,6 @@ public class DoctorEntity  implements Serializable {
 
     @Override
     public int hashCode() {
-        return doctorId != null ? doctorId.hashCode() : 0;
+        return doctorId != null ? doctorId.hashCode() + 11 : 17;
     }
 }
