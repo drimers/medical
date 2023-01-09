@@ -31,28 +31,15 @@
 
 <div th:insert="~{common/header :: header}"></div>
 
-<!--
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-<input  type="button" id="button" onclick="location.href='login.html';" value="login" />
-    <button type="button">
-       </button>
-</div>
--->
-<!--
-<button type="button" class="btn btn-secondary" onclick="location.href='login.html';" value="login" >Secondary</button>
-<button type="button" class="btn btn-primary"
-        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-    Custom button
-</button>
--->
-<!--
+
+
 <label class="form-label display-6 -bold text-center"><strong> Appointment Form</strong></label>
 <h3 ></h3>
 <form class="border border-dark border-3 padding-bottom pb-3 mb-5 ml-5 mr-5" th:object="${doctors}"  th:action="@{/add}"  method="post">
 <div class="row g-3">
     <div class="col">
         <label class="form-label"><b>  &nbsp;&nbsp;  First Name:</b></label>
-        <input type="text" class="form-control" placeholder="First name" th:field="${doctors}"/>
+        <input type="text" class="form-control" placeholder="First name" th:text="${doctors.firstName}  + ' ' + ${doctors.lastName}"/>
     </div>
     <div class="col">
         <label class="form-label"><b>  &nbsp; Last Name:</b></label>
@@ -60,14 +47,16 @@
     </div>
     <div class="col">
         <label class="form-label"><b>  &nbsp; Time:</b></label>
-        <input class="form-control" type="text" id="datetime" placeholder="Select time:" th:field="${appointment.appointment}" />
+<!--        <input class="form-control" type="text" id="datetime" placeholder="Select time:" th:field="${appointment.appointment}" />-->
+        <input  class="form-control" type="text" id="datetime" data-date-format="DD-MM-YYYY HH:mm:ss" placeholder="Select time:"/>
     </div>
     <div class="col-1 mt-5">
-        <button class="btn btn-outline-success" type="submit"><b>Save</b></button>
+        <button class="btn btn-outline-success" id="btn_save" type="submit"><b>Save</b></button>
     </div>
+
  </div>
 </form>
--->
+
 
 
 </div>
@@ -80,16 +69,22 @@
         <!-- <th>Doctor's-LastName</th>-->
         <th>Phone</th>
         <th>Appointment</th>
+        <th>Update</th>
+        <th>Delete</th>
     </tr>
     <tr th:each="doctor : ${doctors}">
         <td th:text="${doctor.id}">id</td>
         <td th:text="d-r + ' ' + ${doctor.firstName} + ' ' + ${doctor.lastName}">FullName</td>
         <td th:text="${doctor.phone}">phone</td>
         <td th:each="appointment : ${appointments}" th:text="${appointment.dateTimeOfTheAppointment}">appointment</td>
+        <td class="col-1 mt-5">
+            <button class="btn btn-outline-success" id="btn_update" type="submit"><b>Update</b></button>
+        </td>
+        <td class="col-1 mt-5">
+            <button class="btn btn-outline-success" id="btn_delete" type="submit"><b>Delete</b></button>
+        </td>
     </tr>
 </table>
-
-<!-- footer starts here -->
 
 
 <!-- footer starts here -->
@@ -102,7 +97,7 @@
     // datetimepicker having id as
     // datetime
     $('#datetime').datetimepicker({
-        format: 'hh:mm:ss a'
+        format: 'DD-MM-YYYY HH:mm:ss'
     });
 </script>
 
