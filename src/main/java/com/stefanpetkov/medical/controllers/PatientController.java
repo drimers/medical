@@ -2,6 +2,7 @@ package com.stefanpetkov.medical.controllers;
 
 
 import com.stefanpetkov.medical.domain.*;
+import com.stefanpetkov.medical.repositories.AppointmentRepository;
 import com.stefanpetkov.medical.repositories.CredentialsRepository;
 import com.stefanpetkov.medical.repositories.PatientRepository;
 import com.stefanpetkov.medical.services.AppointmentService;
@@ -26,14 +27,17 @@ public class PatientController {
     private final CredentialsRepository credentialsRepository;
 
     private final PatientRepository patientRepository;
+    private final AppointmentRepository appointmentRepository;
 
 
     @RequestMapping("/patient")
     public String getDoctor(Model model) {
         log.info("PatientController::getDoctor()");
-        model.addAttribute("doctors", appointmentService.findAllDoctorsByPatientId(2L));
-        model.addAttribute("appointments", appointmentService.findAll());
-       // model.addAttribute("appointments", appointmentService.findAllDoctorsByPatientId(1L));
+
+        model.addAttribute("doctors", appointmentRepository.findAppointmentEntitiesByPatient_IdEqualUserIdInDoctorsEntity(2L));
+       // model.addAttribute("doctors", appointmentService.findAllDoctorsByPatientId(2L));
+        //model.addAttribute("appointments", appointmentService.findAll());
+        //model.addAttribute("appointments", appointmentService.findAppointmentEntitiesByDoctor_Id(1L));
         return "patient/patient";
     }
 

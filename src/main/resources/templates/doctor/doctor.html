@@ -24,16 +24,18 @@
         <th>Patient Name</th>
         <th>Phone</th>
         <th>Comment</th>
-        <th>Appointment</th>
+
     </tr>
-    <tr th:each="patient : ${patients}">
+    <tr class="border border-3 border-dark" th:each="patient : ${patients}">
         <td th:text="${patient.id}">ID</td>
         <td th:text="${patient.firstName}  + ' ' + ${patient.lastName}"> FullName</td>
         <td th:text="${patient.phone}">phone</td>
         <td th:text="${patient.comment}">comment</td>
 <!--        <td th:text="${appointments}">appointment</td>-->
-        <td th:each="appointment : ${appointments}" th:text="${appointment.dateTimeOfTheAppointment}">appointment</td>
-
+        <tr class="border border-3 border-dark" th:each="appointment : ${appointments}">
+        <th>Appointment : </th>
+        <td  th:text="${appointment.dateTimeOfTheAppointment}">appointment</td>
+        </tr>
 <!--        <td th:text="${patient.getAppointments().toArray()[0]}">comment</td>-->
     </tr>
 </table>

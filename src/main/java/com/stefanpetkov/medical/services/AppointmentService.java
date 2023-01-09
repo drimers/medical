@@ -7,6 +7,7 @@ import com.stefanpetkov.medical.domain.PatientEntity;
 import com.stefanpetkov.medical.repositories.AppointmentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -57,5 +58,22 @@ public class AppointmentService {
         });
         return patientEntities;
     }
+
+    public List<AppointmentEntity> findAppointmentEntitiesByDoctor_Id(Long doctorID) {
+        //List<AppointmentEntity> appointmentEntities = appointmentRepository.findAllAppointmentByPatient_Id(patientId);
+        List<AppointmentEntity> appointmentEntities = appointmentRepository.findAppointmentEntitiesByDoctor_Id(doctorID);
+        List<AppointmentEntity> entities = new ArrayList<>();
+        appointmentEntities.iterator().forEachRemaining(entities::add);
+        return entities;
+    }
+
+    public List<AppointmentEntity> findAppointmentEntitiesByPatient_Id(Long patientID) {
+        //List<AppointmentEntity> appointmentEntities = appointmentRepository.findAllAppointmentByPatient_Id(patientId);
+        List<AppointmentEntity> appointmentEntities = appointmentRepository.findAppointmentEntitiesByPatient_Id(patientID);
+        List<AppointmentEntity> entities = new ArrayList<>();
+        appointmentEntities.iterator().forEachRemaining(entities::add);
+        return entities;
+    }
+        // select * from APPOINTMENT as A join doctor as D on A.doctor_id=D.user_id  where A.patient_id=2;
 
 }
