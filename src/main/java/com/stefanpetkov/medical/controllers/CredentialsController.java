@@ -24,7 +24,7 @@ public class CredentialsController {
     private final CredentialsRepository credentialsRepository;
 
     @Autowired
-    public CredentialsController(AppointmentService appointmentService, AppointmentRepository appointmentRepository, DoctorRepository doctorRepository, CredentialsRepository credentialsRepository) {
+    public CredentialsController(AppointmentService appointmentService, DoctorRepository doctorRepository, CredentialsRepository credentialsRepository) {
         this.appointmentService = appointmentService;
         this.doctorRepository = doctorRepository;
         this.credentialsRepository = credentialsRepository;
