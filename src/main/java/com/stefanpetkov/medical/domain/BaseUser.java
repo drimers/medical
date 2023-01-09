@@ -1,7 +1,6 @@
-package com.stefanpetkov.medical.baseentity;
+package com.stefanpetkov.medical.domain;
 
 
-import com.stefanpetkov.medical.domain.CredentialsEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
