@@ -33,6 +33,7 @@ public class PatientController {
         log.info("PatientController::getDoctor()");
         model.addAttribute("doctors", appointmentService.findAllDoctorsByPatientId(2L));
         model.addAttribute("appointments", appointmentService.findAll());
+       // model.addAttribute("appointments", appointmentService.findAllDoctorsByPatientId(1L));
         return "patient/patient";
     }
 

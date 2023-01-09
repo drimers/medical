@@ -31,7 +31,9 @@
         <td th:text="${patient.firstName}  + ' ' + ${patient.lastName}"> FullName</td>
         <td th:text="${patient.phone}">phone</td>
         <td th:text="${patient.comment}">comment</td>
+<!--        <td th:text="${appointments}">appointment</td>-->
         <td th:each="appointment : ${appointments}" th:text="${appointment.dateTimeOfTheAppointment}">appointment</td>
+
 <!--        <td th:text="${patient.getAppointments().toArray()[0]}">comment</td>-->
     </tr>
 </table>

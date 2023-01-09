@@ -33,36 +33,36 @@
 
 
 
-<label class="form-label display-6 -bold text-center"><strong> Appointment Form</strong></label>
-<h3 ></h3>
-<form class="border border-dark border-3 padding-bottom pb-3 mb-5 ml-5 mr-5" th:object="${doctors}"  th:action="@{/add}"  method="post">
-<div class="row g-3">
-    <div class="col">
-        <label class="form-label"><b>  &nbsp;&nbsp;  First Name:</b></label>
-        <input type="text" class="form-control" placeholder="First name" th:text="${doctors.firstName}  + ' ' + ${doctors.lastName}"/>
-    </div>
-    <div class="col">
-        <label class="form-label"><b>  &nbsp; Last Name:</b></label>
-        <input type="text" class="form-control" placeholder="Last name" th:field="${doctors}">
-    </div>
-    <div class="col">
-        <label class="form-label"><b>  &nbsp; Time:</b></label>
-<!--        <input class="form-control" type="text" id="datetime" placeholder="Select time:" th:field="${appointment.appointment}" />-->
-        <input  class="form-control" type="text" id="datetime" data-date-format="DD-MM-YYYY HH:mm:ss" placeholder="Select time:"/>
-    </div>
-    <div class="col-1 mt-5">
-        <button class="btn btn-outline-success" id="btn_save" type="submit"><b>Save</b></button>
-    </div>
+<!--<label class="form-label display-6 -bold text-center"><strong> Appointment Form</strong></label>-->
+<!--<h3 ></h3>-->
+<!--<form class="border border-dark border-3 padding-bottom pb-3 mb-5 ml-5 mr-5" th:object="${doctors}"  th:action="@{/add}"  method="post">-->
+<!--<div class="row g-3">-->
+<!--    <div class="col">-->
+<!--        <label class="form-label"><b>  &nbsp;&nbsp;  First Name:</b></label>-->
+<!--        <input type="text" class="form-control" placeholder="First name" th:text="${doctors.firstName}  + ' ' + ${doctors.lastName}"/>-->
+<!--    </div>-->
+<!--    <div class="col">-->
+<!--        <label class="form-label"><b>  &nbsp; Last Name:</b></label>-->
+<!--        <input type="text" class="form-control" placeholder="Last name" th:field="${doctors}">-->
+<!--    </div>-->
+<!--    <div class="col">-->
+<!--        <label class="form-label"><b>  &nbsp; Time:</b></label>-->
+<!--&lt;!&ndash;        <input class="form-control" type="text" id="datetime" placeholder="Select time:" th:field="${appointment.appointment}" />&ndash;&gt;-->
+<!--        <input  class="form-control" type="text" id="datetime" data-date-format="DD-MM-YYYY HH:mm:ss" placeholder="Select time:"/>-->
+<!--    </div>-->
+<!--    <div class="col-1 mt-5">-->
+<!--        <button class="btn btn-outline-success" id="btn_save" type="submit"><b>Save</b></button>-->
+<!--    </div>-->
 
- </div>
-</form>
+<!-- </div>-->
+<!--</form>-->
 
 
 
 </div>
 <h1>test</h1>
 <label class="form-label display-6 -bold text-left"> &nbsp;&nbsp;<strong> Appointments</strong></label>
-<table class="table table-striped w-50 p-3 " >
+<table class="table table-striped" >
     <tr class="table-dark">
         <th>ID</th>
         <th>Doctor's FullName</th>
