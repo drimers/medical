@@ -8,7 +8,6 @@ import com.stefanpetkov.medical.repositories.AppointmentRepository;
 import com.stefanpetkov.medical.repositories.CredentialsRepository;
 import com.stefanpetkov.medical.repositories.DoctorRepository;
 import com.stefanpetkov.medical.services.AppointmentService;
-import com.stefanpetkov.medical.services.CredentialsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,12 +21,14 @@ public class CredentialsController {
     private final AppointmentService appointmentService;
     private final DoctorRepository doctorRepository;
     private final CredentialsRepository credentialsRepository;
+    private final AppointmentRepository appointmentRepository;
 
     @Autowired
-    public CredentialsController(AppointmentService appointmentService, DoctorRepository doctorRepository, CredentialsRepository credentialsRepository) {
+    public CredentialsController(AppointmentService appointmentService, DoctorRepository doctorRepository, CredentialsRepository credentialsRepository, AppointmentRepository appointmentRepository) {
         this.appointmentService = appointmentService;
         this.doctorRepository = doctorRepository;
         this.credentialsRepository = credentialsRepository;
+        this.appointmentRepository = appointmentRepository;
     }
 
 
@@ -44,10 +45,7 @@ public class CredentialsController {
     public String login(@ModelAttribute("credential") CredentialsEntity credentials, @ModelAttribute("doctors") DoctorEntity doctor, @ModelAttribute("appointments") AppointmentEntity appointment, Model model) {
         System.out.println("get Email:::" + credentials.getEmail());
 
-        model.addAttribute("doctors", doctorRepository.findAll());
-        List<AppointmentEntity> appointmentEntities = appointmentService.findAll();
-        model.addAttribute("appointments", appointmentEntities);
-
+        model.addAttribute("doctors", appointmentRepository.findAppointmentEntitiesByPatient_IdEqualUserIdInDoctorsEntity(2L));
 
         CredentialsEntity username = credentialsRepository.findByEmail(credentials.getEmail());
 

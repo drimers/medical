@@ -119,7 +119,7 @@ public class BootStrapData implements CommandLineRunner {
 
 
         // registration account
-        credentials.setEmail("spp1.bg@abv.bg");
+        credentials.setEmail("spp@abv.bg");
         credentials.setPassword("pass");
         credentials.setRole(Role.PATIENT);
         patient.setCredentials(credentials);
@@ -210,7 +210,7 @@ public class BootStrapData implements CommandLineRunner {
     private void createCredentials() {
         //Patients
         //credential1
-        credentials1.setEmail("patient1.bg@abv.bg");
+        credentials1.setEmail("patient1@abv.bg");
         credentials1.setPassword("pass");
         credentials1.setRole(Role.PATIENT);
         patient1.setCredentials(credentials1);
@@ -219,7 +219,7 @@ public class BootStrapData implements CommandLineRunner {
         credentialsRepository.save(credentials1);
 
         //credential2
-        credentials2.setEmail("patient2.bg@abv.bg");
+        credentials2.setEmail("patient2@abv.bg");
         credentials2.setPassword("pass");
         credentials2.setRole(Role.PATIENT);
         patient2.setCredentials(credentials2);
@@ -228,7 +228,7 @@ public class BootStrapData implements CommandLineRunner {
         credentialsRepository.save(credentials2);
 
         //credential3
-        credentials3.setEmail("patient3.bg@abv.bg");
+        credentials3.setEmail("patient3@abv.bg");
         credentials3.setPassword("pass");
         credentials3.setRole(Role.PATIENT);
         patient3.setCredentials(credentials3);
@@ -240,7 +240,7 @@ public class BootStrapData implements CommandLineRunner {
         log.info("Number of credential  = {}", credentialsRepository.count());
 
         //Credential4
-        credentials4.setEmail("doctor1.bg@abv.bg");
+        credentials4.setEmail("doctor1@abv.bg");
         credentials4.setPassword("pass");
         credentials4.setRole(Role.DOCTOR);
         doctor1.setCredentials(credentials4);
@@ -249,7 +249,7 @@ public class BootStrapData implements CommandLineRunner {
         credentialsRepository.save(credentials4);
 
         //credential5
-        credentials5.setEmail("doctor2.bg@abv.bg");
+        credentials5.setEmail("doctor2@abv.bg");
         credentials5.setPassword("pass");
         credentials5.setRole(Role.DOCTOR);
         doctor2.setCredentials(credentials5);
@@ -258,7 +258,7 @@ public class BootStrapData implements CommandLineRunner {
         credentialsRepository.save(credentials5);
 
         //credential6
-        credentials6.setEmail("doctor3.bg@abv.bg");
+        credentials6.setEmail("doctor3@abv.bg");
         credentials6.setPassword("pass");
         credentials6.setRole(Role.DOCTOR);
         doctor3.setCredentials(credentials6);
