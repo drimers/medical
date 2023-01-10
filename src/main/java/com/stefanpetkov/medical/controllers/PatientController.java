@@ -102,8 +102,8 @@ public class PatientController {
     }
 
 
-    @RequestMapping(path = {"/search"})
-    public String search(AppointmentEntity shop, Model model, String keyword) {
+    @RequestMapping(path = {"/search"} )
+    public String search(AppointmentEntity appointment, Model model, String keyword) {
        // List<AppointmentEntity> list = new ArrayList<>();
         if (keyword != null) {
             //List<AppointmentEntity> list = appointmentService.getByKeyword(keyword);
