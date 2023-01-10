@@ -20,22 +20,27 @@
 
 <table class="table table-striped">
     <tr class="table-dark">
-        <th>ID</th>
+        <th>AppointmentID</th>
+        <th>PatientID</th>
         <th>Patient Name</th>
         <th>Phone</th>
         <th>Comment</th>
 
     </tr>
-    <tr class="border border-3 border-dark" th:each="patient : ${patients}">
-        <td th:text="${patient.id}">ID</td>
-        <td th:text="${patient.firstName}  + ' ' + ${patient.lastName}"> FullName</td>
-        <td th:text="${patient.phone}">phone</td>
-        <td th:text="${patient.comment}">comment</td>
-<!--        <td th:text="${appointments}">appointment</td>-->
-        <tr class="border border-3 border-dark" th:each="appointment : ${appointments}">
-        <th>Appointment : </th>
-        <td  th:text="${appointment.dateTimeOfTheAppointment}">appointment</td>
-        </tr>
+    <tr class="border border-3 border-dark" th:each="patient : ${appointments}">
+        <td th:text="${patient.getAppointmentId()}">ID</td>
+        <td th:text="${patient.getPatient().id}">ID</td>
+        <td th:text="${patient.getPatient().firstName}  + ' ' + ${patient.getPatient().lastName}"> FullName</td>
+        <td th:text="${patient.getPatient().phone}">phone</td>
+        <td th:text="${patient.getPatient().comment}">comment</td>
+<!--&lt;!&ndash;        <td th:text="${appointments}">appointment</td>&ndash;&gt;-->
+<!--        <tr class="border border-3 border-dark" th:each="appointment : ${appointments}">-->
+<!--        <th>Appointment : </th>-->
+<!--        <td  th:text="${appointment.dateTimeOfTheAppointment}">appointment</td>-->
+<!--        </tr>-->
+
+
+
 <!--        <td th:text="${patient.getAppointments().toArray()[0]}">comment</td>-->
     </tr>
 </table>

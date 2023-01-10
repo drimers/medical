@@ -3,6 +3,7 @@ package com.stefanpetkov.medical.controllers;
 
 import com.stefanpetkov.medical.domain.AppointmentEntity;
 import com.stefanpetkov.medical.domain.PatientEntity;
+import com.stefanpetkov.medical.repositories.AppointmentRepository;
 import com.stefanpetkov.medical.services.AppointmentService;
 import com.stefanpetkov.medical.services.DoctorService;
 import com.stefanpetkov.medical.util.ApplicationConstants;
@@ -23,6 +24,7 @@ public class DoctorController {
 
     private final DoctorService doctorService;
     private final AppointmentService appointmentService;
+    private final AppointmentRepository appointmentRepository;
 
 
     @RequestMapping(ApplicationConstants.REQUEST_MAPPING_DOCTOR)
@@ -30,7 +32,8 @@ public class DoctorController {
         log.info("DoctorController::getPatient");
         List<PatientEntity> doctorCommands = appointmentService.findAllPatientsByDoctorId(1L);
         //List<AppointmentEntity> appointmentEntities = appointmentService.findAll();
-        List<AppointmentEntity> appointmentEntities = appointmentService.findAppointmentEntitiesByPatient_Id(2L);
+        //List<AppointmentEntity> appointmentEntities = appointmentService.findAppointmentEntitiesByPatient_Id(2L);
+        List<AppointmentEntity> appointmentEntities = appointmentRepository.findAppointmentEntitiesByPatient_IdEqualUserIdInPatientEntity(1L);
         model.addAttribute("patients", doctorCommands);
         model.addAttribute("appointments", appointmentEntities);
 

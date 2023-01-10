@@ -29,6 +29,38 @@ public class BootStrapData implements CommandLineRunner {
     private final AppointmentRepository appointmentRepository;
 
 
+    //Patients
+    PatientEntity patient1 = new PatientEntity();
+    PatientEntity patient2 = new PatientEntity();
+    PatientEntity patient3 = new PatientEntity();
+
+
+    //Doctors
+    DoctorEntity doctor = new DoctorEntity();
+    DoctorEntity doctor1 = new DoctorEntity();
+    DoctorEntity doctor2 = new DoctorEntity();
+    DoctorEntity doctor3 = new DoctorEntity();
+
+    //Credentials
+    CredentialsEntity credentials = new CredentialsEntity();
+    CredentialsEntity credential = new CredentialsEntity();
+    CredentialsEntity credentials1 = new CredentialsEntity();
+    CredentialsEntity credentials2 = new CredentialsEntity();
+    CredentialsEntity credentials3 = new CredentialsEntity();
+    CredentialsEntity credentials4 = new CredentialsEntity();
+    CredentialsEntity credentials5 = new CredentialsEntity();
+    CredentialsEntity credentials6 = new CredentialsEntity();
+
+    // Appointment
+    AppointmentEntity appointment = new AppointmentEntity();
+    AppointmentEntity appointment1 = new AppointmentEntity();
+    AppointmentEntity appointment2 = new AppointmentEntity();
+    AppointmentEntity appointment3 = new AppointmentEntity();
+
+
+
+
+
     public BootStrapData(DoctorRepository doctorRepository, PatientRepository patientRepository,
                          CredentialsRepository credentialsRepository, AppointmentRepository appointmentRepository) {
         this.doctorRepository = doctorRepository;
@@ -52,7 +84,7 @@ public class BootStrapData implements CommandLineRunner {
     PatientEntity patient = new PatientEntity();
     private void loadData() {
 
-        DoctorEntity doctor = new DoctorEntity();
+        // doctor
         doctor.setFirstName("Ivan");
         doctor.setLastName("Ivanov");
         doctor.setPhone("08987777777");
@@ -63,7 +95,7 @@ public class BootStrapData implements CommandLineRunner {
         log.info("Number of doctors = {}", doctorRepository.count());
 
         //Credential4
-        CredentialsEntity credential = new CredentialsEntity();
+
         credential.setEmail("doctor.bg@abv.bg");
         credential.setPassword("pass");
         credential.setRole(Role.DOCTOR);
@@ -74,7 +106,7 @@ public class BootStrapData implements CommandLineRunner {
 
         ////////////////////////////////////////////////
 
-
+        //patient
         patient.setFirstName("Stefan");
         patient.setLastName("Stefanov");
         patient.setPhone("0893343333");
@@ -86,7 +118,7 @@ public class BootStrapData implements CommandLineRunner {
         log.info("Number of patients = {}", patientRepository.count());
 
 
-        CredentialsEntity credentials = new CredentialsEntity();
+        // registration account
         credentials.setEmail("spp1.bg@abv.bg");
         credentials.setPassword("pass");
         credentials.setRole(Role.PATIENT);
@@ -99,7 +131,7 @@ public class BootStrapData implements CommandLineRunner {
         log.info("Number of credential  = {}", credentialsRepository.count());
 
 
-        AppointmentEntity appointment = new AppointmentEntity();
+        // appointment
         LocalDateTime ldt = LocalDateTime.of(2023, 1, 9, 13, 5);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern(ApplicationConstants.DAY_MONTH_YEAR_HOUR_MINUTE_FORMATTER);
         log.info("Formatted date = {}", dtf.toString());
@@ -113,29 +145,6 @@ public class BootStrapData implements CommandLineRunner {
         log.info("Number of appointments = {}", appointmentRepository.count());
     }
 
-    //Patients
-    PatientEntity patient1 = new PatientEntity();
-    PatientEntity patient2 = new PatientEntity();
-    PatientEntity patient3 = new PatientEntity();
-
-
-    //Doctors
-    DoctorEntity doctor1 = new DoctorEntity();
-    DoctorEntity doctor2 = new DoctorEntity();
-    DoctorEntity doctor3 = new DoctorEntity();
-
-    //Credentials
-    CredentialsEntity credentials1 = new CredentialsEntity();
-    CredentialsEntity credentials2 = new CredentialsEntity();
-    CredentialsEntity credentials3 = new CredentialsEntity();
-    CredentialsEntity credentials4 = new CredentialsEntity();
-    CredentialsEntity credentials5 = new CredentialsEntity();
-    CredentialsEntity credentials6 = new CredentialsEntity();
-
-    // Appointment
-
-    AppointmentEntity appointment1 = new AppointmentEntity();
-    AppointmentEntity appointment2 = new AppointmentEntity();
 
 
     private void createPatients() {
@@ -230,10 +239,6 @@ public class BootStrapData implements CommandLineRunner {
         log.info("Credentials");
         log.info("Number of credential  = {}", credentialsRepository.count());
 
-
-
-
-
         //Credential4
         credentials4.setEmail("doctor1.bg@abv.bg");
         credentials4.setPassword("pass");
@@ -266,8 +271,6 @@ public class BootStrapData implements CommandLineRunner {
 
     public void makeAppointment(){
 
-
-
         LocalDateTime ldt1 = LocalDateTime.of(2023, 2, 10, 13, 5);
         DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern(ApplicationConstants.DAY_MONTH_YEAR_HOUR_MINUTE_FORMATTER);
         log.info("Formatted date = {}", dtf1.toString());
@@ -289,6 +292,19 @@ public class BootStrapData implements CommandLineRunner {
         appointment2.setDoctor(doctor3);
         log.info("Appointment = {}", appointment2);
         appointmentRepository.save(appointment2);
+
+        log.info("Appointments");
+        log.info("Number of appointments = {}", appointmentRepository.count());
+
+
+        LocalDateTime ldt3 = LocalDateTime.of(2024, 12, 11, 13, 5);
+        DateTimeFormatter dtf3 = DateTimeFormatter.ofPattern(ApplicationConstants.DAY_MONTH_YEAR_HOUR_MINUTE_FORMATTER);
+        log.info("Formatted date = {}", dtf3.toString());
+        appointment3.setDateTimeOfTheAppointment(ldt3);
+        appointment3.setPatient(patient3);
+        appointment3.setDoctor(doctor);
+        log.info("Appointment = {}", appointment3);
+        appointmentRepository.save(appointment3);
 
         log.info("Appointments");
         log.info("Number of appointments = {}", appointmentRepository.count());

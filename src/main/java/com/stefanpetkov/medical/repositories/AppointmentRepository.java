@@ -19,4 +19,7 @@ public interface AppointmentRepository extends CrudRepository<AppointmentEntity,
         List<AppointmentEntity> findAppointmentEntitiesByPatient_IdEqualUserIdInDoctorsEntity (Long patient_id);
 
 
+        //select  *  from APPOINTMENT as A join PATIENT as P on A.patient_id=P.user_id  where A.doctor_id=1;
+        @Query(value = "select  *  from APPOINTMENT as A join PATIENT as P on A.patient_id=P.user_id  where A.doctor_id= :doctor_id", nativeQuery = true)
+        List<AppointmentEntity> findAppointmentEntitiesByPatient_IdEqualUserIdInPatientEntity (Long doctor_id);
 }
