@@ -58,22 +58,23 @@
 
 
 </div>
-<h1>test</h1>
-<label class="form-label display-6 -bold text-left"> &nbsp;&nbsp;<strong> Appointments</strong></label>
+<h1 class="border border-2 border-success w-25">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Здравей : Stefan</h1>
+<!--<label class="form-label display-6 -bold text-left"> &nbsp;&nbsp;<strong> Appointments : </strong></label>-->
 <table class="table table-striped">
     <tr class="table-dark">
-        <th>ID</th>
+        <th>Patient_ID</th>
         <th>Doctor's FullName</th>
-        <th>Phone</th>
         <th>Appointment</th>
+        <th>Phone</th>
         <th>Update</th>
         <th>Delete</th>
     </tr>
     <tr th:each="doctor : ${doctors}">
         <td th:text="${doctor.getPatient().getId()}">id</td>
-       <td th:text="d-r + ' ' + ${doctor.getDoctor().getFirstName()} + ' ' + ${doctor.getDoctor().getLastName()}">FullName</td>
-        <td th:text="${doctor.getDoctor().getPhone()}">phone</td>
+        <td th:text="d-r + ' ' + ${doctor.getDoctor().getFirstName()} + ' ' + ${doctor.getDoctor().getLastName()}">FullName</td>
         <td th:text="${doctor.getDateTimeOfTheAppointment()}">phone</td>
+        <td th:text="${doctor.getDoctor().getPhone()}">phone</td>
+
 
         <td class="col-1 mt-5">
             <button class="btn btn-outline-success" id="btn_update" type="submit"><b>Update</b></button>

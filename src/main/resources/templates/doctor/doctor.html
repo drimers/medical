@@ -17,12 +17,14 @@
 
 <div th:insert="~{common/header :: header}"></div>
 
+<h1 class="border border-2 border-success w-25">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Здравейте д-р : Ivanov</h1>
 
 <table class="table table-striped">
     <tr class="table-dark">
         <th>AppointmentID</th>
         <th>PatientID</th>
         <th>Patient Name</th>
+        <th>Appointment</th>
         <th>Phone</th>
         <th>Comment</th>
 
@@ -31,6 +33,7 @@
         <td th:text="${patient.getAppointmentId()}">ID</td>
         <td th:text="${patient.getPatient().id}">ID</td>
         <td th:text="${patient.getPatient().firstName}  + ' ' + ${patient.getPatient().lastName}"> FullName</td>
+        <td th:text="${patient.getDateTimeOfTheAppointment()}">ID</td>
         <td th:text="${patient.getPatient().phone}">phone</td>
         <td th:text="${patient.getPatient().comment}">comment</td>
 <!--&lt;!&ndash;        <td th:text="${appointments}">appointment</td>&ndash;&gt;-->
