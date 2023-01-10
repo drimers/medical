@@ -13,7 +13,7 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
     <!-- Include Moment.js CDN -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
     <!-- Include Bootstrap DateTimePicker CDN -->
@@ -58,12 +58,12 @@
 
 
 </div>
-<h1 class="border border-2 border-success w-25">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Здравей : Stefan</h1>
+<h1 class="border border-2 border-success w-25 ">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Здравей : Stefan</h1>
 <!--<label class="form-label display-6 -bold text-left"> &nbsp;&nbsp;<strong> Appointments : </strong></label>-->
 
 
-<form th:action="@{/search}" method="get">
-    <input type="text" name="keyword" th:value="${keyword}" placeholder="Find something" size="50">
+<form class="border border-2 border-success w-25 p-3" th:action="@{/search}" method="get">
+    <input class="border border-3 border-dark p-15  mx-1 h-100 d-inline-block" type="text" name="keyword" th:value="${keyword}" placeholder="Find by FirstName or Appointment date" size="45%">
     <button type="submit" class="btn btn-info" >Search</button>
     <button type="submit" class="btn btn-info" >reset</button>
 </form>
@@ -78,7 +78,7 @@
         <th>Update</th>
         <th>Delete</th>
     </tr>
-    <tr th:each="doctor : ${doctors}">
+    <tr class="border border-3 border-dark" th:each="doctor : ${doctors}">
         <td th:text="${doctor.getPatient().getId()}">id</td>
         <td th:text="d-r + ' ' + ${doctor.getDoctor().getFirstName()} + ' ' + ${doctor.getDoctor().getLastName()}">FullName</td>
         <td th:text="${doctor.getDateTimeOfTheAppointment()}">phone</td>
