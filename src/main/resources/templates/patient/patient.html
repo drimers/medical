@@ -60,6 +60,15 @@
 </div>
 <h1 class="border border-2 border-success w-25">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Здравей : Stefan</h1>
 <!--<label class="form-label display-6 -bold text-left"> &nbsp;&nbsp;<strong> Appointments : </strong></label>-->
+
+
+<form th:action="@{/search}" method="get">
+    <input type="text" name="keyword" th:value="${keyword}" placeholder="Find something" size="50">
+    <button type="submit" class="btn btn-info" >Search</button>
+    <button type="submit" class="btn btn-info" >reset</button>
+</form>
+
+
 <table class="table table-striped">
     <tr class="table-dark">
         <th>Patient_ID</th>

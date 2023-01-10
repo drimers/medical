@@ -76,4 +76,15 @@ public class AppointmentService {
     }
         // select * from APPOINTMENT as A join doctor as D on A.doctor_id=D.user_id  where A.patient_id=2;
 
+
+    public List<AppointmentEntity> getByKeyword(String keyword){
+
+        List<AppointmentEntity> appointmentEntities = appointmentRepository.findByKeyword(keyword);
+        List<AppointmentEntity> entities = new ArrayList<>();
+        appointmentEntities.iterator().forEachRemaining(entities::add);
+        return entities;
+
+
+    }
+
 }

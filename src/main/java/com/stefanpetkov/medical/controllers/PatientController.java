@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Slf4j
 @RequiredArgsConstructor
 @Controller
@@ -35,7 +38,7 @@ public class PatientController {
         log.info("PatientController::getDoctor()");
 
         model.addAttribute("doctors", appointmentRepository.findAppointmentEntitiesByPatient_IdEqualUserIdInDoctorsEntity(2L));
-       // model.addAttribute("doctors", appointmentService.findAllDoctorsByPatientId(2L));
+        // model.addAttribute("doctors", appointmentService.findAllDoctorsByPatientId(2L));
         //model.addAttribute("appointments", appointmentService.findAll());
         //model.addAttribute("appointments", appointmentService.findAppointmentEntitiesByDoctor_Id(1L));
         return "patient/patient";
@@ -96,6 +99,20 @@ public class PatientController {
         log.info("Patient registration :: save()");
         return "display_form";
 
+    }
+
+
+    @RequestMapping(path = {"/search"})
+    public String search(AppointmentEntity shop, Model model, String keyword) {
+       // List<AppointmentEntity> list = new ArrayList<>();
+        if (keyword != null) {
+            //List<AppointmentEntity> list = appointmentService.getByKeyword(keyword);
+            model.addAttribute("doctors", appointmentService.getByKeyword(keyword));
+        } else {
+            List<AppointmentEntity> list = appointmentRepository.findAppointmentEntitiesByPatient_IdEqualUserIdInDoctorsEntity(2L);
+            model.addAttribute("appointment", list);
+        }
+        return "patient/patient";
     }
 
 }
