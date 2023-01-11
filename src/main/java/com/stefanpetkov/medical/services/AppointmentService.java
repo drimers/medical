@@ -83,8 +83,26 @@ public class AppointmentService {
         List<AppointmentEntity> entities = new ArrayList<>();
         appointmentEntities.iterator().forEachRemaining(entities::add);
         return entities;
+    }
 
+    public AppointmentEntity getAppointment(Long appointment_Id){
+       return appointmentRepository.findAppointmentEntityByAppointmentId(appointment_Id);
 
     }
+
+
+//    public AppointmentEntity updateAppointment( AppointmentEntity appointment) {
+//       // AppointmentEntity appointment1  = getAppointment(appointment_Id);
+//     //   appointment1.setAppointmentId(appointment.getAppointmentId());
+//        appointment.setDateTimeOfTheAppointment(appointment.getDateTimeOfTheAppointment());
+////        appointment1.setDoctor(appointment.getDoctor());
+////        appointment1.setPatient(appointment.getPatient());
+////        appointment1.setLastName(request.getLastName());
+////        fromDb.setRole(request.getRole());
+////        fromDb.setActive(request.isActive());
+////        fromDb.setUpdatedAt(LocalDateTime.now());
+//        return appointmentRepository.save(appointment);
+//    }
+
 
 }

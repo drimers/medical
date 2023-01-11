@@ -1,6 +1,7 @@
 package com.stefanpetkov.medical.controllers;
 
 
+import com.stefanpetkov.medical.commands.AppointmentCommand;
 import com.stefanpetkov.medical.domain.*;
 import com.stefanpetkov.medical.repositories.AppointmentRepository;
 import com.stefanpetkov.medical.repositories.CredentialsRepository;
@@ -11,10 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,9 +100,9 @@ public class PatientController {
     }
 
 
-    @RequestMapping(path = {"/search"} )
+    @RequestMapping(path = {"/search"})
     public String search(AppointmentEntity appointment, Model model, String keyword) {
-       // List<AppointmentEntity> list = new ArrayList<>();
+        // List<AppointmentEntity> list = new ArrayList<>();
         if (keyword != null) {
             //List<AppointmentEntity> list = appointmentService.getByKeyword(keyword);
             model.addAttribute("doctors", appointmentService.getByKeyword(keyword));
@@ -113,6 +111,31 @@ public class PatientController {
             model.addAttribute("appointment", list);
         }
         return "patient/patient";
+    }
+
+    @GetMapping(path = "editAppointment")
+    public String editAppointment(Model model, @RequestParam Long appointment_id) {
+        AppointmentEntity appointment;
+        appointment = appointmentRepository.findAppointmentEntityByAppointmentId(appointment_id);
+        //model.addAttribute("appointments", appointmentRepository.findAppointmentEntitiesByPatient_Id(appointment_id));
+        model.addAttribute("appointments", appointment);
+        return "editAppointment";
+    }
+
+    @RequestMapping(value = "updateAppointment", method = RequestMethod.POST)
+    public String updateAppointment(@ModelAttribute("appointments") AppointmentCommand appointment) {
+        log.info("PatientController :: updateAppointment  appointment = {} ", appointment);
+        // Long id = Long.valueOf(appointment_id);
+       // model.addAttribute("appointments", appointment);
+        //appointmentService.updateAppointment(id, appointment);
+        return "/patient/patient";
+    }
+
+
+    @GetMapping("/deleteAppointment")
+    public String deleteAppointment(@RequestParam Long appointment_id) {
+        appointmentRepository.deleteById(appointment_id);
+        return "redirect:/patient";
     }
 
 }

@@ -84,12 +84,11 @@
         <td th:text="${doctor.getDateTimeOfTheAppointment()}">phone</td>
         <td th:text="${doctor.getDoctor().getPhone()}">phone</td>
 
-
         <td class="col-1 mt-5">
-            <button class="btn btn-outline-success" id="btn_update" type="submit"><b>Update</b></button>
+            <a class="btn btn-outline-success" th:href="@{/editAppointment(appointment_id=${doctor.getAppointmentId()})}" id="btn_update" type="submit"><b>Update</b></a>
         </td>
         <td class="col-1 mt-5">
-            <button class="btn btn-outline-success" id="btn_delete" type="submit"><b>Delete</b></button>
+            <a class="btn btn-outline-success" th:href="@{/deleteAppointment(appointment_id=${doctor.getAppointmentId()})}" id="btn_delete" type="submit"><b>Delete</b></a>
         </td>
    </tr>
 </table>
