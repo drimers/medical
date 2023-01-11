@@ -27,42 +27,53 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-<!--/*@thymeleaf id="doc" type="com.stefanpetkov.medical.commands.DoctorCommand"*/-->
+<!--/*@thymeleaf id="appointment" type="com.stefanpetkov.medical.commands.AppointmentCommand"*/-->
 
 <div th:insert="~{common/header :: header}"></div>
 
 
 <label class="form-label display-6 -bold text-center"><strong> Appointment Form</strong></label>
-<h3 ></h3>
-<form class="border border-dark border-3 padding-bottom pb-3 mb-5 ml-5 mr-5" th:object="${appointments}"  th:action="@{/updateAppointment/}"  method="POST">
-<div class="row g-3">
-    <div class="col">
-        <label class="form-label"><b>  &nbsp;&nbsp; Appointment ID:</b></label>
-        <input type="text" class="form-control" placeholder="Appointment ID:"  th:field="*{appointmentId}"/>
-    </div>
-    <div class="col">
-        <label class="form-label"><b>  &nbsp;&nbsp; Doctor ID:</b></label>
-        <input type="text" class="form-control" placeholder="Doctor ID:" th:field="${appointments.getDoctor().getId()}"/>
-    </div>
-    <div class="col">
-        <label class="form-label"><b>  &nbsp; Doctor First Name:</b></label>
-        <input type="text" class="form-control" th:field="${appointments.getDoctor().getFirstName()}">
-    </div>
-    <div class="col">
-        <label class="form-label"><b>  &nbsp; Last Name:</b></label>
-        <input type="text" class="form-control" placeholder="Last name" th:field="*${appointments.getDoctor().getLastName()}">
-    </div>
-    <div class="col">
-        <label class="form-label"><b>  &nbsp; Time:</b></label>
-         <input class="form-control" type="datetime-local" id="datetime" placeholder="Select time:"  data-date-format="YYYY-MM-DD HH:mm" th:field="*{dateTimeOfTheAppointment}" />
-<!--         <input  class="form-control" type="text" id="datetime" data-date-format="DD-MM-YYYY HH:mm:ss" placeholder="Select time:"/>-->
-    </div>
-    <div class="col-1 mt-5">
-<!--        <a class="btn btn-outline-success" th:href="@{/updateAppointment(appointment_id=${appointments.appointmentId})}" id="btn_save" type="submit"><b>Save</b></a>-->
-        <button class="btn btn-outline-success"  id="btn_save" type="submit"><b>Save</b></button>
-    </div>
 
- </div>
+<form  class="border border-dark border-3 padding-bottom pb-3 mb-5 ml-5 mr-5" th:object="${appointment}"
+      th:action="@{/updateAppointment}" method="post">
+
+    <div class="row g-3">
+        <div class="col">
+            <label class="form-label"><b> &nbsp;&nbsp; Appointment ID:</b></label>
+            <input type="text" class="form-control" placeholder="Appointment ID:" th:field="*{appointmentId}"/>
+        </div>
+
+        <div class="col">
+            <label class="form-label"><b> &nbsp;&nbsp; Doctor ID:</b></label>
+            <input type="text" class="form-control" placeholder="Doctor ID:" th:field="*{doctorId}"/>
+        </div>
+
+        <div class="col">
+            <input type="hidden" th:field="*{patientId}"/>
+        </div>
+
+        <div class="col">
+            <label class="form-label"><b> &nbsp; Doctor First Name:</b></label>
+            <input type="text" class="form-control" th:field="*{firstName}"/>
+        </div>
+
+        <div class="col">
+            <label class="form-label"><b> &nbsp; Last Name:</b></label>
+            <input type="text" class="form-control" placeholder="Last name" th:field="*{lastName}"/>
+        </div>
+
+        <div class="col">
+            <label for="datetime" class="form-label"><b> &nbsp; Time:</b></label>
+            <input type="datetime-local" data-date-format="DD-MM-YYYY HH:mm" class="form-control" id="datetime" placeholder="Select time:"
+                   th:field="*{dateTimeOfTheAppointment}"/>
+            <!--         <input  class="form-control" type="text" id="datetime" data-date-format="DD-MM-YYYY HH:mm:ss" placeholder="Select time:"/>-->
+        </div>
+
+        <div class="col-1 mt-5">
+        <button class="btn btn-outline-success" id="btn_save" type="submit" ><b>Save</b></button>
+        </div>
+
+    </div>
 </form>
 
 
@@ -75,9 +86,9 @@
     // Below code sets format to the
     // datetimepicker having id as
     // datetime
-    $('#datetime').datetimepicker({
-        format: 'DD-MM-YYYY HH:mm:ss'
-    });
+    // $('#datetime').datetimepicker({
+    //     format: 'DD-MM-YYYY HH:mm:ss'
+    // });
 </script>
 
 </body>

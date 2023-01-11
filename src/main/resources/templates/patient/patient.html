@@ -68,6 +68,10 @@
     <button type="submit" class="btn btn-info" >reset</button>
 </form>
 
+<!--<form th:action="@{/newAppointment}" method="get">-->
+<!--    <button type="submit" class="btn btn-info" >New Appointment</button>-->
+<!--</form>-->
+
 
 <table class="table table-striped">
     <tr class="table-dark">
@@ -85,7 +89,7 @@
         <td th:text="${doctor.getDoctor().getPhone()}">phone</td>
 
         <td class="col-1 mt-5">
-            <a class="btn btn-outline-success" th:href="@{/editAppointment(appointment_id=${doctor.getAppointmentId()})}" id="btn_update" type="submit"><b>Update</b></a>
+            <a class="btn btn-outline-success" th:href="@{/updateAppointmentForm(appointment_id=${doctor.getAppointmentId()})}" id="btn_update" type="submit"><b>Update</b></a>
         </td>
         <td class="col-1 mt-5">
             <a class="btn btn-outline-success" th:href="@{/deleteAppointment(appointment_id=${doctor.getAppointmentId()})}" id="btn_delete" type="submit"><b>Delete</b></a>

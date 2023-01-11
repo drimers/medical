@@ -1,36 +1,30 @@
 package com.stefanpetkov.medical.services;
 
 
+import com.stefanpetkov.medical.commands.AppointmentCommand;
+import com.stefanpetkov.medical.converter.appointment.AppointmentCommandToAppointment;
+import com.stefanpetkov.medical.converter.appointment.AppointmentToAppointmentCommand;
 import com.stefanpetkov.medical.domain.AppointmentEntity;
 import com.stefanpetkov.medical.domain.DoctorEntity;
 import com.stefanpetkov.medical.domain.PatientEntity;
 import com.stefanpetkov.medical.repositories.AppointmentRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class AppointmentService {
 
 
     private final AppointmentRepository appointmentRepository;
-
-
-    @Autowired
-    public AppointmentService(AppointmentRepository appointmentRepository) {
-        this.appointmentRepository = appointmentRepository;
-    }
-
-
-    public void save(AppointmentEntity appointment) {
-        log.info("AppointmentService:: save()");
-        appointmentRepository.save(appointment);
-    }
+    private final AppointmentToAppointmentCommand toAppointmentCommand;
+    private final AppointmentCommandToAppointment toAppointment;
 
 
     public List<AppointmentEntity> findAll() {
@@ -74,35 +68,66 @@ public class AppointmentService {
         appointmentEntities.iterator().forEachRemaining(entities::add);
         return entities;
     }
-        // select * from APPOINTMENT as A join doctor as D on A.doctor_id=D.user_id  where A.patient_id=2;
 
 
-    public List<AppointmentEntity> getByKeyword(String keyword){
-
+    public List<AppointmentEntity> getByKeyword(String keyword) {
         List<AppointmentEntity> appointmentEntities = appointmentRepository.findByKeyword(keyword);
         List<AppointmentEntity> entities = new ArrayList<>();
         appointmentEntities.iterator().forEachRemaining(entities::add);
         return entities;
     }
 
-    public AppointmentEntity getAppointment(Long appointment_Id){
-       return appointmentRepository.findAppointmentEntityByAppointmentId(appointment_Id);
+    //=======================================================================================
+    public void update(AppointmentCommand appointmentCommand) {
+        log.info("AppointmentService::save saving command = {}", appointmentCommand);
+        validateCommand(appointmentCommand);
+        AppointmentEntity appointment = appointmentRepository
+                .findById(appointmentCommand.getAppointmentId())
+                .orElseThrow(() -> new RuntimeException("Resource not found exception for ID=" + appointmentCommand.getAppointmentId()));
 
+        appointment.setDateTimeOfTheAppointment(appointmentCommand.getDateTimeOfTheAppointment());
+        AppointmentEntity savedEntity = appointmentRepository.save(appointment);
+        log.info("Saved command = {}", savedEntity);
+    }
+
+    public AppointmentCommand findById(Long appointmentId) {
+        log.info("AppointmentService::findById, id passed = {}", appointmentId);
+
+        Optional<AppointmentEntity> appointmentOptional = appointmentRepository.findById(appointmentId);
+        if (appointmentOptional.isEmpty()) {
+            throw new RuntimeException("Appointment with ID=" + appointmentId + " not found");
+        }
+        AppointmentEntity appointment = appointmentOptional.get();
+        log.info("AppointmentService::findById, id passed = {}, extracted appointment = {}", appointmentId, appointment);
+
+        AppointmentCommand command = toAppointmentCommand.convert(appointment);
+
+        log.info("AppointmentService::Converted command  = {}", command);
+
+        return command;
     }
 
 
-//    public AppointmentEntity updateAppointment( AppointmentEntity appointment) {
-//       // AppointmentEntity appointment1  = getAppointment(appointment_Id);
-//     //   appointment1.setAppointmentId(appointment.getAppointmentId());
-//        appointment.setDateTimeOfTheAppointment(appointment.getDateTimeOfTheAppointment());
-////        appointment1.setDoctor(appointment.getDoctor());
-////        appointment1.setPatient(appointment.getPatient());
-////        appointment1.setLastName(request.getLastName());
-////        fromDb.setRole(request.getRole());
-////        fromDb.setActive(request.isActive());
-////        fromDb.setUpdatedAt(LocalDateTime.now());
-//        return appointmentRepository.save(appointment);
-//    }
+    public void deleteById(Long appointmentId) {
+        log.info("AppointmentService::deleteById, id passed = {}", appointmentId);
+        // retrieve to validate existence if needed
+        appointmentRepository.deleteById(appointmentId);
+        log.info("AppointmentService::deleteById, deleted");
+    }
 
+    private void validateCommand(AppointmentCommand command) {
+        String errorMsg = "";
+        if (command == null) {
+            errorMsg += "Command is NULL!";
+            log.error(errorMsg);
+            throw new RuntimeException(errorMsg);
+        }
+        if (command.getAppointmentId() == null) {
+            errorMsg += "Command ID is NULL!";
+            log.error(errorMsg);
+            throw new RuntimeException(errorMsg);
+        }
+        //todo validate other fields too, create custom Exception class
+    }
 
 }

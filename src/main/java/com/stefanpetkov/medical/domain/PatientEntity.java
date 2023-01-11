@@ -38,6 +38,15 @@ public class PatientEntity extends BaseUser implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
     private Set<AppointmentEntity> appointments = new HashSet<>();
 
+    @Override
+    public Long getId() {
+        return super.getId();
+    }
+
+    @Override
+    public void setId(Long id) {
+        super.setId(id);
+    }
 
     public void addAnAppointment(AppointmentEntity appointment) {
         this.appointments.add(appointment);
