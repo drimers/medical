@@ -58,12 +58,12 @@
 
 
 </div>
-<h1 class="border border-2 border-success w-25 ">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Здравей : Stefan</h1>
+<h3>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Здравей : Stefan</h3>
 <!--<label class="form-label display-6 -bold text-left"> &nbsp;&nbsp;<strong> Appointments : </strong></label>-->
 
 
-<form class="border border-2 border-success w-25 p-3" th:action="@{/search}" method="get">
-    <input class="border border-3 border-dark p-15  mx-1 h-100 d-inline-block" type="text" name="keyword" th:value="${keyword}" placeholder="Find by FirstName or Appointment date" size="45%">
+<form  th:action="@{/search}" method="get">
+    <input class="border border-1 border-dark p-20  mx-2" type="text" name="keyword" th:value="${keyword}" placeholder="Find by FirstName or Appointment date" size="45%">
     <button type="submit" class="btn btn-info" >Search</button>
     <button type="submit" class="btn btn-info" >reset</button>
 </form>
