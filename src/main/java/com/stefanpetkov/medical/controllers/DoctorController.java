@@ -31,7 +31,8 @@ public class DoctorController {
     public String getAllDoctors(Model model) {
         log.info("DoctorController::getPatient");
         List<PatientEntity> doctorCommands = appointmentService.findAllPatientsByDoctorId(1L);
-        //List<AppointmentEntity> appointmentEntities = appointmentService.findAll();
+
+        //List<AppointmentEntity> doctorCommands = appointmentService.findAll();
         //List<AppointmentEntity> appointmentEntities = appointmentService.findAppointmentEntitiesByPatient_Id(2L);
         List<AppointmentEntity> appointmentEntities = appointmentRepository.findAppointmentEntitiesByPatient_IdEqualUserIdInPatientEntity(1L);
         model.addAttribute("patients", doctorCommands);

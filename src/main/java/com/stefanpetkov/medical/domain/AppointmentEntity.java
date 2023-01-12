@@ -18,6 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Optional;
 
 @NoArgsConstructor
 @Getter
@@ -58,6 +59,8 @@ public class AppointmentEntity implements Serializable {
         this.patient = patient;
         patient.addAnAppointment(this);
     }
+
+
 
     @Override
     public String toString() {

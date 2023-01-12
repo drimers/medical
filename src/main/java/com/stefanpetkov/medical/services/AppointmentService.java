@@ -8,6 +8,8 @@ import com.stefanpetkov.medical.domain.AppointmentEntity;
 import com.stefanpetkov.medical.domain.DoctorEntity;
 import com.stefanpetkov.medical.domain.PatientEntity;
 import com.stefanpetkov.medical.repositories.AppointmentRepository;
+import com.stefanpetkov.medical.repositories.DoctorRepository;
+import com.stefanpetkov.medical.repositories.PatientRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,9 @@ public class AppointmentService {
     private final AppointmentRepository appointmentRepository;
     private final AppointmentToAppointmentCommand toAppointmentCommand;
     private final AppointmentCommandToAppointment toAppointment;
+
+    private final DoctorRepository doctorRepository;
+    private final PatientRepository patientRepository;
 
 
     public List<AppointmentEntity> findAll() {
@@ -78,8 +83,20 @@ public class AppointmentService {
     }
 
     //=======================================================================================
-    public void update(AppointmentCommand appointmentCommand) {
+
+    public void save(AppointmentCommand appointmentCommand) {
         log.info("AppointmentService::save saving command = {}", appointmentCommand);
+        AppointmentEntity appointment = new AppointmentEntity();
+        appointment.setDoctor(doctorRepository.findAllById(appointmentCommand.getDoctorId()));
+        appointment.setPatient(patientRepository.findAllById(appointmentCommand.getPatientId()));
+        appointment.setDateTimeOfTheAppointment(appointmentCommand.getDateTimeOfTheAppointment());
+        AppointmentEntity savedEntity = appointmentRepository.save(appointment);
+        log.info("Saved command = {}", savedEntity);
+    }
+
+
+    public void update(AppointmentCommand appointmentCommand) {
+        log.info("AppointmentService::update saving command = {}", appointmentCommand);
         validateCommand(appointmentCommand);
         AppointmentEntity appointment = appointmentRepository
                 .findById(appointmentCommand.getAppointmentId())

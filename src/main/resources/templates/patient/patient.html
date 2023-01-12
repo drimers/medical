@@ -65,8 +65,10 @@
 <form  th:action="@{/search}" method="get">
     <input class="border border-1 border-dark p-20  mx-2" type="text" name="keyword" th:value="${keyword}" placeholder="Find by FirstName or Appointment date" size="45%">
     <button type="submit" class="btn btn-info" >Search</button>
-    <button type="submit" class="btn btn-info" >reset</button>
+<!--    <button type="submit" class="btn btn-info" disabled >reset</button>-->
+    <a type="button" class="btn btn-warning"  href="/addAppointment" >Make Appointment</a>
 </form>
+
 
 <!--<form th:action="@{/newAppointment}" method="get">-->
 <!--    <button type="submit" class="btn btn-info" >New Appointment</button>-->

@@ -3,11 +3,14 @@ package com.stefanpetkov.medical.services;
 
 import com.stefanpetkov.medical.converter.doctor.DoctorCommandToDoctor;
 import com.stefanpetkov.medical.converter.doctor.DoctorToDoctorCommand;
+import com.stefanpetkov.medical.domain.DoctorEntity;
 import com.stefanpetkov.medical.repositories.AppointmentRepository;
 import com.stefanpetkov.medical.repositories.DoctorRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -19,6 +22,8 @@ public class DoctorService {
 
     private final DoctorToDoctorCommand toDoctorCommandConverter;
     private final DoctorCommandToDoctor toDoctorConverter;
+
+
 
 
 //    public List<DoctorCommand> findAllDoctorsByPatientId(Long patientId) {
