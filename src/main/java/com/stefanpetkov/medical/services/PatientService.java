@@ -1,28 +1,29 @@
 package com.stefanpetkov.medical.services;
 
 
-import com.stefanpetkov.medical.domain.PatientEntity;
+import com.stefanpetkov.medical.commands.PatientCommand;
+import com.stefanpetkov.medical.converter.patient.PatientCommandToPatient;
+import com.stefanpetkov.medical.domain.Patient;
 import com.stefanpetkov.medical.repositories.PatientRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Slf4j
+@RequiredArgsConstructor
 @Service
 public class PatientService {
 
     private final PatientRepository patientRepository;
-
-    @Autowired
-    public PatientService(PatientRepository patientRepository) {
-        this.patientRepository = patientRepository;
-    }
+    private final PatientCommandToPatient toPatient;
 
 
-
-    public void save(PatientEntity patient) {
-        log.info("PatientService:: save()");
-        patientRepository.save(patient);
+    public void saveNewPatient(PatientCommand command) {
+        log.info("PatientService::saveNewPatient passed patient command = {}", command);
+        Patient newPatient = toPatient.convert(command);
+        //todo evaluate if credentials repo should be called too
+        Patient savedPatient = patientRepository.save(newPatient);
+        log.info("Saved patient = {}", savedPatient);
     }
 
 }

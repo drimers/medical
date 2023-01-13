@@ -19,7 +19,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "patient")
-public class PatientEntity extends BaseUser implements Serializable {
+public class Patient extends BaseUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -36,7 +36,7 @@ public class PatientEntity extends BaseUser implements Serializable {
     private String comment;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
-    private Set<AppointmentEntity> appointments = new HashSet<>();
+    private Set<Appointment> appointments = new HashSet<>();
 
     @Override
     public Long getId() {
@@ -48,7 +48,7 @@ public class PatientEntity extends BaseUser implements Serializable {
         super.setId(id);
     }
 
-    public void addAnAppointment(AppointmentEntity appointment) {
+    public void addAnAppointment(Appointment appointment) {
         this.appointments.add(appointment);
     }
 

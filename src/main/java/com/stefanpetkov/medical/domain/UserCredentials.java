@@ -24,8 +24,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name = "credentials")
-public class CredentialsEntity implements Serializable {
+@Table(name = "user_credentials")
+public class UserCredentials implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -63,7 +63,7 @@ public class CredentialsEntity implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CredentialsEntity that = (CredentialsEntity) o;
+        UserCredentials that = (UserCredentials) o;
 
         return Objects.equals(credentialsId, that.credentialsId);
     }

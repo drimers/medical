@@ -18,14 +18,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.Optional;
 
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
 @Table(name = "appointment")
-public class AppointmentEntity implements Serializable {
+public class Appointment implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -42,20 +41,20 @@ public class AppointmentEntity implements Serializable {
 
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "patient_id")
-    private PatientEntity patient;
+    private Patient patient;
 
 
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "doctor_id")
-    private DoctorEntity doctor;
+    private Doctor doctor;
 
 
-    public void setDoctor(DoctorEntity doctor) {
+    public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
         doctor.addAnAppointment(this);
     }
 
-    public void setPatient(PatientEntity patient) {
+    public void setPatient(Patient patient) {
         this.patient = patient;
         patient.addAnAppointment(this);
     }
@@ -77,7 +76,7 @@ public class AppointmentEntity implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        AppointmentEntity that = (AppointmentEntity) o;
+        Appointment that = (Appointment) o;
 
         return Objects.equals(appointmentId, that.appointmentId);
     }
