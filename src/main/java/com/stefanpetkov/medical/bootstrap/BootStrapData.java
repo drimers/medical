@@ -268,7 +268,6 @@ public class BootStrapData implements CommandLineRunner {
 
     }
 
-
     public void makeAppointment(){
 
         LocalDateTime ldt1 = LocalDateTime.of(2023, 2, 10, 13, 5);

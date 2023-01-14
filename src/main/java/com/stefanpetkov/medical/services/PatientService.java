@@ -1,14 +1,18 @@
 package com.stefanpetkov.medical.services;
 
 
+import com.stefanpetkov.medical.commands.AppointmentCommand;
 import com.stefanpetkov.medical.commands.PatientCommand;
 import com.stefanpetkov.medical.converter.patient.PatientCommandToPatient;
 import com.stefanpetkov.medical.converter.patient.PatientToPatientCommand;
+import com.stefanpetkov.medical.domain.Appointment;
 import com.stefanpetkov.medical.domain.Patient;
 import com.stefanpetkov.medical.repositories.PatientRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -29,5 +33,25 @@ public class PatientService {
         PatientCommand savedCommand = toPatientCommand.convert(savedPatient);
         return savedCommand;
     }
+
+    public PatientCommand findById(Long patientID) {
+        log.info("PatientService::findById = {}", patientID);
+
+        Optional<Patient> patientOptional = patientRepository.findById(patientID);
+        if (patientOptional.isEmpty()) {
+            throw new RuntimeException("Appointment with ID=" + patientID + " not found");
+        }
+
+        Patient patient = patientOptional.get();
+        log.info("AppointmentService::findById, id passed = {}, extracted appointment = {}", patientID, patient);
+
+        PatientCommand command = toPatientCommand.convert(patient);
+
+        log.info("PatientService::Converted command  = {}", command);
+
+        return command;
+    }
+
+
 
 }

@@ -32,8 +32,12 @@
 <div th:insert="~{common/patientHeader :: header}"></div>
 
 </div>
-<h3>  &nbsp;&nbsp;&nbsp;&nbsp;Здравей : Stefan</h3>
 
+<!--<div th:with="patient=${appointments[0]}">-->
+<!--    <h3>-->
+<!--        <span th:text="'   ' + '    Здравей :' + ' ' +${patient.patientFirstName}">PatientName</span>-->
+<!--    </h3>-->
+<!--</div>-->
 
 
 <form th:action="@{/searchByDoctorName}" method="get">

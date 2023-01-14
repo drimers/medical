@@ -7,9 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 
 @Slf4j
@@ -27,6 +25,17 @@ public class PatientController {
         model.addAttribute("patient", savedCommand);
         return "display_form";
     }
+
+
+    @GetMapping(path = "/patientEditForm")
+    public String editPatient(Model model, @RequestParam Long patient_id) {
+        log.info("PatientService::patientEditForm appointment ID = {}", patient_id);
+        PatientCommand patientCommand = patientService.findById(patient_id);
+        log.info("Retrieved command = {}", patient_id);
+        model.addAttribute("patient", patientCommand);
+        return "patientEditForm";
+    }
+
 
 
 }
