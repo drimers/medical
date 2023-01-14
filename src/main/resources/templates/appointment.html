@@ -37,7 +37,7 @@
 <form  class="border border-dark border-3 padding-bottom pb-3 mb-5 ml-5 mr-5" th:object="${appointment}"
        th:action="@{/saveAppointment}" method="post">
 
-  <div class="row g-3">
+  <div class="row g-3" th:each="appointment : ${appointment}">
 <!--    <div class="col">-->
 <!--      <label class="form-label"><b> &nbsp;&nbsp; Appointment ID:</b></label>-->
 <!--      <input type="text" class="form-control" placeholder="Appointment ID:" th:field="*{appointmentId}"/>-->

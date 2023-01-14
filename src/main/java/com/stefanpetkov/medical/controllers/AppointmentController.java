@@ -2,6 +2,7 @@ package com.stefanpetkov.medical.controllers;
 
 
 import com.stefanpetkov.medical.commands.AppointmentCommand;
+import com.stefanpetkov.medical.repositories.DoctorRepository;
 import com.stefanpetkov.medical.services.AppointmentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,8 @@ public class AppointmentController {
 
     private final AppointmentService appointmentService;
 
-
     @Autowired
-    public AppointmentController(AppointmentService appointmentService) {
+    public AppointmentController(AppointmentService appointmentService, DoctorRepository doctorRepository) {
         this.appointmentService = appointmentService;
     }
 
@@ -57,7 +57,7 @@ public class AppointmentController {
     public String showAppointmentForm(@ModelAttribute("appointment") AppointmentCommand appointment, Model model) {
         log.info("AppointmentController::showAppointmentForm, command = {}", appointment);
         model.addAttribute("appointment", appointment);
-        return "appointment";
+       return "appointment";
     }
 
 

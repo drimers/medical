@@ -64,7 +64,6 @@ public class AppointmentService {
             AppointmentCommand command = toAppointmentCommand.convert(entity);
             commands.add(command);
         }
-
         return commands;
     }
 
@@ -107,5 +106,6 @@ public class AppointmentService {
         appointmentRepository.deleteById(appointmentId);
         log.info("AppointmentService::deleteById, deleted");
     }
+
 
 }

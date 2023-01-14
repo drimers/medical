@@ -18,4 +18,5 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Long>
     //todo test
     List<Appointment> findAllByPatientIdAndDoctor_FirstNameOrDoctor_LastName(Long patientId, String docFirstName, String docLastNme);
 
+
 }
