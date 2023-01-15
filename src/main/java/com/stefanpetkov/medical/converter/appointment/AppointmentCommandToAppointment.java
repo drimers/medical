@@ -4,6 +4,7 @@ import com.stefanpetkov.medical.commands.AppointmentCommand;
 import com.stefanpetkov.medical.domain.Appointment;
 import com.stefanpetkov.medical.domain.Doctor;
 import com.stefanpetkov.medical.domain.Patient;
+import com.stefanpetkov.medical.exception.NotFoundException;
 import com.stefanpetkov.medical.repositories.AppointmentRepository;
 import com.stefanpetkov.medical.repositories.DoctorRepository;
 import com.stefanpetkov.medical.repositories.PatientRepository;
@@ -43,8 +44,8 @@ public class AppointmentCommandToAppointment implements Converter<AppointmentCom
         }
 
         appointment = new Appointment();
-        Doctor doctor = doctorRepository.findById(command.getDoctorId()).orElseThrow(() -> new RuntimeException("doctor null"));
-        Patient patient = patientRepository.findById(command.getPatientId()).orElseThrow(() -> new RuntimeException("patient null"));
+        Doctor doctor = doctorRepository.findById(command.getDoctorId()).orElseThrow(() -> new NotFoundException("Doctor not found!"));
+        Patient patient = patientRepository.findById(command.getPatientId()).orElseThrow(() -> new NotFoundException("Patient not found!"));
         appointment.setDoctor(doctor);
         appointment.setPatient(patient);
         appointment.setDateTimeOfTheAppointment(command.getDateTimeOfTheAppointment());
