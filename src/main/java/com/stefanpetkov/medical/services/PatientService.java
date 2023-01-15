@@ -34,6 +34,13 @@ public class PatientService {
         return savedCommand;
     }
 
+    public void deletePatientAccount(Long patientId){
+        log.info("PatientService::deletePatientAccount passed patientId = {}", patientId);
+         patientRepository.deleteById(patientId);
+        log.info("PatientService::deletePatientAccount , deletedAccount");
+    }
+
+
     public PatientCommand findById(Long patientID) {
         log.info("PatientService::findById = {}", patientID);
 

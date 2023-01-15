@@ -29,11 +29,18 @@ public class PatientController {
 
     @GetMapping(path = "/patientEditForm")
     public String editPatient(Model model, @RequestParam Long patient_id) {
-        log.info("PatientService::patientEditForm appointment ID = {}", patient_id);
+        log.info("PatientService::patientEditForm patient ID = {}", patient_id);
         PatientCommand patientCommand = patientService.findById(patient_id);
         log.info("Retrieved command = {}", patient_id);
         model.addAttribute("patient", patientCommand);
         return "patientEditForm";
+    }
+
+    @GetMapping(path = "/deletePatientAccount")
+    public String deletePatient(Model model, @RequestParam Long patient_id) {
+        log.info("PatientService::deletePatientAccount patient ID = {}", patient_id);
+        patientService.deletePatientAccount(patient_id);
+        return "redirect:/home";
     }
 
 

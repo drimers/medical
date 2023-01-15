@@ -44,11 +44,11 @@
 
                 </ul>
                 <form class="d-flex mx-2">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                    <input class="mx-2" type="button" id="button_login" onclick="location.href='/login';"
+<!--                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--                    <button class="btn btn-outline-success" type="submit">Search</button>-->
+                    <input class="btn btn-outline-success" type="button" id="button_login" onclick="location.href='/login';"
                            value="login"/>
-                    <input class="mx-2" type="button" id="button_logout" onclick="location.href='login.html';"
+                    <input class="btn btn-outline-success" type="button" id="button_logout" onclick="location.href='login.html';"
                            value="logout"/>
                 </form>
 
@@ -57,7 +57,8 @@
                     <span class="form-control text-warning bg-dark"
                           th:text="'Здравей' + ' ' +${patient.patientFirstName}">PatientName</span>
 
-                    <a class="btn btn-outline-success" th:href="@{/patientEditForm(patient_id=*{patient.patientId})}" id="btn_edit" type="submit"><b>edit</b></a>
+                    <a class="btn btn-outline-success" th:href="@{/patientEditForm(patient_id=*{patient.patientId})}" id="btn_edit" type="submit"><b>edit</br> account</b></a>
+                    <a class="btn btn-outline-success" th:href="@{/deletePatientAccount(patient_id=*{patient.patientId})}" id="delite" type="submit"><b>delete </br> account</b></a>
 
 
                 </form>
