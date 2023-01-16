@@ -2,8 +2,10 @@ package com.stefanpetkov.medical.controllers;
 
 
 import com.stefanpetkov.medical.commands.AppointmentCommand;
+import com.stefanpetkov.medical.domain.Doctor;
 import com.stefanpetkov.medical.repositories.DoctorRepository;
 import com.stefanpetkov.medical.services.AppointmentService;
+import com.stefanpetkov.medical.services.DoctorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,10 +23,12 @@ import java.util.List;
 public class AppointmentController {
 
     private final AppointmentService appointmentService;
+    private final DoctorService doctorService;
 
     @Autowired
-    public AppointmentController(AppointmentService appointmentService, DoctorRepository doctorRepository) {
+    public AppointmentController(AppointmentService appointmentService, DoctorService doctorService) {
         this.appointmentService = appointmentService;
+        this.doctorService = doctorService;
     }
 
     @RequestMapping(path = {"/searchByDoctorName"})
@@ -53,17 +57,26 @@ public class AppointmentController {
     }
 
 
+//    @RequestMapping(path = "/addAppointment")
+//    public String showAppointmentForm(@ModelAttribute("appointment") AppointmentCommand appointment, Model model) {
+//        log.info("AppointmentController::showAppointmentForm, command = {}", appointment);
+//        model.addAttribute("appointment", appointment);
+//       return "appointment";
+//    }
+
     @RequestMapping(path = "/addAppointment")
     public String showAppointmentForm(@ModelAttribute("appointment") AppointmentCommand appointment, Model model) {
         log.info("AppointmentController::showAppointmentForm, command = {}", appointment);
-        model.addAttribute("appointment", appointment);
-       return "appointment";
+        //List<Doctor> doctors =  doctorService.getAllDoctors();
+        model.addAttribute("doctors", doctorService.getAllDoctors());
+       // model.addAttribute("appointment", appointment);
+        return "appointment";
     }
 
 
     @RequestMapping(value = "/saveAppointment", method = RequestMethod.POST)
     public String saveAppointment(@ModelAttribute("appointment") AppointmentCommand appointment) {
-        log.info("AppointmentController :: updateAppointment  appointment = {} ", appointment);
+        log.info("AppointmentController :: saveAppointment  appointment = {} ", appointment);
         appointmentService.save(appointment);
         return "redirect:/patient";
     }

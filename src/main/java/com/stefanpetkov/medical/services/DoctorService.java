@@ -20,4 +20,8 @@ public class DoctorService {
     private final DoctorRepository doctorRepository;
 
 
+
+    public Iterable<Doctor> getAllDoctors(){
+        return  doctorRepository.findAll();
+    }
 }

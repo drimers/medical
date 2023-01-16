@@ -54,7 +54,7 @@
 
 
                 <form class="d-flex mx-2" th:with="patient=${appointments[0]}" th:action="@{/patientEditForm}" method="post">
-                    <span class="form-control text-warning bg-dark"
+                    <span class="form-control btn btn-warning"
                           th:text="'Здравей' + ' ' +${patient.patientFirstName}">PatientName</span>
 
                     <a class="btn btn-outline-success" th:href="@{/patientEditForm(patient_id=*{patient.patientId})}" id="btn_edit" type="submit"><b>edit</br> account</b></a>
