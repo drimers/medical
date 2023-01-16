@@ -58,7 +58,7 @@
         <div class="col-1">
             <label  class="form-label"><b> &nbsp; Doctor:</b></label></br>
             <select class="form-label" id="dropDownList">
-                <option class="form-control" th:value="*{doctorId}"
+                <option class="form-control" th:value="*{doctorId}" th:field="*{doctorId}"
                         th:text="${doctor.getFirstName()} + ' ' + ${doctor.getLastName()}"></option>
             </select>
         </div>

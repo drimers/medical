@@ -69,14 +69,17 @@ public class AppointmentController {
         log.info("AppointmentController::showAppointmentForm, command = {}", appointment);
         //List<Doctor> doctors =  doctorService.getAllDoctors();
         model.addAttribute("doctors", doctorService.getAllDoctors());
-       // model.addAttribute("appointment", appointment);
+        model.addAttribute("appointment", appointment);
         return "appointment";
     }
 
 
     @RequestMapping(value = "/saveAppointment", method = RequestMethod.POST)
-    public String saveAppointment(@ModelAttribute("appointment") AppointmentCommand appointment) {
+    public String saveAppointment(@ModelAttribute("appointment") AppointmentCommand appointment,
+                                  @ModelAttribute("doctors") Doctor doctor, Model model) {
         log.info("AppointmentController :: saveAppointment  appointment = {} ", appointment);
+        model.addAttribute("doctors", doctor);
+        model.addAttribute("appointment", appointment);
         appointmentService.save(appointment);
         return "redirect:/patient";
     }

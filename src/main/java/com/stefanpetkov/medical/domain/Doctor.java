@@ -54,6 +54,7 @@ public class Doctor extends BaseUser implements Serializable {
         this.appointments.add(appointment);
     }
 
+
     @Override
     public String toString() {
         return "DoctorEntity{" +
