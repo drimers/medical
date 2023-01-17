@@ -19,7 +19,8 @@ public class DoctorCommand {
     private String doctorFirstName;
     private String doctorLastName;
     private String doctorPhone;
-
+    private String doctorEmail;
+    private String doctorPassword;
     //patient
     private Long patientId;
 
