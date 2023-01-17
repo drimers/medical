@@ -1,12 +1,12 @@
 package com.stefanpetkov.medical.converter.doctor;
 
-import com.stefanpetkov.medical.commands.AppointmentCommand;
 import com.stefanpetkov.medical.commands.DoctorCommand;
-import com.stefanpetkov.medical.domain.*;
-import com.stefanpetkov.medical.exception.NotFoundException;
+import com.stefanpetkov.medical.domain.Doctor;
+import com.stefanpetkov.medical.domain.UserCredentials;
 import com.stefanpetkov.medical.repositories.AppointmentRepository;
 import com.stefanpetkov.medical.repositories.DoctorRepository;
 import com.stefanpetkov.medical.repositories.PatientRepository;
+import com.stefanpetkov.medical.security.ApplicationUserRole;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
@@ -54,7 +54,7 @@ public class DoctorCommandToDoctor implements Converter<DoctorCommand, Doctor> {
         UserCredentials doctorCredentials = new UserCredentials();
         doctorCredentials.setEmail(command.getDoctorEmail());
         doctorCredentials.setPassword(command.getDoctorPassword());
-        doctorCredentials.setRole(Role.DOCTOR);
+        doctorCredentials.setApplicationUserRole(ApplicationUserRole.DOCTOR);
         //validateCredentials(doctorCredentials);
 
         doctor.setCredentials(doctorCredentials);
