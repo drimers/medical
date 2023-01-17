@@ -2,7 +2,7 @@ package com.stefanpetkov.medical.converter.patient;
 
 import com.stefanpetkov.medical.commands.PatientCommand;
 import com.stefanpetkov.medical.domain.Patient;
-import com.stefanpetkov.medical.domain.Role;
+import com.stefanpetkov.medical.security.ApplicationUserRole;
 import com.stefanpetkov.medical.domain.UserCredentials;
 import com.stefanpetkov.medical.exception.UserNameExistsException;
 import com.stefanpetkov.medical.repositories.CredentialsRepository;
@@ -53,7 +53,7 @@ public class PatientCommandToPatient implements Converter<PatientCommand, Patien
         UserCredentials patientCredentials = new UserCredentials();
         patientCredentials.setEmail(command.getEmail());
         patientCredentials.setPassword(command.getPassword());
-        patientCredentials.setRole(Role.PATIENT);
+        patientCredentials.setApplicationUserRole(ApplicationUserRole.PATIENT);
         validateCredentials(patientCredentials);
 
         patient.setCredentials(patientCredentials);

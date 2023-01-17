@@ -1,6 +1,7 @@
 package com.stefanpetkov.medical.domain;
 
 
+import com.stefanpetkov.medical.security.ApplicationUserRole;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -42,7 +43,7 @@ public class UserCredentials implements Serializable {
     private String password;
 
     @Enumerated(value = EnumType.STRING)
-    private Role role;
+    private ApplicationUserRole applicationUserRole;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
@@ -54,7 +55,7 @@ public class UserCredentials implements Serializable {
                 "credentialsId=" + credentialsId +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", role=" + role +
+                ", role=" + applicationUserRole +
                 '}';
     }
 

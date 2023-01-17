@@ -2,7 +2,6 @@ package com.stefanpetkov.medical.controllers;
 
 
 import com.stefanpetkov.medical.commands.PatientCommand;
-import com.stefanpetkov.medical.domain.UserCredentials;
 import com.stefanpetkov.medical.repositories.CredentialsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +19,7 @@ public class CredentialsController {
 
     @GetMapping("/login")
     public String showLoginForm(Model model) {
-        model.addAttribute("credentials", new UserCredentials());
+        //model.addAttribute("credentials", new UserCredentials());
         return "login";
     }
 

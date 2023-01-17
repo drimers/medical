@@ -1,17 +1,19 @@
 package com.stefanpetkov.medical.bootstrap;
 
 import com.stefanpetkov.medical.domain.Appointment;
-import com.stefanpetkov.medical.domain.UserCredentials;
 import com.stefanpetkov.medical.domain.Doctor;
 import com.stefanpetkov.medical.domain.Patient;
-import com.stefanpetkov.medical.domain.Role;
+import com.stefanpetkov.medical.domain.UserCredentials;
 import com.stefanpetkov.medical.repositories.AppointmentRepository;
 import com.stefanpetkov.medical.repositories.CredentialsRepository;
 import com.stefanpetkov.medical.repositories.DoctorRepository;
 import com.stefanpetkov.medical.repositories.PatientRepository;
-import com.stefanpetkov.medical.util.ApplicationConstants;
+import com.stefanpetkov.medical.security.ApplicationUserRole;
+import com.stefanpetkov.medical.util.Constants;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -20,6 +22,7 @@ import java.time.format.DateTimeFormatter;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class BootStrapData implements CommandLineRunner {
 
     private final DoctorRepository doctorRepository;
@@ -27,6 +30,8 @@ public class BootStrapData implements CommandLineRunner {
     private final CredentialsRepository credentialsRepository;
 
     private final AppointmentRepository appointmentRepository;
+
+    private final PasswordEncoder passwordEncoder;
 
 
     //Patients
@@ -58,17 +63,6 @@ public class BootStrapData implements CommandLineRunner {
     Appointment appointment3 = new Appointment();
 
 
-
-
-
-    public BootStrapData(DoctorRepository doctorRepository, PatientRepository patientRepository,
-                         CredentialsRepository credentialsRepository, AppointmentRepository appointmentRepository) {
-        this.doctorRepository = doctorRepository;
-        this.patientRepository = patientRepository;
-        this.credentialsRepository = credentialsRepository;
-        this.appointmentRepository = appointmentRepository;
-    }
-
     @Override
     public void run(String... args) throws Exception {
         log.info("Executing Bootstrap!");
@@ -89,16 +83,14 @@ public class BootStrapData implements CommandLineRunner {
         doctor.setLastName("Ivanov");
         doctor.setPhone("08987777777");
         log.info("Doctor created = {}", doctor);
-        //doctorRepository.save(doctor);
 
         log.info("Doctors");
         log.info("Number of doctors = {}", doctorRepository.count());
 
         //Credential4
-
         credential.setEmail("doctor.bg@abv.bg");
-        credential.setPassword("pass");
-        credential.setRole(Role.DOCTOR);
+        credential.setPassword(passwordEncoder.encode("pass"));
+        credential.setApplicationUserRole(ApplicationUserRole.DOCTOR);
         doctor.setCredentials(credential);
         credential.setBaseUser(doctor);
         doctorRepository.save(doctor);
@@ -120,8 +112,8 @@ public class BootStrapData implements CommandLineRunner {
 
         // registration account
         credentials.setEmail("spp@abv.bg");
-        credentials.setPassword("pass");
-        credentials.setRole(Role.PATIENT);
+        credentials.setPassword(passwordEncoder.encode("pass"));
+        credentials.setApplicationUserRole(ApplicationUserRole.PATIENT);
         patient.setCredentials(credentials);
         credentials.setBaseUser(patient);
         patientRepository.save(patient);
@@ -133,7 +125,7 @@ public class BootStrapData implements CommandLineRunner {
 
         // appointment
         LocalDateTime ldt = LocalDateTime.of(2023, 1, 9, 13, 5);
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(ApplicationConstants.DAY_MONTH_YEAR_HOUR_MINUTE_FORMAT);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(Constants.DAY_MONTH_YEAR_HOUR_MINUTE_FORMAT);
         log.info("Formatted date = {}", dtf.toString());
         appointment.setDateTimeOfTheAppointment(ldt);
         appointment.setPatient(patient);
@@ -154,9 +146,6 @@ public class BootStrapData implements CommandLineRunner {
         patient1.setPhone("089333");
         patient1.setComment("Any comments!!!");
         log.info("Patient created = {}", patient1);
-        //patientRepository.save(patient);
-
-
 
         // patient 2
         patient2.setFirstName("Goro");
@@ -183,36 +172,27 @@ public class BootStrapData implements CommandLineRunner {
         doctor1.setLastName("Ivanov");
         doctor1.setPhone("634653465");
         log.info("Doctor created = {}", doctor1);
- //       doctorRepository.save(doctor1);
 
         doctor2.setFirstName("Goro");
         doctor2.setLastName("Petkov");
         doctor2.setPhone("6534673432");
         log.info("Doctor created = {}", doctor2);
-  //      doctorRepository.save(doctor2);
 
         doctor3.setFirstName("Jon");
         doctor3.setLastName("Dou");
         doctor3.setPhone("08987777777");
         log.info("Doctor created = {}", doctor3);
- //       doctorRepository.save(doctor3);
-
-
-
 
         log.info("Doctors");
         log.info("Number of doctors = {}", doctorRepository.count());
-
-
-
     }
 
     private void createCredentials() {
         //Patients
         //credential1
         credentials1.setEmail("patient1@abv.bg");
-        credentials1.setPassword("pass");
-        credentials1.setRole(Role.PATIENT);
+        credentials1.setPassword(passwordEncoder.encode("pass"));
+        credentials1.setApplicationUserRole(ApplicationUserRole.PATIENT);
         patient1.setCredentials(credentials1);
         credentials1.setBaseUser(patient1);
         patientRepository.save(patient1);
@@ -220,8 +200,8 @@ public class BootStrapData implements CommandLineRunner {
 
         //credential2
         credentials2.setEmail("patient2@abv.bg");
-        credentials2.setPassword("pass");
-        credentials2.setRole(Role.PATIENT);
+        credentials2.setPassword(passwordEncoder.encode("pass"));
+        credentials2.setApplicationUserRole(ApplicationUserRole.PATIENT);
         patient2.setCredentials(credentials2);
         credentials2.setBaseUser(patient2);
         patientRepository.save(patient2);
@@ -229,8 +209,8 @@ public class BootStrapData implements CommandLineRunner {
 
         //credential3
         credentials3.setEmail("patient3@abv.bg");
-        credentials3.setPassword("pass");
-        credentials3.setRole(Role.PATIENT);
+        credentials3.setPassword(passwordEncoder.encode("pass"));
+        credentials3.setApplicationUserRole(ApplicationUserRole.PATIENT);
         patient3.setCredentials(credentials3);
         credentials3.setBaseUser(patient3);
         patientRepository.save(patient3);
@@ -241,8 +221,8 @@ public class BootStrapData implements CommandLineRunner {
 
         //Credential4
         credentials4.setEmail("doctor1@abv.bg");
-        credentials4.setPassword("pass");
-        credentials4.setRole(Role.DOCTOR);
+        credentials4.setPassword(passwordEncoder.encode("pass"));
+        credentials4.setApplicationUserRole(ApplicationUserRole.DOCTOR);
         doctor1.setCredentials(credentials4);
         credentials4.setBaseUser(doctor1);
         doctorRepository.save(doctor1);
@@ -250,8 +230,8 @@ public class BootStrapData implements CommandLineRunner {
 
         //credential5
         credentials5.setEmail("doctor2@abv.bg");
-        credentials5.setPassword("pass");
-        credentials5.setRole(Role.DOCTOR);
+        credentials5.setPassword(passwordEncoder.encode("pass"));
+        credentials5.setApplicationUserRole(ApplicationUserRole.DOCTOR);
         doctor2.setCredentials(credentials5);
         credentials5.setBaseUser(doctor2);
         doctorRepository.save(doctor2);
@@ -259,8 +239,8 @@ public class BootStrapData implements CommandLineRunner {
 
         //credential6
         credentials6.setEmail("doctor3@abv.bg");
-        credentials6.setPassword("pass");
-        credentials6.setRole(Role.DOCTOR);
+        credentials6.setPassword(passwordEncoder.encode("pass"));
+        credentials6.setApplicationUserRole(ApplicationUserRole.DOCTOR);
         doctor3.setCredentials(credentials6);
         credentials6.setBaseUser(doctor3);
         doctorRepository.save(doctor3);
@@ -271,7 +251,7 @@ public class BootStrapData implements CommandLineRunner {
     public void makeAppointment(){
 
         LocalDateTime ldt1 = LocalDateTime.of(2023, 2, 10, 13, 5);
-        DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern(ApplicationConstants.DAY_MONTH_YEAR_HOUR_MINUTE_FORMAT);
+        DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern(Constants.DAY_MONTH_YEAR_HOUR_MINUTE_FORMAT);
         log.info("Formatted date = {}", dtf1.toString());
         appointment1.setDateTimeOfTheAppointment(ldt1);
         appointment1.setPatient(patient);
@@ -284,7 +264,7 @@ public class BootStrapData implements CommandLineRunner {
 
 
         LocalDateTime ldt2 = LocalDateTime.of(2023, 3, 11, 13, 5);
-        DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern(ApplicationConstants.DAY_MONTH_YEAR_HOUR_MINUTE_FORMAT);
+        DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern(Constants.DAY_MONTH_YEAR_HOUR_MINUTE_FORMAT);
         log.info("Formatted date = {}", dtf2.toString());
         appointment2.setDateTimeOfTheAppointment(ldt2);
         appointment2.setPatient(patient3);
@@ -297,7 +277,7 @@ public class BootStrapData implements CommandLineRunner {
 
 
         LocalDateTime ldt3 = LocalDateTime.of(2024, 12, 11, 13, 5);
-        DateTimeFormatter dtf3 = DateTimeFormatter.ofPattern(ApplicationConstants.DAY_MONTH_YEAR_HOUR_MINUTE_FORMAT);
+        DateTimeFormatter dtf3 = DateTimeFormatter.ofPattern(Constants.DAY_MONTH_YEAR_HOUR_MINUTE_FORMAT);
         log.info("Formatted date = {}", dtf3.toString());
         appointment3.setDateTimeOfTheAppointment(ldt3);
         appointment3.setPatient(patient3);
