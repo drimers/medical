@@ -23,6 +23,10 @@ public class DoctorCommand {
     private String doctorPassword;
     //patient
     private Long patientId;
+    private String patientFirstName;
+    private String patientLastName;
+    private String patientPhone;
+    private String patientComment;
 
     //appointment
     private Long appointmentId;

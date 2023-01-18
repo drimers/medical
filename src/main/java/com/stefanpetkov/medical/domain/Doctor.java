@@ -12,6 +12,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -39,6 +40,7 @@ public class Doctor extends BaseUser implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor")
     private Set<Appointment> appointments = new HashSet<>();
+
 
     @Override
     public Long getId() {
