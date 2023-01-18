@@ -25,8 +25,13 @@ public class DoctorToDoctorCommand implements Converter<Doctor, DoctorCommand> {
 
         validateDoctor(doctor);
 
+
         Set<Appointment> appointment = doctor.getAppointments();
-        //   Doctor doctor = doctor.getPatient();
+        Patient patient = new Patient();
+
+
+
+
 
         DoctorCommand command = new DoctorCommand();
         command.setDoctorId(doctor.getId());
@@ -34,6 +39,12 @@ public class DoctorToDoctorCommand implements Converter<Doctor, DoctorCommand> {
         command.setDoctorLastName(doctor.getLastName());
         command.setDoctorPhone(doctor.getPhone());
 
+
+        command.setPatientId(patient.getId());
+        command.setPatientFirstName(patient.getFirstName());
+        command.setPatientLastName(patient.getLastName());
+        command.setPatientPhone(patient.getPhone());
+        command.setPatientComment(patient.getComment());
 
         UserCredentials doctorCredentials = doctor.getCredentials();
         command.setDoctorEmail(doctorCredentials.getEmail());

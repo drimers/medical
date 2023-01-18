@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -27,66 +27,54 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-<!--/*@thymeleaf id="appointment" type="com.stefanpetkov.medical.domain.doctor"*/-->
+<!--/*@thymeleaf id="appointment" type="com.stefanpetkov.medical.commands.AppointmentCommand"*/-->
 
 <div th:insert="~{common/header :: header}"></div>
 
 
-<label class="form-label display-6 -bold text-center text-warning bg-secondary"><strong> Appointment
-    Form </strong></label>
+<label class="form-label display-6 -bold text-center text-warning bg-secondary"><strong> Appointment Form </strong></label>
 
-<form class="border border-dark border-3 padding-bottom pb-3 mb-5 ml-5 mr-5" th:object="${appointment}"
-      th:action="@{/saveAppointment}" method="post">
+<form  class="border border-dark border-3 padding-bottom pb-3 mb-5 ml-5 mr-5" th:object="${appointment}"
+       th:action="@{/saveAppointment}" method="post">
 
-    <div class="row g-2" th:each="doctor : ${doctors}">
-        <!--    <div class="col">-->
-        <!--      <label class="form-label"><b> &nbsp;&nbsp; Appointment ID:</b></label>-->
-        <!--      <input type="text" class="form-control" placeholder="Appointment ID:" th:field="*{appointmentId}"/>-->
-        <!--    </div>-->
-
-            <div class="col">
-              <label class="form-label"><b> &nbsp; Patient ID:</b></label>
-              <input type="text" class="form-control" placeholder="Patient ID:" th:value="${2}"/>
-            </div>
+    <div class="row g-3">
 
 
-        <!--    <div class="col">-->
-        <!--      <label class="form-label"><b> &nbsp; Doctor ID:</b></label>-->
-        <!--      <input type="text" class="form-control" placeholder="Doctor ID:" th:value="${doctor.id}"  th:text="${doctor.getFirstName()} + ' ' + ${doctor.getLastName()}"/>-->
-        <!--    </div>-->
+<!--        <div class="col">-->
+<!--            <label class="form-label"><b> &nbsp; Patient ID:</b></label>-->
+<!--            <input type="text" class="form-control" placeholder="Patient ID:" th:field="*{patientId}"/>-->
+<!--        </div>-->
 
-        <div class="col-1">
-            <label  class="form-label"><b> &nbsp; Doctor:</b></label></br>
-            <select class="form-label" id="dropDownList">
-                <option class="form-control" th:value="*{doctorId}" th:field="*{doctorId}"
-                        th:text="${doctor.getFirstName()} + ' ' + ${doctor.getLastName()}"></option>
-            </select>
-        </div>
+<!--        <div class="col">-->
+<!--&lt;!&ndash;            <label class="form-label"><b> &nbsp; Doctor ID:</b></label>&ndash;&gt;-->
+<!--            <input type="hidden" class="form-control"  name="doctorID" th:value="${doctor.getId()}"  th:text="${doctor.id}" />-->
+<!--        </div>-->
 
 
 
-        <!--    <div class="col">-->
-        <!--      <label class="form-label"><b> &nbsp; Doctor's First Name:</b></label>-->
-        <!--      <input type="text" class="form-control" placeholder="First name" th:field="*{doctorFirstName}" />-->
-        <!--    </div>-->
+        <select class="col" name="doctorID">
+            <option   th:each="doctor : ${doctors}"  th:value="${doctor.id}" th:text="${doctor.firstName} + ' ' + ${doctor.lastName}"></option>
+        </select>
 
-        <!--    <div class="col">-->
-        <!--      <label class="form-label"><b> &nbsp; Doctor's Last Name:</b></label>-->
-        <!--      <input type="text" class="form-control" placeholder="Last name" th:field="*{doctorLastName}" />-->
-        <!--    </div>-->
 
-        <div class="col-2">
+
+
+
+
+<!--        <div class="col">-->
+<!--            <label class="form-label"><b> &nbsp; Doctor's Last Name:</b></label>-->
+<!--            <input type="text" class="form-control" placeholder="Last name" th:field="*{lastName}" />-->
+<!--        </div>-->
+
+        <div class="col">
             <label for="datetime" class="form-label"><b> &nbsp; Time:</b></label>
-            <input type="datetime-local" data-date-format="DD-MM-YYYY HH:mm" class="form-control" id="datetime"
-                   placeholder="Select time:"
-                   th:field="*{dateTimeOfTheAppointment}"/>
+            <input type="datetime-local" name="date" data-date-format="DD-MM-YYYY HH:mm" class="form-control" id="datetime" placeholder="Select time:"
+                   th:value="${appointment.dateTimeOfTheAppointment}"/>
             <!--         <input  class="form-control" type="text" id="datetime" data-date-format="DD-MM-YYYY HH:mm:ss" placeholder="Select time:"/>-->
         </div>
 
-        <div class="col-3 ">
-            <label hidden class="form-label"><b> &nbsp; Save:</b></label></br>
-            <button class="btn btn-outline-success" id="btn_save" type="submit"><b>Save</b></button>
-        </div>
+        <div class="col-1 mt-5">
+            <button class="btn btn-outline-success" id="btn_save" type="submit" ><b>Save</b></button>
         </div>
 
     </div>
