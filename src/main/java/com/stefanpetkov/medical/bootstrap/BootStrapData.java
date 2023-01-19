@@ -289,7 +289,7 @@ public class BootStrapData implements CommandLineRunner {
 
 
         LocalDateTime ldt4 = LocalDateTime.of(2025, 8, 10, 13, 5);
-        DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern(ApplicationConstants.DAY_MONTH_YEAR_HOUR_MINUTE_FORMAT);
+        DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern(Constants.DAY_MONTH_YEAR_HOUR_MINUTE_FORMAT);
         log.info("Formatted date = {}", dtf4.toString());
         appointment4.setDateTimeOfTheAppointment(ldt4);
         appointment4.setPatient(patient);
@@ -299,7 +299,7 @@ public class BootStrapData implements CommandLineRunner {
 
 
         LocalDateTime ldt5 = LocalDateTime.of(2024, 3, 10, 13, 5);
-        DateTimeFormatter dtf5 = DateTimeFormatter.ofPattern(ApplicationConstants.DAY_MONTH_YEAR_HOUR_MINUTE_FORMAT);
+        DateTimeFormatter dtf5 = DateTimeFormatter.ofPattern(Constants.DAY_MONTH_YEAR_HOUR_MINUTE_FORMAT);
         log.info("Formatted date = {}", dtf5.toString());
         appointment5.setDateTimeOfTheAppointment(ldt5);
         appointment5.setPatient(patient);
@@ -310,6 +310,13 @@ public class BootStrapData implements CommandLineRunner {
         log.info("Appointments");
         log.info("Number of appointments = {}", appointmentRepository.count());
 
+    }
+
+    //https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html
+    private LocalDateTime formatDateTime(LocalDateTime dateTime, DateTimeFormatter dateTimeFormatter) {
+        String dateTimeString = dateTimeFormatter.format(dateTime);
+        LocalDateTime formattedDateTime = LocalDateTime.parse(dateTimeString, dateTimeFormatter);
+        return formattedDateTime;
     }
 
 }
