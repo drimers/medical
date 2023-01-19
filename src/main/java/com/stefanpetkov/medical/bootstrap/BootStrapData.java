@@ -56,6 +56,8 @@ public class BootStrapData implements CommandLineRunner {
     Appointment appointment1 = new Appointment();
     Appointment appointment2 = new Appointment();
     Appointment appointment3 = new Appointment();
+    Appointment appointment4 = new Appointment();
+    Appointment appointment5 = new Appointment();
 
 
 
@@ -191,8 +193,8 @@ public class BootStrapData implements CommandLineRunner {
         log.info("Doctor created = {}", doctor2);
   //      doctorRepository.save(doctor2);
 
-        doctor3.setFirstName("Jon");
-        doctor3.setLastName("Dou");
+        doctor3.setFirstName("John");
+        doctor3.setLastName("Doe");
         doctor3.setPhone("08987777777");
         log.info("Doctor created = {}", doctor3);
  //       doctorRepository.save(doctor3);
@@ -304,6 +306,26 @@ public class BootStrapData implements CommandLineRunner {
         appointment3.setDoctor(doctor);
         log.info("Appointment = {}", appointment3);
         appointmentRepository.save(appointment3);
+
+
+        LocalDateTime ldt4 = LocalDateTime.of(2025, 8, 10, 13, 5);
+        DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern(ApplicationConstants.DAY_MONTH_YEAR_HOUR_MINUTE_FORMAT);
+        log.info("Formatted date = {}", dtf4.toString());
+        appointment4.setDateTimeOfTheAppointment(ldt4);
+        appointment4.setPatient(patient);
+        appointment4.setDoctor(doctor3);
+        log.info("Appointment = {}", appointment4);
+        appointmentRepository.save(appointment4);
+
+
+        LocalDateTime ldt5 = LocalDateTime.of(2024, 3, 10, 13, 5);
+        DateTimeFormatter dtf5 = DateTimeFormatter.ofPattern(ApplicationConstants.DAY_MONTH_YEAR_HOUR_MINUTE_FORMAT);
+        log.info("Formatted date = {}", dtf5.toString());
+        appointment5.setDateTimeOfTheAppointment(ldt5);
+        appointment5.setPatient(patient);
+        appointment5.setDoctor(doctor1);
+        log.info("Appointment = {}", appointment5);
+        appointmentRepository.save(appointment5);
 
         log.info("Appointments");
         log.info("Number of appointments = {}", appointmentRepository.count());

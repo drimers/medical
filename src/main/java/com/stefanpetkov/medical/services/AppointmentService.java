@@ -43,6 +43,19 @@ public class AppointmentService {
     }
 
 
+    public List<AppointmentCommand> getByKeyword(String keyword) {
+        List<Appointment> appointmentEntities = appointmentRepository.findByKeyword(keyword);
+        List<AppointmentCommand> commands = new ArrayList<>();
+        for (Appointment appointment : appointmentEntities) {
+            AppointmentCommand command = toAppointmentCommand.convert(appointment);
+            commands.add(command);
+        }
+        return commands;
+    }
+
+
+
+
     public List<AppointmentCommand> appointmentsForPatient(Long patientId) {
         log.info("AppointmentService::appointmentsForPatient, patientId passed = {}", patientId);
 
