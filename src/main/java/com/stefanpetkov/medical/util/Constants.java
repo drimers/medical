@@ -70,6 +70,8 @@ public final class Constants {
     public static final String[] SESSION_COOKIES_TO_DELETE = new String[]{
             "JSESSIONID"
     };
+
+    public static final String ROLE_PREFIX = "ROLE_";
     //== end of security related ==
 
     //---------------------------------------------------------------------------------------

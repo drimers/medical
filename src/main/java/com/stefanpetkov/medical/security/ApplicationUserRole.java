@@ -1,5 +1,6 @@
 package com.stefanpetkov.medical.security;
 
+import com.stefanpetkov.medical.util.Constants;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.EnumSet;
@@ -28,7 +29,7 @@ public enum ApplicationUserRole {
         Set<SimpleGrantedAuthority> permissions = getPermissions().stream()
                 .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
                 .collect(Collectors.toSet());
-        permissions.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
+        permissions.add(new SimpleGrantedAuthority(Constants.ROLE_PREFIX + this.name()));
         return permissions;
     }
 
