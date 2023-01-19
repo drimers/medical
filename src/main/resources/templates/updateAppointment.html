@@ -31,38 +31,38 @@
 
 <div th:insert="~{common/header :: header}"></div>
 
+<label class="form-label display-6 -bold text-center text-warning bg-secondary"><strong> Update Appointment Form </strong></label>
 
-<label class="form-label display-6 -bold text-center"><strong> Appointment Form</strong></label>
 
 <form  class="border border-dark border-3 padding-bottom pb-3 mb-5 ml-5 mr-5" th:object="${appointment}"
       th:action="@{/updateAppointment}" method="post">
 
     <div class="row g-3">
         <div class="col">
-            <label class="form-label"><b> &nbsp;&nbsp; Appointment ID:</b></label>
-            <input type="text" class="form-control" placeholder="Appointment ID:" th:field="*{appointmentId}"/>
+<!--            <label class="form-label"><b> &nbsp;&nbsp; Appointment ID:</b></label>-->
+            <input type="hidden" class="form-control" placeholder="Appointment ID:" th:field="*{appointmentId}"/>
         </div>
 
         <div class="col">
-            <label class="form-label"><b> &nbsp;&nbsp; Doctor ID:</b></label>
-            <input type="text" class="form-control" placeholder="Doctor ID:" th:field="*{doctorId}"/>
+<!--            <label class="form-label"><b> &nbsp;&nbsp; Doctor ID:</b></label>-->
+            <input type="hidden" class="form-control" placeholder="Doctor ID:" th:field="*{doctorId}"/>
         </div>
 
         <div class="col">
             <input type="hidden" th:field="*{patientId}"/>
         </div>
 
-        <div class="col">
+        <div class="col-2">
             <label class="form-label"><b> &nbsp; Doctor First Name:</b></label>
             <input type="text" class="form-control" th:field="*{doctorFirstName}"/>
         </div>
 
-        <div class="col">
+        <div class="col-3">
             <label class="form-label"><b> &nbsp; Last Name:</b></label>
             <input type="text" class="form-control" placeholder="Last name" th:field="*{doctorLastName}"/>
         </div>
 
-        <div class="col">
+        <div class="col-4">
             <label for="datetime" class="form-label"><b> &nbsp; Time:</b></label>
             <input type="datetime-local" data-date-format="DD-MM-YYYY HH:mm" class="form-control" id="datetime" placeholder="Select time:"
                    th:field="*{dateTimeOfTheAppointment}"/>

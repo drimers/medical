@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head>
 
@@ -51,10 +51,11 @@
 <!--        </div>-->
 
 
-
+        <label class="form-label"><b> &nbsp; Doctors Name:</b></label></br>
         <select class="col" name="doctorID">
             <option   th:each="doctor : ${doctors}"  th:value="${doctor.id}" th:text="${doctor.firstName} + ' ' + ${doctor.lastName}"></option>
         </select>
+
 
 
 

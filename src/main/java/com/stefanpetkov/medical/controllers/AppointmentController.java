@@ -44,6 +44,23 @@ public class AppointmentController {
     }
 
 
+    @RequestMapping(path = {"/search"})
+    public String search(AppointmentCommand appointment, Model model, String keyword) {
+        // List<AppointmentEntity> list = new ArrayList<>();
+        if (keyword != null) {
+            List<AppointmentCommand> list = appointmentService.getByKeyword(keyword);
+            model.addAttribute("appointments", list);
+//        } else {
+//            List<AppointmentCommand> list = appointmentRepository.findAppointmentEntitiesByPatient_IdEqualUserIdInDoctorsEntity(2L);
+//            model.addAttribute("appointments", list);
+       }
+        return "patient/patientAppointments";
+    }
+
+
+
+
+
     @RequestMapping(path = "/patient")//TODO fix hardcoded ID with path variable for patient after logged in
     public String findAllAppointmentsForPatient(Model model) {
         log.info("AppointmentController::findAllAppointmentsForPatient");
