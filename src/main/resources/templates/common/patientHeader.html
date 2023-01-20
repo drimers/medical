@@ -52,16 +52,20 @@
                            value="logout"/>
                 </form>
 
+                <tr th:if="${appointments.isEmpty()}">
+                    <td class="text-warning bg-secondary" ><b>You are not logged!</b></td>
+                </tr>
 
-                <form class="d-flex mx-2" th:with="patient=${appointments[0]}" th:action="@{/patientEditForm}" method="post">
+                <form class="d-flex mx-2" th:action="@{/patientEditForm}" method="post">
+                    <tr th:if="${!appointments.isEmpty()}">
                     <span class="form-control btn btn-warning"
-                          th:text="'Здравей' + ' ' +${patient.patientFirstName}">PatientName</span>
+                          th:text="'Здравей' + ' ' +${appointments[0].patientFirstName}">PatientName</span>
 
-                    <a class="btn btn-outline-success" th:href="@{/patientEditForm(patient_id=*{patient.patientId})}" id="btn_edit" type="submit"><b>edit</br> account</b></a>
-                    <a class="btn btn-outline-success" th:href="@{/deletePatientAccount(patient_id=*{patient.patientId})}" id="delite" type="submit"><b>delete </br> account</b></a>
-
-
+                    <a class="btn btn-outline-success" th:href="@{/patientEditForm(patient_id=*{appointments[0].patientId})}" id="btn_edit" type="submit"><b>edit</br> account</b></a>
+                    <a class="btn btn-outline-success" th:href="@{/deletePatientAccount(patient_id=*{appointments[0].patientId})}" id="delite" type="submit"><b>delete </br> account</b></a>
+                    </tr>
                 </form>
+
             </div>
         </div>
     </nav>
