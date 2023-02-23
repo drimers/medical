@@ -44,16 +44,17 @@
 
                 </ul>
                 <form class="d-flex mx-2">
-                    <!--                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
-                    <!--                    <button class="btn btn-outline-success" type="submit">Search</button>-->
-                    <input class="btn btn-outline-success" type="button" id="button_login"
-                           onclick="location.href='/login';"
+<!--                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--                    <button class="btn btn-outline-success" type="submit">Search</button>-->
+                    <input class="btn btn-outline-success" type="button" id="button_login" onclick="location.href='/login';"
                            value="login"/>
-                    <input class="btn btn-outline-success" type="button" id="button_logout"
-                           onclick="location.href='login.html';"
+                    <input class="btn btn-outline-success" type="button" id="button_logout" onclick="location.href='login.html';"
                            value="logout"/>
                 </form>
 
+                <tr th:if="${appointments.isEmpty()}">
+                    <td class="text-warning bg-secondary" ><b>You are not logged!</b></td>
+                </tr>
 
                 <form class="d-flex mx-2" th:with="patient=${appointments[0]}" th:action="@{/patientEditForm}"
                       method="post">
@@ -73,7 +74,6 @@
                                 </a>
                     </div>
                 </form>
-
             </div>
         </div>
     </nav>
