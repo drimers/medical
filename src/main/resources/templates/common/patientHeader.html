@@ -44,24 +44,36 @@
 
                 </ul>
                 <form class="d-flex mx-2">
-<!--                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
-<!--                    <button class="btn btn-outline-success" type="submit">Search</button>-->
-                    <input class="btn btn-outline-success" type="button" id="button_login" onclick="location.href='/login';"
+                    <!--                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+                    <!--                    <button class="btn btn-outline-success" type="submit">Search</button>-->
+                    <input class="btn btn-outline-success" type="button" id="button_login"
+                           onclick="location.href='/login';"
                            value="login"/>
-                    <input class="btn btn-outline-success" type="button" id="button_logout" onclick="location.href='login.html';"
+                    <input class="btn btn-outline-success" type="button" id="button_logout"
+                           onclick="location.href='login.html';"
                            value="logout"/>
                 </form>
 
 
-                <form class="d-flex mx-2" th:with="patient=${appointments[0]}" th:action="@{/patientEditForm}" method="post">
-                    <span class="form-control btn btn-warning"
-                          th:text="'Здравей' + ' ' +${patient.patientFirstName}">PatientName</span>
+                <form class="d-flex mx-2" th:with="patient=${appointments[0]}" th:action="@{/patientEditForm}"
+                      method="post">
+                    <!--                    <span class="form-control btn btn-warning"-->
+                    <!--                          th:text="'Здравей' + ' ' +${patient.patientFirstName}">PatientName</span>-->
 
-                    <a class="btn btn-outline-success" th:href="@{/patientEditForm(patient_id=*{patient.patientId})}" id="btn_edit" type="submit"><b>edit</br> account</b></a>
-                    <a class="btn btn-outline-success" th:href="@{/deletePatientAccount(patient_id=*{patient.patientId})}" id="delite" type="submit"><b>delete </br> account</b></a>
+                    <a class="btn btn-outline-success" th:href="@{/patientEditForm(patient_id=*{patient.patientId})}"
+                       id="btn_edit" type="submit"><b>edit</br> account</b></a>
+                    <a class="btn btn-outline-success"
+                       th:href="@{/deletePatientAccount(patient_id=*{patient.patientId})}" id="delite" type="submit"><b>delete </br>
+                        account</b></a>
 
-
+                    <div class="container-fluid d-grid  col-2">
+                        <span class="form-control btn btn-warning" th:text="${patient.patientFirstName}"></span>
+                                <a class="navbar-brand" href="#">
+                                    <img th:src="@{img/logo1.png}" alt="img/logo1.png" style="width:50px;" class="rounded-pill">
+                                </a>
+                    </div>
                 </form>
+
             </div>
         </div>
     </nav>
