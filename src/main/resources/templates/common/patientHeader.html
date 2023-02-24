@@ -64,6 +64,12 @@
                     <a class="btn btn-outline-success" th:href="@{/patientEditForm(patient_id=*{appointments[0].patientId})}" id="btn_edit" type="submit"><b>edit</br> account</b></a>
                     <a class="btn btn-outline-success" th:href="@{/deletePatientAccount(patient_id=*{appointments[0].patientId})}" id="delite" type="submit"><b>delete </br> account</b></a>
                     </tr>
+                    <div class="container-fluid d-grid  col-2">
+                        <span class="form-control btn btn-warning" th:text="${patient.patientFirstName}"></span>
+                        <a class="navbar-brand" href="#">
+                            <img th:src="@{img/logo1.png}" alt="img/logo1.png" style="width:50px;" class="rounded-pill">
+                        </a>
+                    </div>
                 </form>
 
             </div>
