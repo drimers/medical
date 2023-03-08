@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>MEDICAL - Responsive HTML &amp; Bootstrap Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>MEDICAL - Responsive HTML &amp; Bootstrap Template</title>
 
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
+    <!--[if lt IE 9]>
 
-  <!--[if lt IE 9]>
-
-  <![endif]-->
+    <![endif]-->
 
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -26,40 +26,51 @@ header section -->
 <div th:insert="~{common/header :: header}"></div>
 
 
-
-
 <!-- contact section starts here -->
 <section class="contact">
-  <div class="container">
-    <div class="row">
-      <div class="contact-caption clearfix">
-        <div class="contact-heading text-center">
-          <h2>contact us</h2>
-        </div>
-        <div class="col-md-5 contact-info text-left">
-          <h3>contact information</h3>
-          <div class="info-detail">
-            <ul><li><i class="fa fa-calendar"></i><span>Monday - Friday:</span> 9:30 AM to 6:30 PM</li></ul>
-            <ul><li><i class="fa fa-map-marker"></i><span>Address:</span> Sofia</li></ul>
-            <ul><li><i class="fa fa-phone"></i><span>Phone:</span> (02) 987-1235</li></ul>
-            <ul><li><i class="fa fa-fax"></i><span>Fax:</span> (02) 984-1234</li></ul>
-            <ul><li><i class="fa fa-envelope"></i><span>Email:</span> info@doctor.com</li></ul>
-          </div>
-        </div>
-        <div class="col-md-6 col-md-offset-1 contact-form">
-          <h3>leave us a message</h3>
+    <div class="container-fluid">
+        <div class="bg-image"
+             style="background-image: url('/img/slide-one.jpg') ; height: 100vh;">
+            <div class="row">
+                <div class="contact-caption clearfix">
+                    <div class="col-md-5 contact-info text-left offset-md-1">
+                        <h2>Contact information:</h2>
+                        <div class="info-detail">
+                            <ul>
+                                <li><i class="fa fa-calendar"></i><span>Monday - Friday:</span> 9:30 AM to 6:30 PM</li>
+                            </ul>
+                            <ul>
+                                <li><i class="fa fa-map-marker"></i><span>Address:</span> Sofia</li>
+                            </ul>
+                            <ul>
+                                <li><i class="fa fa-phone"></i><span>Phone:</span> (02) 987-1235</li>
+                            </ul>
+                            <ul>
+                                <li><i class="fa fa-fax"></i><span>Fax:</span> (02) 984-1234</li>
+                            </ul>
+                            <ul>
+                                <li><i class="fa fa-envelope"></i><span>Email:</span> info@doctor.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-md-offset-2">
+                <div class="col-md-3 offset-md-1 contact-form">
+                    <h2>Leave us a message:</h2>
 
-          <form class="form">
-            <input class="name" type="text" placeholder="Name">
-            <input class="email" type="email" placeholder="Email">
-            <input class="phone" type="text" placeholder="Phone No:">
-            <textarea class="message" name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
-            <input class="submit-btn" type="submit" value="SUBMIT">
-          </form>
+                    <form class="form">
+                        <input class="name" type="text" placeholder="Name">
+                        <input class="email" type="email" placeholder="Email">
+                        <input class="phone" type="text" placeholder="Phone No:">
+                        <textarea class="message" name="message" id="message" cols="20" rows="4"
+                                  placeholder="Message"></textarea>
+                        <input class="submit-btn" type="submit" value="SUBMIT">
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section><!-- end of contact section -->
 
 <div th:insert="~{common/footer :: footer}"></div>
