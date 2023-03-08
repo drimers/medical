@@ -53,7 +53,7 @@ public class PatientCommandToPatient implements Converter<PatientCommand, Patien
         UserCredentials patientCredentials = new UserCredentials();
         patientCredentials.setEmail(command.getEmail());
         patientCredentials.setPassword(command.getPassword());
-        patientCredentials.setRole(Role.PATIENT);
+        patientCredentials.setRole(Role.ROLE_PATIENT);
         validateCredentials(patientCredentials);
 
         patient.setCredentials(patientCredentials);

@@ -100,7 +100,7 @@ public class BootStrapData implements CommandLineRunner {
 
         credential.setEmail("doctor.bg@abv.bg");
         credential.setPassword("pass");
-        credential.setRole(Role.DOCTOR);
+        credential.setRole(Role.ROLE_DOCTOR);
         doctor.setCredentials(credential);
         credential.setBaseUser(doctor);
         doctorRepository.save(doctor);
@@ -123,7 +123,7 @@ public class BootStrapData implements CommandLineRunner {
         // registration account
         credentials.setEmail("spp@abv.bg");
         credentials.setPassword("pass");
-        credentials.setRole(Role.PATIENT);
+        credentials.setRole(Role.ROLE_PATIENT);
         patient.setCredentials(credentials);
         credentials.setBaseUser(patient);
         patientRepository.save(patient);
@@ -214,7 +214,7 @@ public class BootStrapData implements CommandLineRunner {
         //credential1
         credentials1.setEmail("patient1@abv.bg");
         credentials1.setPassword("pass");
-        credentials1.setRole(Role.PATIENT);
+        credentials1.setRole(Role.ROLE_PATIENT);
         patient1.setCredentials(credentials1);
         credentials1.setBaseUser(patient1);
         patientRepository.save(patient1);
@@ -223,7 +223,7 @@ public class BootStrapData implements CommandLineRunner {
         //credential2
         credentials2.setEmail("patient2@abv.bg");
         credentials2.setPassword("pass");
-        credentials2.setRole(Role.PATIENT);
+        credentials2.setRole(Role.ROLE_PATIENT);
         patient2.setCredentials(credentials2);
         credentials2.setBaseUser(patient2);
         patientRepository.save(patient2);
@@ -232,7 +232,7 @@ public class BootStrapData implements CommandLineRunner {
         //credential3
         credentials3.setEmail("patient3@abv.bg");
         credentials3.setPassword("pass");
-        credentials3.setRole(Role.PATIENT);
+        credentials3.setRole(Role.ROLE_PATIENT);
         patient3.setCredentials(credentials3);
         credentials3.setBaseUser(patient3);
         patientRepository.save(patient3);
@@ -244,7 +244,7 @@ public class BootStrapData implements CommandLineRunner {
         //Credential4
         credentials4.setEmail("doctor1@abv.bg");
         credentials4.setPassword("pass");
-        credentials4.setRole(Role.DOCTOR);
+        credentials4.setRole(Role.ROLE_DOCTOR);
         doctor1.setCredentials(credentials4);
         credentials4.setBaseUser(doctor1);
         doctorRepository.save(doctor1);
@@ -253,7 +253,7 @@ public class BootStrapData implements CommandLineRunner {
         //credential5
         credentials5.setEmail("doctor2@abv.bg");
         credentials5.setPassword("pass");
-        credentials5.setRole(Role.DOCTOR);
+        credentials5.setRole(Role.ROLE_DOCTOR);
         doctor2.setCredentials(credentials5);
         credentials5.setBaseUser(doctor2);
         doctorRepository.save(doctor2);
@@ -262,7 +262,7 @@ public class BootStrapData implements CommandLineRunner {
         //credential6
         credentials6.setEmail("doctor3@abv.bg");
         credentials6.setPassword("pass");
-        credentials6.setRole(Role.DOCTOR);
+        credentials6.setRole(Role.ROLE_DOCTOR);
         doctor3.setCredentials(credentials6);
         credentials6.setBaseUser(doctor3);
         doctorRepository.save(doctor3);

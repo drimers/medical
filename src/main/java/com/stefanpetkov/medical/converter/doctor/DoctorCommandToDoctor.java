@@ -1,9 +1,9 @@
 package com.stefanpetkov.medical.converter.doctor;
 
-import com.stefanpetkov.medical.commands.AppointmentCommand;
 import com.stefanpetkov.medical.commands.DoctorCommand;
-import com.stefanpetkov.medical.domain.*;
-import com.stefanpetkov.medical.exception.NotFoundException;
+import com.stefanpetkov.medical.domain.Doctor;
+import com.stefanpetkov.medical.domain.Role;
+import com.stefanpetkov.medical.domain.UserCredentials;
 import com.stefanpetkov.medical.repositories.AppointmentRepository;
 import com.stefanpetkov.medical.repositories.DoctorRepository;
 import com.stefanpetkov.medical.repositories.PatientRepository;
@@ -54,7 +54,7 @@ public class DoctorCommandToDoctor implements Converter<DoctorCommand, Doctor> {
         UserCredentials doctorCredentials = new UserCredentials();
         doctorCredentials.setEmail(command.getDoctorEmail());
         doctorCredentials.setPassword(command.getDoctorPassword());
-        doctorCredentials.setRole(Role.DOCTOR);
+        doctorCredentials.setRole(Role.ROLE_DOCTOR);
         //validateCredentials(doctorCredentials);
 
         doctor.setCredentials(doctorCredentials);
