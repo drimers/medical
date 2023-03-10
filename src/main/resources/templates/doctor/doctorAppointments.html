@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
     <meta charset="UTF-8">
@@ -19,6 +19,7 @@
 <!--/*@thymeleaf id="vet" type="com.stefanpetkov.medical.commands.AppointmentCommand"*/-->
 <div th:insert="~{common/header :: header}"></div>
 
+<div sec:authorize="isAuthenticated()">
 
 <h3 class="border border-2 border-success w-25"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Здравейте д-р : Ivanov</h3>
 
@@ -41,7 +42,7 @@
         <td th:text="*{appointment.patientComment}">comment</td>
     </tr>
 </table>
-
+</div>
 
 <div th:insert="~{common/footer :: footer}"></div>
 </body>

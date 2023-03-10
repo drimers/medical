@@ -54,6 +54,11 @@ public class SecurityConfig {
 //        return (web) -> web.ignoring().anyRequest();
 //    }
 
+//        @Bean
+//        UserDetailsService myUserDetailsService(CredentialsRepository credentialsRepository) {
+//        return new MyUserDetailsService(credentialsRepository);
+//    }
+
 
 //    @Bean
 //    UserDetailsService myUserDetailsService(UserRepository userRepository) {
