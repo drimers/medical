@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
 
@@ -33,6 +33,9 @@
 <div th:insert="~{common/header :: header}"></div>
 
 
+
+<div sec:authorize="isAuthenticated()">
+
 <label class="form-label display-6 -bold text-center text-warning bg-secondary"><strong> Appointment Form </strong></label>
 
 <form  class="border border-dark border-3 padding-bottom pb-3 mb-5 ml-5 mr-5" th:object="${appointment}"
@@ -58,7 +61,7 @@
 
     </div>
 </form>
-
+</div>
 
 <!-- footer starts here -->
 <div th:insert="~{common/footer :: footer}"></div>
