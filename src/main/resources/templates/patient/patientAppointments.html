@@ -47,6 +47,7 @@
 
 <table class="table table-striped">
     <tr class="table-dark">
+        <th>No:</th>
         <th>Patient_ID</th>
         <th>Doctor's FullName</th>
         <th>Appointment</th>
@@ -54,7 +55,8 @@
         <th>Update</th>
         <th>Delete</th>
     </tr>
-    <tr class="border border-3 border-dark" th:each="appointment : ${appointments}">
+    <tr class="border border-3 border-dark" th:each="appointment, appointmentNumber : ${appointments}">
+        <td th:text="*{appointmentNumber.count}">No</td>
         <td th:text="*{appointment.patientId}">id</td>
         <td th:text="d-r + ' ' + *{appointment.doctorFirstName} + ' ' + *{appointment.doctorLastName}">FullName</td>
         <td th:text="*{appointment.dateTimeOfTheAppointment}">phone</td>

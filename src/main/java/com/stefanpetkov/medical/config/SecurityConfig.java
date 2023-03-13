@@ -23,7 +23,7 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(authConfig -> {
-                    authConfig.requestMatchers(HttpMethod.GET, "/", "/home", "/login", "/logon", "/register", "/contact", "/error/**", "/login-error", "/logout", "/css/**",
+                    authConfig.requestMatchers(HttpMethod.GET, "/", "/home", "/login", "/logon", "/register", "/display_form", "/save", "/contact", "/error/**", "/login-error", "/logout", "/css/**",
                             "/fonts/**", "/assets/**", "/img/**", "/js/**", "/vendor/**", "/common/**", "/h2-console/**").permitAll();
                     authConfig.requestMatchers(HttpMethod.GET, "/patient").hasRole("PATIENT");
                     authConfig.requestMatchers(HttpMethod.GET, "/doctor").hasRole("DOCTOR");
